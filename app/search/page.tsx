@@ -1,385 +1,348 @@
- 'use client';
+'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { SlidersHorizontal } from 'lucide-react';
-import { DbProductGrouped } from '@/lib/types';
-import { parsePrice } from '@/lib/productGrouping';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Search, Plus, Loader2, Filter } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
-import { SearchSidebar, SearchSidebarFilters } from '@/components/search/SearchSidebar';
-import { ProductGrid, ViewMode } from '@/components/search/ProductGrid';
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-} from '@/components/ui/drawer';
+import { FilterSidebar } from '@/components/search/FilterSidebar';
+import { useCartStore } from '@/store/cartStore';
 
-interface Facets {
-  colors: string[];
-  sizes: string[];
-  maxPrice: number | null;
+// Product interface matching database schema
+interface Product {
+  id: string;
+  title: string;
+  price: string;
+  image: string | null;
+  category: string | null;
+  link: string | null;
 }
 
-interface UnifiedSearchResponse {
-  products: DbProductGrouped[];
-  page: number;
-  hasMore: boolean;
-  total?: number;
-  searchTerm?: string;
-  facets?: {
-    colors: string[];
-    sizes: string[];
-    maxPrice: number | null;
-  };
-  error?: string;
-  source: 'database' | 'scraper';
+// Helper to parse "€123.45" -> 123.45
+const parsePrice = (priceStr: string) => {
+  if (!priceStr) return 0;
+  return parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 0;
+};
+// Helper for brand
+const getBrandFromTitle = (title: string) => {
+  return title.split(' ')[0].replace(/[^a-zA-Z0-9]/g, '');
+};
+
+// Debounce hook
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+
+  return debouncedValue;
 }
 
 export default function SearchPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { addItem } = useCartStore();
 
-  const searchTerm = searchParams.get('search') || '';
-  const currentPage = parseInt(searchParams.get('page') || '1', 10) || 1;
+  const initialSearch = searchParams.get('search') || '';
+  const initialCategory = searchParams.get('category') || '';
 
-  // Raw products from API (full list, never filtered)
-  const [rawProducts, setRawProducts] = useState<DbProductGrouped[]>([]);
-  const [apiFacets, setApiFacets] = useState<Facets | null>(null);
-  const [totalProducts, setTotalProducts] = useState<number>(0);
-  const [hasMore, setHasMore] = useState(false);
-  
-  // Filter state (client-side only, no API calls)
-  const [priceMin, setPriceMin] = useState<number | undefined>();
-  const [priceMax, setPriceMax] = useState<number | undefined>();
-  const [inStock, setInStock] = useState(false);
-  const [sort, setSort] = useState<'price_asc' | 'price_desc' | 'newest'>('price_asc');
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
-  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
-  const [viewMode, setViewMode] = useState<ViewMode>('grid');
-  const [isLoading, setIsLoading] = useState(false);
+  const [searchInput, setSearchInput] = useState(initialSearch);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Compute facets from rawProducts (colors, sizes, maxPrice)
-  const facets = useMemo<Facets>(() => {
-    // If API returned facets, use them
-    if (apiFacets) {
-      return apiFacets;
-    }
+  // -- FILTERS STATE --
+  const [filters, setFilters] = useState({
+    priceRange: [0, 10000] as [number, number],
+    selectedBrands: [] as string[],
+    selectedCategories: initialCategory ? [initialCategory] : [] as string[],
+    selectedColors: [] as string[]
+  });
 
-    // Otherwise compute from products
-    const colors = new Set<string>();
-    const sizes = new Set<string>();
-    let maxPrice = 0;
-
-    rawProducts.forEach((p) => {
-      // Extract colors from available_colors (DbProductGrouped format)
-      if (p.available_colors) {
-        p.available_colors.forEach((c) => colors.add(c));
-      }
-      // Extract sizes from available_sizes
-      if (p.available_sizes) {
-        p.available_sizes.forEach((s) => sizes.add(s));
-      }
-      // Track max price
-      const price = p.min_price || parsePrice(p.price);
-      if (price > maxPrice) maxPrice = price;
-    });
-
-    return {
-      colors: Array.from(colors).sort(),
-      sizes: Array.from(sizes).sort(),
-      maxPrice: maxPrice > 0 ? maxPrice : null,
-    };
-  }, [rawProducts]);
-
-  // Compute categories from rawProducts
-  const categoryFacet = useMemo(() => {
-    // ProductWithVariants doesn't have category, so we'll leave this empty for now
-    // If needed, we can extract from product title or add category extraction logic
-    return [];
-  }, [rawProducts]);
-
-  // Fetch products when search term or page changes
+  // Reset filters if URL param changes (e.g. navigation from drawer)
   useEffect(() => {
-    if (!searchTerm) {
-      setRawProducts([]);
-      setApiFacets(null);
-      setError(null);
-      setTotalProducts(0);
-      setHasMore(false);
-      return;
+    const cat = searchParams.get('category');
+    if (cat) {
+      setFilters(prev => ({ ...prev, selectedCategories: [cat] }));
     }
+  }, [searchParams]);
 
-    async function fetchResults() {
-      setIsLoading(true);
-      setError(null);
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
-      try {
-        const url = `/api/products/unified?q=${encodeURIComponent(searchTerm)}&page=${currentPage}`;
-        console.log('[SEARCH PAGE] Fetching from unified API:', url);
-        
-        const res = await fetch(url);
-        const data: UnifiedSearchResponse = await res.json();
+  // Debounce search input (300ms)
+  const debouncedSearch = useDebounce(searchInput, 300);
 
-        console.log('[SEARCH PAGE] API response:', {
-          ok: res.ok,
-          status: res.status,
-          productCount: data.products?.length || 0,
-          total: data.total,
-          page: data.page,
-          hasMore: data.hasMore,
-          source: data.source,
-          hasError: !!data.error,
-        });
+  // Fetch products
+  const fetchProducts = useCallback(async (search: string) => {
+    setIsLoading(true);
+    setError(null);
 
-        if (data.error) {
-          setError(data.error);
-          setRawProducts([]);
-          setApiFacets(null);
-          setTotalProducts(0);
-          setHasMore(false);
-        } else {
-          setRawProducts(data.products || []);
-          setTotalProducts(data.total || 0);
-          setHasMore(data.hasMore || false);
-          if (data.facets) {
-            setApiFacets(data.facets);
-          }
-          console.log('[SEARCH PAGE] Loaded', data.products?.length || 0, 'products from', data.source);
-          
-          // Scroll to top when page changes
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      } catch (err) {
-        console.error('[SEARCH PAGE] Fetch error:', err);
-        setError(err instanceof Error ? err.message : 'Failed to load products');
-        setRawProducts([]);
-        setApiFacets(null);
-        setTotalProducts(0);
-        setHasMore(false);
-      } finally {
-        setIsLoading(false);
+    try {
+      // Just fetch ALL products if no search or wide search; we rely on Client Side Filtering for exact refinement
+      // (The user asked for frontend filtering)
+      const url = search
+        ? `/api/products/unified?search=${encodeURIComponent(search)}`
+        : `/api/products/unified`;
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (data.products) {
+        setProducts(data.products);
+      } else {
+        setProducts([]);
       }
+    } catch (err) {
+      console.error('Fetch error:', err);
+      setError('Failed to load products');
+      setProducts([]);
+    } finally {
+      setIsLoading(false);
     }
+  }, []);
 
-    fetchResults();
-  }, [searchTerm, currentPage]); // Depend on both searchTerm and currentPage
+  // Fetch on debounced search change
+  useEffect(() => {
+    fetchProducts(debouncedSearch);
 
-  // Client-side filtering: filter rawProducts based on all filter states
+    // Update URL
+    if (debouncedSearch) {
+      router.replace(`/search?search=${encodeURIComponent(debouncedSearch)}`, { scroll: false });
+    } else {
+      router.replace('/search', { scroll: false });
+    }
+  }, [debouncedSearch, fetchProducts, router]);
+
+  // -- FILTERING LOGIC --
   const filteredProducts = useMemo(() => {
-    let filtered = [...rawProducts];
+    return products.filter(product => {
+      // 1. By Price
+      const price = parsePrice(product.price);
+      if (filters.priceRange[0] > 0 && price < filters.priceRange[0]) return false;
+      if (filters.priceRange[1] > 0 && filters.priceRange[1] < 10000 && price > filters.priceRange[1]) return false;
 
-    // Price filter
-    if (priceMin !== undefined || priceMax !== undefined) {
-      filtered = filtered.filter((p) => {
-        const price = parsePrice(p.price);
-        if (priceMin !== undefined && price < priceMin) return false;
-        if (priceMax !== undefined && price > priceMax) return false;
-        return true;
-      });
-    }
+      // 2. By Brand
+      if (filters.selectedBrands.length > 0) {
+        const brand = getBrandFromTitle(product.title);
+        // Loose matching
+        const matchesBrand = filters.selectedBrands.some(b =>
+          brand.toLowerCase() === b.toLowerCase()
+        );
+        if (!matchesBrand) return false;
+      }
 
-    // Color filter (check available_colors - DbProductGrouped format)
-    if (selectedColors.length > 0) {
-      filtered = filtered.filter((p) => {
-        const colors = p.available_colors || [];
-        return colors.some((c) => selectedColors.includes(c));
-      });
-    }
+      // 3. By Category
+      if (filters.selectedCategories.length > 0) {
+        if (!product.category || !filters.selectedCategories.includes(product.category)) {
+          return false;
+        }
+      }
 
-    // Size filter (check available_sizes - DbProductGrouped format)
-    if (selectedSizes.length > 0) {
-      filtered = filtered.filter((p) => {
-        const sizes = p.available_sizes || [];
-        return sizes.some((s) => selectedSizes.includes(s));
-      });
-    }
+      return true;
+    });
+  }, [products, filters]);
 
-    // Category filter (not available in ProductWithVariants, skip for now)
-    // if (selectedCategory) {
-    //   filtered = filtered.filter((p) => p.category === selectedCategory);
-    // }
-
-    // In-stock filter (all products from live API are assumed in stock)
-    // if (inStock) {
-    //   filtered = filtered.filter((p) => p.in_stock);
-    // }
-
-    // Client-side sorting (use min_price for DbProductGrouped)
-    switch (sort) {
-      case 'price_asc':
-        filtered.sort((a, b) => (a.min_price ?? parsePrice(a.price)) - (b.min_price ?? parsePrice(b.price)));
-        break;
-      case 'price_desc':
-        filtered.sort((a, b) => (b.min_price ?? parsePrice(b.price)) - (a.min_price ?? parsePrice(a.price)));
-        break;
-      case 'newest':
-        // No timestamp in DbProductGrouped, keep original order
-        break;
-      default:
-        break;
-    }
-
-    return filtered;
-  }, [rawProducts, priceMin, priceMax, selectedColors, selectedSizes, sort]);
-
-
-  // Handle filter changes - update state only (no API call, no URL update)
-  const handleFiltersChange = (next: SearchSidebarFilters) => {
-    setPriceMin(next.priceMin);
-    setPriceMax(next.priceMax);
-    setInStock(next.inStock);
-    setSelectedColors(next.selectedColors);
-    setSelectedSizes(next.selectedSizes);
-    setSelectedCategory(next.selectedCategory);
-    // Filters are applied client-side via filteredProducts useMemo
-    // No router.push - instant filtering without page reload
+  // Handle add to cart
+  const handleAddToCart = (product: Product) => {
+    addItem({
+      title: product.title,
+      price: product.price,
+      image: product.image || '',
+      link: product.link || undefined,
+    });
   };
-
-  // Handle sort changes - update state only (no API call, no URL update)
-  const handleSortChange = (nextSort: 'price_asc' | 'price_desc' | 'newest') => {
-    setSort(nextSort);
-    // Sorting is applied client-side via filteredProducts useMemo
-    // No router.push - instant sorting without page reload
-  };
-
-  // Handle pagination - update URL which triggers fetch
-  const handlePageChange = (newPage: number) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('page', newPage.toString());
-    router.push(`/search?${params.toString()}`);
-  };
-
-  // Calculate pagination info
-  const PAGE_SIZE = 24;
-  const totalPages = Math.ceil(totalProducts / PAGE_SIZE) || 1;
-
-  // Initial "hero" state: only search bar, no products
-  if (!searchTerm) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navbar />
-        <main className="min-h-screen bg-white pt-20 px-4 md:px-6 relative z-0">
-          <div className="flex items-center justify-center min-h-[calc(100vh-4rem)]">
-            <div className="w-full max-w-2xl">
-            <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4">
-              Search for anything on board
-            </h1>
-            <p className="text-sm text-zinc-500 mb-6">
-              Type a product name (e.g. &quot;cable&quot;, &quot;Wurth tape&quot;, &quot;rope&quot;) to see grouped
-              results with filters.
-            </p>
-            <p className="text-xs text-zinc-400 mb-4">
-              Products are fetched from database with automatic fallback to live scraping.
-            </p>
-            </div>
-          </div>
-        </main>
-      </div>
-    );
-  }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-zinc-50">
       <Navbar />
-      <main className="min-h-screen bg-white pt-20 px-4 md:px-6 relative z-0">
-        <div className="max-w-7xl mx-auto">
-          {/* Mobile filter summary + button */}
-        <div className="flex items-center justify-between mb-4 lg:hidden">
-          <p className="text-xs text-zinc-500">
-            {filteredProducts.length} results for &quot;{searchTerm}&quot;
-          </p>
-          <button
-            type="button"
-            onClick={() => setIsFilterOpen(true)}
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-zinc-200 text-xs font-medium text-zinc-700 bg-white"
-          >
-            <SlidersHorizontal className="w-3 h-3" />
-            Filters
-          </button>
-        </div>
 
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-          {/* Sidebar filters (desktop) */}
-          <aside className="hidden lg:block w-64 flex-shrink-0 pt-2">
-            <SearchSidebar
-              facets={facets}
-              categories={categoryFacet}
-              priceMin={priceMin}
-              priceMax={priceMax}
-              inStock={inStock}
-              selectedColors={selectedColors}
-              selectedSizes={selectedSizes}
-              selectedCategory={selectedCategory}
-              onChange={handleFiltersChange}
+      {/* Main Container */}
+      <div className="max-w-[1600px] mx-auto pt-20"> {/* pt-20 accounts for fixed navbar */}
+
+        <div className="flex flex-col lg:flex-row bg-white min-h-[calc(100vh-80px)]">
+
+          {/* Sidebar (Desktop) */}
+          <div className="hidden lg:block border-r border-zinc-200 bg-white w-64 flex-shrink-0 sticky top-20 h-[calc(100vh-80px)] overflow-hidden">
+            <FilterSidebar
+              products={products}
+              filters={filters}
+              setFilters={setFilters}
             />
-          </aside>
+          </div>
 
-          {/* Main results area */}
-          <div className="flex-1">
-            <ProductGrid
-              searchTerm={searchTerm}
-              products={rawProducts}
-              filteredProducts={filteredProducts}
-              sort={sort}
-              viewMode={viewMode}
-              isLoading={isLoading}
-              error={error}
-              onChangeSort={handleSortChange}
-              onChangeViewMode={setViewMode}
-            />
+          {/* Main Content */}
+          <div className="flex-1 min-w-0 bg-white">
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="mt-8 flex items-center justify-center gap-4">
+            {/* Search Header & Mobile Filter Toggle */}
+            <div className="sticky top-16 lg:top-0 z-30 bg-white border-b border-zinc-200 px-4 py-4">
+              <div className="flex items-center gap-4">
+
+                {/* Search Bar */}
+                <div className="relative flex-1 max-w-2xl">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
+                  <input
+                    type="text"
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    placeholder="Search yatch supplies..."
+                    className="w-full pl-12 pr-4 py-2.5 bg-zinc-100 rounded-lg text-base placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-black/5 focus:bg-white transition-all border border-transparent focus:border-black"
+                  />
+                  {isLoading && (
+                    <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400 animate-spin" />
+                  )}
+                </div>
+
+                {/* Mobile Filter Button */}
                 <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1 || isLoading}
-                  className="px-4 py-2 rounded-lg border border-zinc-200 text-sm font-medium text-zinc-700 bg-white hover:bg-zinc-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  onClick={() => setIsMobileFiltersOpen(true)}
+                  className="lg:hidden p-2.5 bg-zinc-100 rounded-lg text-zinc-700 hover:bg-zinc-200 transition-colors"
                 >
-                  Previous
-                </button>
-                <span className="text-sm text-zinc-600">
-                  Page {currentPage} of {totalPages}
-                </span>
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={!hasMore || isLoading || currentPage >= totalPages}
-                  className="px-4 py-2 rounded-lg border border-zinc-200 text-sm font-medium text-zinc-700 bg-white hover:bg-zinc-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  Next
+                  <Filter className="w-5 h-5" />
                 </button>
               </div>
-            )}
+
+              {/* Stats Bar */}
+              <div className="mt-4 flex items-center justify-between text-sm text-zinc-500">
+                <span>{filteredProducts.length} items found</span>
+                {/* Sort dropdown could go here */}
+                {/* <span>Sort By: Recommended</span> */}
+              </div>
+            </div>
+
+            {/* Product Grid */}
+            <div className="p-4 lg:p-6">
+              {isLoading && products.length === 0 ? (
+                // Skeleton Grid
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <div key={i} className="bg-white rounded-xl overflow-hidden border border-zinc-100 animate-pulse">
+                      <div className="aspect-[4/5] bg-zinc-100" />
+                      <div className="p-4 space-y-3">
+                        <div className="h-4 bg-zinc-100 rounded w-3/4" />
+                        <div className="h-4 bg-zinc-100 rounded w-1/2" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : error ? (
+                <div className="text-center py-20">
+                  <p className="text-red-500 font-medium">{error}</p>
+                </div>
+              ) : filteredProducts.length === 0 ? (
+                <div className="text-center py-24 px-4">
+                  <div className="text-6xl mb-6 opacity-20">⚓</div>
+                  <h3 className="text-xl font-semibold text-zinc-900 mb-2">No products found</h3>
+                  <p className="text-zinc-500 max-w-sm mx-auto">
+                    We couldn't find any products matching your filters. Try adjusting your search or clearing the filters.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSearchInput('');
+                      setFilters({
+                        priceRange: [0, 10000],
+                        selectedBrands: [],
+                        selectedCategories: [],
+                        selectedColors: []
+                      });
+                    }}
+                    className="mt-6 px-6 py-2.5 bg-black text-white rounded-full font-medium hover:bg-zinc-800 transition-colors"
+                  >
+                    Clear All Filters
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+                  {filteredProducts.map((product) => (
+                    <div
+                      key={product.id}
+                      className="bg-white rounded-xl overflow-hidden border border-zinc-200 hover:border-black hover:shadow-lg transition-all duration-300 group flex flex-col relative"
+                    >
+                      {/* WRAPPER LINK */}
+                      <Link href={`/product/${product.id}`} className="flex flex-col h-full">
+
+                        {/* Product Image */}
+                        <div className="relative aspect-square p-4 bg-white flex items-center justify-center">
+                          {product.image ? (
+                            <Image
+                              src={product.image}
+                              alt={product.title}
+                              fill
+                              className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-zinc-200">
+                              <span className="text-4xl">⚓</span>
+                            </div>
+                          )}
+
+                        </div>
+
+                        {/* Product Info */}
+                        <div className="p-4 flex-1 flex flex-col">
+                          <div className="mb-1">
+                            {product.category && (
+                              <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">
+                                {product.category}
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="font-medium text-sm text-zinc-900 line-clamp-2 mb-2 min-h-[2.5rem]" title={product.title}>
+                            {product.title}
+                          </h3>
+                          <div className="mt-auto">
+                            <p className="text-lg font-bold text-black">
+                              {product.price}
+                            </p>
+                          </div>
+                        </div>
+                      </Link>
+
+                      {/* Quick Add Button - Positioned absolutely on top of the link, needs z-index and click stopPropagation */}
+                      <div className="absolute top-4 right-4 z-10">
+                        {/* Original design had bottom-right, keeping consistent but ensure it's clickable */}
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault(); // Prevent navigation
+                          e.stopPropagation();
+                          handleAddToCart(product);
+                        }}
+                        className="absolute bottom-[4.5rem] right-4 w-10 h-10 bg-orange-500 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-200 hover:bg-orange-600 active:scale-95 z-20"
+                      >
+                        <Plus className="w-6 h-6" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Mobile Sidebar (Drawer-like overlay) */}
+      {isMobileFiltersOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex">
+          <div className="fixed inset-0 bg-black/50" onClick={() => setIsMobileFiltersOpen(false)} />
+          <div className="relative w-[300px] bg-white h-full shadow-xl animate-in slide-in-from-left">
+            <FilterSidebar
+              products={products}
+              filters={filters}
+              setFilters={setFilters}
+              onClose={() => setIsMobileFiltersOpen(false)}
+            />
           </div>
         </div>
+      )}
 
-        {/* Mobile Filter Drawer */}
-        <Drawer open={isFilterOpen} onOpenChange={setIsFilterOpen}>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>Filters</DrawerTitle>
-            </DrawerHeader>
-            <div className="px-4 pb-4">
-              <SearchSidebar
-                facets={facets}
-                categories={categoryFacet}
-                priceMin={priceMin}
-                priceMax={priceMax}
-                inStock={inStock}
-                selectedColors={selectedColors}
-                selectedSizes={selectedSizes}
-                selectedCategory={selectedCategory}
-                onChange={handleFiltersChange}
-              />
-            </div>
-          </DrawerContent>
-        </Drawer>
-        </div>
-      </main>
     </div>
   );
 }

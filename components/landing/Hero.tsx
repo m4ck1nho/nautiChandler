@@ -28,23 +28,10 @@ export function Hero({ onSearch, initialQuery = '' }: HeroProps) {
 
   return (
     <section className="relative h-screen bg-white overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+      <div className="grid grid-cols-1 lg:grid-cols-[65%_35%] h-full">
         {/* Left Column - Content */}
         <div className="flex flex-col justify-center items-start px-8 lg:px-16 py-12 lg:py-0 z-10">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/yachtLogo.png"
-              alt="Yachtdrop"
-              className="h-10 w-auto object-contain"
-            />
-          </motion.div>
+
 
           {/* Headline */}
           <motion.h1
@@ -131,7 +118,7 @@ export function Hero({ onSearch, initialQuery = '' }: HeroProps) {
             alt="Yacht provisioning service"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
-          
+
           {/* Gradient Overlay - blends image into white left side */}
           <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white via-white/50 to-transparent" />
         </div>

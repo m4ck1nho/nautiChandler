@@ -1,0 +1,2234 @@
+[
+  {
+    "id": "prod-1",
+    "title": "Lofrans Iris II Chain Counter",
+    "price": "€308.34",
+    "image": "https://nautichandler.com/17021-home_default/lofrans-iris-ii-chain-counter.webp",
+    "link": "https://nautichandler.com/en/16448-lofrans-iris-ii-chain-counter.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-2",
+    "title": "Lewmar gear grease plastic tube 100g",
+    "price": "€24.58",
+    "image": "https://nautichandler.com/3544-home_default/lewmar-gear-grease-plastic-tube-100g.webp",
+    "link": "https://nautichandler.com/en/1916-lewmar-gear-grease-plastic-tube-100g.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-3",
+    "title": "Icom 37e vhf with float'n flash and 12 hours of operation",
+    "price": "€272.25",
+    "image": "https://nautichandler.com/1000-home_default/icom-37e-vhf-with-floatn-flash-and-12-hours-of-operation.webp",
+    "link": "https://nautichandler.com/en/3328-icom-37e-vhf-with-floatn-flash-and-12-hours-of-operation.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-4",
+    "title": "GARMIN Digital Remote Sounder GSD 24 50/200khz 1kw",
+    "price": "€579.00",
+    "image": "https://nautichandler.com/16356-home_default/garmin-digital-remote-sounder-gsd-24-50200khz-1kw.webp",
+    "link": "https://nautichandler.com/en/15964-garmin-digital-remote-sounder-gsd-24-50200khz-1kw.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-5",
+    "title": "GARMIN Echomap Uhd 62cv With Transducer  Gt24 xdcr",
+    "price": "€749.00",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12805-garmin-echomap-uhd-62cv-with-transducer-gt24-xdcr.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-6",
+    "title": "GARMIN Marine Mount",
+    "price": "€24.99",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12529-garmin-marine-mount.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-7",
+    "title": "Garmin gps 73 high-sensitivity handheld gps receiver",
+    "price": "€189.00",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12527-garmin-gps-73-highsensitivity-handheld-gps-receiver.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-8",
+    "title": "GARMIN Power/Data Cable (Bare Wires)",
+    "price": "€20.00",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/13116-garmin-powerdata-cable-bare-wires.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-9",
+    "title": "Icom HS-94 Hands Free Headset",
+    "price": "€28.23",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4953-icom-hs94-hands-free-headset.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-10",
+    "title": "GARMIN Quantix 6 Sapphire TITANium",
+    "price": "€999.01",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15994-garmin-quantix-6-sapphire-titanium.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-11",
+    "title": "GARMIN Quantix 6x Solar TITANium With TITANium Band",
+    "price": "€1,149.00",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15996-garmin-quantix-6x-solar-titanium-with-titanium-band.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-12",
+    "title": "GARMIN Quantix 6 Grey With Captain Blue Band",
+    "price": "€699.00",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15995-garmin-quantix-6-grey-with-captain-blue-band.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-13",
+    "title": "Raymarine cpt-80 thorugh hull transducer",
+    "price": "€414.77",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/13940-raymarine-cpt80-thorugh-hull-transducer.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-14",
+    "title": "Airmar B60 Bronce Tilted Thru-Hull Transducer 20º Tilt 8-Pin",
+    "price": "€399.00",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15965-airmar-b60-bronce-tilted-thruhull-transducer-20-tilt-8pin.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-15",
+    "title": "Raymarine axiom xl 22 display multifunction glass 21.5",
+    "price": "€16,431.80",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/14083-raymarine-axiom-xl-22-display-multifunction-glass-215.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-16",
+    "title": "Raymarine axiom pro 9s rvx display w/sonar chirp 1kw",
+    "price": "€3,018.95",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/14075-raymarine-axiom-pro-9s-rvx-display-wsonar-chirp-1kw.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-17",
+    "title": "Umminbird mhx-mxnt bracket xnt-9-2-t/transd.si",
+    "price": "€32.19",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/13703-umminbird-mhxmxnt-bracket-xnt92ttransdsi.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-18",
+    "title": "Humminbird mhx-xnpt ventosas transd. xnt-9-20 t",
+    "price": "€22.71",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/13705-humminbird-mhxxnpt-ventosas-transd-xnt920-t.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-19",
+    "title": "Humminbird installation bracket as 360 tm ultrex",
+    "price": "€375.68",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/13713-humminbird-installation-bracket-as-360-tm-ultrex.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-20",
+    "title": "Hummingbird protection lid helix 9/10 uc-910",
+    "price": "€50.08",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/13652-hummingbird-protection-lid-helix-910-uc910.html",
+    "category": "electronics"
+  },
+  {
+    "id": "prod-21",
+    "title": "3M petroleum sorbent mini-boom t-4",
+    "price": "€16.96",
+    "image": "https://nautichandler.com/3556-home_default/3m-petroleum-sorbent-miniboom-t4.webp",
+    "link": "https://nautichandler.com/en/12290-3m-petroleum-sorbent-miniboom-t4.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-22",
+    "title": "3M cleaner spray 500ml",
+    "price": "€32.25",
+    "image": "https://nautichandler.com/424-home_default/3m-cleaner-spray-500ml.webp",
+    "link": "https://nautichandler.com/en/499-3m-cleaner-spray-500ml.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-23",
+    "title": "3m oil absorbents 480x430x3mm x unity 1L",
+    "price": "€1.51",
+    "image": "https://nautichandler.com/238-home_default/3m-oil-absorbents-480x430x3mm-x-unity-1l.webp",
+    "link": "https://nautichandler.com/en/156-3m-oil-absorbents-480x430x3mm-x-unity-1l.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-24",
+    "title": "Aixia filter regulator w/manometer 1/2\"",
+    "price": "€136.99",
+    "image": "https://nautichandler.com/1933-home_default/aixia-filter-regulator-wmanometer-12.webp",
+    "link": "https://nautichandler.com/en/10372-aixia-filter-regulator-wmanometer-12.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-25",
+    "title": "Aixia filter regulator w/manometer 1/4\"",
+    "price": "€100.92",
+    "image": "https://nautichandler.com/1934-home_default/aixia-filter-regulator-wmanometer-14.webp",
+    "link": "https://nautichandler.com/en/10449-aixia-filter-regulator-wmanometer-14.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-26",
+    "title": "Blue-Point Leak Detector Fluid",
+    "price": "€20.33",
+    "image": "https://nautichandler.com/14479-home_default/bluepoint-leak-detector-fluid.webp",
+    "link": "https://nautichandler.com/en/14774-bluepoint-leak-detector-fluid.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-27",
+    "title": "Sagola gravity stock bin 3300 pro",
+    "price": "€65.91",
+    "image": "https://nautichandler.com/3701-home_default/sagola-gravity-stock-bin-3300-pro.webp",
+    "link": "https://nautichandler.com/en/6083-sagola-gravity-stock-bin-3300-pro.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-28",
+    "title": "Wurth Neutral Vaseline Container  500ml",
+    "price": "€22.81",
+    "image": "https://nautichandler.com/2156-home_default/wurth-neutral-vaseline-container-500ml.webp",
+    "link": "https://nautichandler.com/en/3097-wurth-neutral-vaseline-container-500ml.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-29",
+    "title": "Wurth Spray Silicone 500ml",
+    "price": "€24.44",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/46-wurth-spray-silicone-500ml.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-30",
+    "title": "Wurth Brake Cleaner Spray 500ml",
+    "price": "€6.44",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/1719-wurth-brake-cleaner-spray-500ml.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-31",
+    "title": "Wurth Dry Lubricant Spray Ptfe 300ml",
+    "price": "€36.10",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5717-wurth-dry-lubricant-spray-ptfe-300ml.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-32",
+    "title": "Filter cover1162-4 of 3\" 196mm",
+    "price": "€46.35",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/3203-filter-cover11624-of-3-196mm.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-33",
+    "title": "Filter cover 1162-4 of 2\"-2 1/2\" 160mm",
+    "price": "€33.01",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2480-filter-cover-11624-of-22-12-160mm.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-34",
+    "title": "Filter cover 1162/64 of 1 1/4\" 123mm",
+    "price": "€18.37",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4741-filter-cover-116264-of-1-14-123mm.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-35",
+    "title": "Filter cover 1162-4 of 3/4-1\" 114mm",
+    "price": "€13.24",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/3668-filter-cover-11624-of-341-114mm.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-36",
+    "title": "Filter cover 1162-4 135mm",
+    "price": "€18.20",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/1553-filter-cover-11624-135mm.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-37",
+    "title": "Filter ring 1162-3-4-6 de 3/4-1\"",
+    "price": "€1.93",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2479-filter-ring-1162346-de-341.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-38",
+    "title": "Filter ring 1162-3 of 1\"1/4",
+    "price": "€2.08",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2481-filter-ring-11623-of-114.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-39",
+    "title": "Filter ring 1162-3 3'4'1164-6 2'1/2 3&4",
+    "price": "€2.82",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2482-filter-ring-11623-3411646-212-34.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-40",
+    "title": "Filter ring guidi 1162-3 of 2\"2 1/2",
+    "price": "€2.45",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/1593-filter-ring-guidi-11623-of-22-12.html",
+    "category": "motor"
+  },
+  {
+    "id": "prod-41",
+    "title": "Spare Blade For Rope Cutter LIROS",
+    "price": "€37.44",
+    "image": "https://nautichandler.com/2003-home_default/spare-blade-for-rope-cutter-liros.webp",
+    "link": "https://nautichandler.com/en/5385-spare-blade-for-rope-cutter-liros.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-42",
+    "title": "Thimble for wire rope s.steel 35mm",
+    "price": "€44.36",
+    "image": "https://nautichandler.com/9096-home_default/thimble-for-wire-rope-ssteel-35mm.webp",
+    "link": "https://nautichandler.com/en/3290-thimble-for-wire-rope-ssteel-35mm.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-43",
+    "title": "Thimble for wire rope s.steel 15mm",
+    "price": "€20.69",
+    "image": "https://nautichandler.com/9095-home_default/thimble-for-wire-rope-ssteel-15mm.webp",
+    "link": "https://nautichandler.com/en/7191-thimble-for-wire-rope-ssteel-15mm.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-44",
+    "title": "LIROS Super Yacht Db Line Black 32mm xmeter",
+    "price": "€20.69",
+    "image": "https://nautichandler.com/4330-home_default/liros-super-yacht-db-line-black-32mm-xmeter.webp",
+    "link": "https://nautichandler.com/en/5642-liros-super-yacht-db-line-black-32mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-45",
+    "title": "LIROS Super Yacht Db Line Black 28mm xmeter",
+    "price": "€16.55",
+    "image": "https://nautichandler.com/4329-home_default/liros-super-yacht-db-line-black-28mm-xmeter.webp",
+    "link": "https://nautichandler.com/en/2413-liros-super-yacht-db-line-black-28mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-46",
+    "title": "LIROS Square-Pes Line Black 28mm xmeter",
+    "price": "€14.61",
+    "image": "https://nautichandler.com/4307-home_default/liros-squarepes-line-black-28mm-xmeter.webp",
+    "link": "https://nautichandler.com/en/4180-liros-squarepes-line-black-28mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-47",
+    "title": "LIROS Square-Pes Line Black 20mm xmeter",
+    "price": "€6.54",
+    "image": "https://nautichandler.com/4305-home_default/liros-squarepes-line-black-20mm-xmeter.webp",
+    "link": "https://nautichandler.com/en/2406-liros-squarepes-line-black-20mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-48",
+    "title": "LIROS Square-Pes Line Black 24mm xmeter",
+    "price": "€9.54",
+    "image": "https://nautichandler.com/4306-home_default/liros-squarepes-line-black-24mm-xmeter.webp",
+    "link": "https://nautichandler.com/en/2407-liros-squarepes-line-black-24mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-49",
+    "title": "LIROS Squareline-pp White 20mm xmeter",
+    "price": "€4.41",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2410-liros-squarelinepp-white-20mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-50",
+    "title": "LIROS Square-Pes Line Black 18mm xmeter",
+    "price": "€5.27",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/3035-liros-squarepes-line-black-18mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-51",
+    "title": "LIROS Super Yacht Db Line Black 24mm xmeter",
+    "price": "€11.84",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4134-liros-super-yacht-db-line-black-24mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-52",
+    "title": "LIROS Square-Pes Line Navy 18mm xmeter",
+    "price": "€4.75",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15376-liros-squarepes-line-navy-18mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-53",
+    "title": "LIROS Square-Pes Line Black 16mm xmeter",
+    "price": "€3.81",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5627-liros-squarepes-line-black-16mm-xmeter.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-54",
+    "title": "MaxiStow inflatable fender HDPVC Repair Kit FENDEQUIP",
+    "price": "€171.71",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17746-maxistow-inflatable-fender-hdpvc-repair-kit-fendequip.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-55",
+    "title": "Rope covers maxichafe ø10-24mm (50cm) anthracite fendequip",
+    "price": "€32.56",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/8490-rope-covers-maxichafe-o1024mm-50cm-anthracite-fendequip.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-56",
+    "title": "Rope covers maxichafe ø24-34mm (100cm) navy fendequip",
+    "price": "€49.10",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/8501-rope-covers-maxichafe-o2434mm-100cm-navy-fendequip.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-57",
+    "title": "Rope covers maxichafe ø24-34mm (100cm) anthracite fendequip",
+    "price": "€43.45",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/8503-rope-covers-maxichafe-o2434mm-100cm-anthracite-fendequip.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-58",
+    "title": "Rope covers maxichafe ø10-24mm (50cm) navy fendequip",
+    "price": "€36.81",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/8488-rope-covers-maxichafe-o1024mm-50cm-navy-fendequip.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-59",
+    "title": "Rope covers maxichafe ø10-24mm (100cm) navy fendequip",
+    "price": "€39.16",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/8493-rope-covers-maxichafe-o1024mm-100cm-navy-fendequip.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-60",
+    "title": "Rope covers maxichafe ø10-24mm (100cm) anthracite fendequip",
+    "price": "€34.65",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/8491-rope-covers-maxichafe-o1024mm-100cm-anthracite-fendequip.html",
+    "category": "ropes"
+  },
+  {
+    "id": "prod-61",
+    "title": "Retro reflective tape solas 50mmx1m",
+    "price": "€38.82",
+    "image": "https://nautichandler.com/3021-home_default/retro-reflective-tape-solas-50mmx1m.webp",
+    "link": "https://nautichandler.com/en/1924-retro-reflective-tape-solas-50mmx1m.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-62",
+    "title": "Lanyard 1.5m polyester braided rope with 2 connectors safeto",
+    "price": "€11.78",
+    "image": "https://nautichandler.com/7939-home_default/lanyard-15m-polyester-braided-rope-with-2-connectors-safeto.webp",
+    "link": "https://nautichandler.com/en/9636-lanyard-15m-polyester-braided-rope-with-2-connectors-safeto.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-63",
+    "title": "Diving marker buoy \"mini\" ø38x15cm",
+    "price": "€9.16",
+    "image": "https://nautichandler.com/10608-home_default/diving-marker-buoy-mini-o38x15cm.webp",
+    "link": "https://nautichandler.com/en/9795-diving-marker-buoy-mini-o38x15cm.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-64",
+    "title": "Diving marker buoy \"export\" ø38x15cm",
+    "price": "€16.97",
+    "image": "https://nautichandler.com/10607-home_default/diving-marker-buoy-export-o38x15cm.webp",
+    "link": "https://nautichandler.com/en/1256-diving-marker-buoy-export-o38x15cm.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-65",
+    "title": "Mooring Buoy Rigid Plastic White 9.5kg",
+    "price": "€10.91",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16295-mooring-buoy-rigid-plastic-white-95kg.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-66",
+    "title": "Surface Float W/ Hole Orange Ø26cm",
+    "price": "€10.68",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16236-surface-float-w-hole-orange-o26cm.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-67",
+    "title": "Diving Buoy + 20m Cape",
+    "price": "€20.98",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16384-diving-buoy-20m-cape.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-68",
+    "title": "Marker buoy 260mm yellow",
+    "price": "€14.49",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17448-marker-buoy-260mm-yellow.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-69",
+    "title": "Marker buoy 260mm orange",
+    "price": "€14.49",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/9534-marker-buoy-260mm-orange.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-70",
+    "title": "Mooring Buoy Biconical Plastic Ø520mm",
+    "price": "€47.34",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16226-mooring-buoy-biconical-plastic-o520mm.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-71",
+    "title": "Bi-Conical Buoy Orange Type3 5.5kg",
+    "price": "€20.08",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16328-biconical-buoy-orange-type3-55kg.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-72",
+    "title": "Bi-Conical Buoy Orange Type1 5.5kg",
+    "price": "€9.67",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16320-biconical-buoy-orange-type1-55kg.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-73",
+    "title": "Marker buoy 170mm white",
+    "price": "€8.63",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16015-marker-buoy-170mm-white.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-74",
+    "title": "Plastimo floating sea anchor small 35cm",
+    "price": "€15.84",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15402-plastimo-floating-sea-anchor-small-35cm.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-75",
+    "title": "Sea anchor drogue",
+    "price": "€18.32",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/7701-sea-anchor-drogue.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-76",
+    "title": "Sea anchor drogue 107cm",
+    "price": "€45.05",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/7703-sea-anchor-drogue-107cm.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-77",
+    "title": "Sea anchor drogue",
+    "price": "€55.42",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/9174-sea-anchor-drogue.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-78",
+    "title": "Sea anchor drogue",
+    "price": "€22.52",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/7702-sea-anchor-drogue.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-79",
+    "title": "Professional Sea Anchor No.1",
+    "price": "€84.90",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16273-professional-sea-anchor-no1.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-80",
+    "title": "Anchor floating PVC with straps 1500mm up to 16m",
+    "price": "€142.80",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15378-anchor-floating-pvc-with-straps-1500mm-up-to-16m.html",
+    "category": "safety"
+  },
+  {
+    "id": "prod-81",
+    "title": "Lewmar delta anchor (galvanised) 70lb",
+    "price": "€566.48",
+    "image": "https://nautichandler.com/3258-home_default/lewmar-delta-anchor-galvanised-70lb.webp",
+    "link": "https://nautichandler.com/en/9259-lewmar-delta-anchor-galvanised-70lb.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-82",
+    "title": "Lewmar delta anchor stainless steel 32kg",
+    "price": "€3,208.74",
+    "image": "https://nautichandler.com/6778-home_default/lewmar-delta-anchor-stainless-steel-32kg.webp",
+    "link": "https://nautichandler.com/en/12597-lewmar-delta-anchor-stainless-steel-32kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-83",
+    "title": "Lewmar delta anchor stainless steel 40kg",
+    "price": "€5,813.06",
+    "image": "https://nautichandler.com/6779-home_default/lewmar-delta-anchor-stainless-steel-40kg.webp",
+    "link": "https://nautichandler.com/en/12598-lewmar-delta-anchor-stainless-steel-40kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-84",
+    "title": "Anchor \"force\" type galvanized steel 5kg",
+    "price": "€47.24",
+    "image": "https://nautichandler.com/752-home_default/anchor-force-type-galvanized-steel-5kg.webp",
+    "link": "https://nautichandler.com/en/7610-anchor-force-type-galvanized-steel-5kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-85",
+    "title": "Anchor \"force\" type galvanized steel 10kg",
+    "price": "€99.93",
+    "image": "https://nautichandler.com/754-home_default/anchor-force-type-galvanized-steel-10kg.webp",
+    "link": "https://nautichandler.com/en/4073-anchor-force-type-galvanized-steel-10kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-86",
+    "title": "Anchor \"force\" type s.steel 15kg",
+    "price": "€695.03",
+    "image": "https://nautichandler.com/755-home_default/anchor-force-type-ssteel-15kg.webp",
+    "link": "https://nautichandler.com/en/4731-anchor-force-type-ssteel-15kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-87",
+    "title": "Anchor \"force\" type galvanized steel 7.5kg",
+    "price": "€69.74",
+    "image": "https://nautichandler.com/753-home_default/anchor-force-type-galvanized-steel-75kg.webp",
+    "link": "https://nautichandler.com/en/4747-anchor-force-type-galvanized-steel-75kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-88",
+    "title": "Folding anchor s.steel 4kg",
+    "price": "€247.07",
+    "image": "https://nautichandler.com/10380-home_default/folding-anchor-ssteel-4kg.webp",
+    "link": "https://nautichandler.com/en/8092-folding-anchor-ssteel-4kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-89",
+    "title": "Rhino Anchor 25kg Galvanized  Balanced",
+    "price": "€283.91",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15363-rhino-anchor-25kg-galvanized-balanced.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-90",
+    "title": "Folding anchor s.steel 2.5kg",
+    "price": "€153.77",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/11140-folding-anchor-ssteel-25kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-91",
+    "title": "Anchor \"delta\" type galvanized steel 15kg",
+    "price": "€135.61",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6795-anchor-delta-type-galvanized-steel-15kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-92",
+    "title": "Folding anchor galvanized steel 6kg",
+    "price": "€61.94",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/11183-folding-anchor-galvanized-steel-6kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-93",
+    "title": "Folding anchor galvanized steel 8kg",
+    "price": "€85.52",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6788-folding-anchor-galvanized-steel-8kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-94",
+    "title": "Folding Anchor Hot Dip Galvanized 3,2kg",
+    "price": "€29.77",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16152-folding-anchor-hot-dip-galvanized-32kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-95",
+    "title": "Folding Anchor Hot Dip Galvanized 1,5Kg",
+    "price": "€14.60",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16153-folding-anchor-hot-dip-galvanized-15kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-96",
+    "title": "Folding Anchor Hot Dip Galvanized 4Kg",
+    "price": "€35.99",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16154-folding-anchor-hot-dip-galvanized-4kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-97",
+    "title": "Folding Anchor Hot Dip Galvanized 6Kg",
+    "price": "€53.01",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16155-folding-anchor-hot-dip-galvanized-6kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-98",
+    "title": "Anchor Grapnel Galvanized 8 kg",
+    "price": "€86.92",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16825-anchor-grapnel-galvanized-8-kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-99",
+    "title": "Anchor Grapnel Galvanized 7.5 kg",
+    "price": "€82.53",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16826-anchor-grapnel-galvanized-75-kg.html",
+    "category": "anchors"
+  },
+  {
+    "id": "prod-100",
+    "title": "Wire rope clamp s.steel ø4mm (2units)",
+    "price": "€2.78",
+    "image": "https://nautichandler.com/11601-home_default/wire-rope-clamp-ssteel-o4mm-2units.webp",
+    "link": "https://nautichandler.com/en/10353-wire-rope-clamp-ssteel-o4mm-2units.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-101",
+    "title": "Wire rope clamp s.steel ø3mm (2units)",
+    "price": "€2.89",
+    "image": "https://nautichandler.com/9321-home_default/wire-rope-clamp-ssteel-o3mm-2units.webp",
+    "link": "https://nautichandler.com/en/6807-wire-rope-clamp-ssteel-o3mm-2units.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-102",
+    "title": "Wire Rope Clip Cable Clamp S.Steel 6mm",
+    "price": "€26.18",
+    "image": "https://nautichandler.com/9324-home_default/wire-rope-clip-cable-clamp-ssteel-6mm.webp",
+    "link": "https://nautichandler.com/en/5854-wire-rope-clip-cable-clamp-ssteel-6mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-103",
+    "title": "Wire Rope Clip Cable Clamp S.Steel 10mm",
+    "price": "€11.45",
+    "image": "https://nautichandler.com/9317-home_default/wire-rope-clip-cable-clamp-ssteel-10mm.webp",
+    "link": "https://nautichandler.com/en/5856-wire-rope-clip-cable-clamp-ssteel-10mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-104",
+    "title": "Wire Rope Clip Cable Clamp S.Steel 3mm",
+    "price": "€1.72",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5851-wire-rope-clip-cable-clamp-ssteel-3mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-105",
+    "title": "Wire Rope Clip Cable Clamp S.Steel 4mm",
+    "price": "€14.88",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5852-wire-rope-clip-cable-clamp-ssteel-4mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-106",
+    "title": "Wire Rope Clip Cable Clamp S.Steel 5mm",
+    "price": "€15.56",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5853-wire-rope-clip-cable-clamp-ssteel-5mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-107",
+    "title": "Wire rope clamp s.steel ø2mm (2units)",
+    "price": "€2.56",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6806-wire-rope-clamp-ssteel-o2mm-2units.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-108",
+    "title": "Wire Rope Clip Cable Clamp S.Steel 8mm",
+    "price": "€3.03",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5855-wire-rope-clip-cable-clamp-ssteel-8mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-109",
+    "title": "Heavy duty s.steel hasp 90x38mm",
+    "price": "€102.29",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5262-heavy-duty-ssteel-hasp-90x38mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-110",
+    "title": "S.steel hatch spring holder 200x12mm",
+    "price": "€7.19",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/1346-ssteel-hatch-spring-holder-200x12mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-111",
+    "title": "S.steel hatch spring holder 210x12mm",
+    "price": "€7.53",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2591-ssteel-hatch-spring-holder-210x12mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-112",
+    "title": "Terminal boots red 3/0-4/0 awg 81-103mm",
+    "price": "€6.13",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4670-terminal-boots-red-3040-awg-81103mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-113",
+    "title": "Wire coated s.steel 8mm xmeter",
+    "price": "€3.59",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4990-wire-coated-ssteel-8mm-xmeter.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-114",
+    "title": "Cable S.Steel 7x19 5.0mm per Meter",
+    "price": "€313.26",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5594-cable-ssteel-7x19-50mm-per-meter.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-115",
+    "title": "Wire coated s.steel 6mm x100mm",
+    "price": "€258.56",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5871-wire-coated-ssteel-6mm-x100mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-116",
+    "title": "Cable S.Steel 7x19 4.0mm per Meter",
+    "price": "€213.27",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5593-cable-ssteel-7x19-40mm-per-meter.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-117",
+    "title": "Open awning clamp 32mm",
+    "price": "€31.30",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6568-open-awning-clamp-32mm.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-118",
+    "title": "Polycarbonated Lid F/Filters 1\" 1/2\"",
+    "price": "€24.37",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/10208-polycarbonated-lid-ffilters-1-12.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-119",
+    "title": "Polycarbonated Lid F/Filters 1\" 1/4\"",
+    "price": "€24.37",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/10207-polycarbonated-lid-ffilters-1-14.html",
+    "category": "fitting"
+  },
+  {
+    "id": "prod-120",
+    "title": "Armaflex xg tape self-adhesive 50mmx3mmx15m",
+    "price": "€26.56",
+    "image": "https://nautichandler.com/2276-home_default/armaflex-xg-tape-selfadhesive-50mmx3mmx15m.webp",
+    "link": "https://nautichandler.com/en/3528-armaflex-xg-tape-selfadhesive-50mmx3mmx15m.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-121",
+    "title": "Clamp bracket 34kg",
+    "price": "€0.18",
+    "image": "https://nautichandler.com/828-home_default/clamp-bracket-34kg.webp",
+    "link": "https://nautichandler.com/en/1589-clamp-bracket-34kg.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-122",
+    "title": "Nylon cushion clamp natural 5/16\" (7mm) 25u ancor marine",
+    "price": "€0.19",
+    "image": "https://nautichandler.com/773-home_default/nylon-cushion-clamp-natural-516-7mm-25u-ancor-marine.webp",
+    "link": "https://nautichandler.com/en/3152-nylon-cushion-clamp-natural-516-7mm-25u-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-123",
+    "title": "Nylon cushion clamp natural 3/8\" (9mm) 25u ancor marine",
+    "price": "€0.21",
+    "image": "https://nautichandler.com/774-home_default/nylon-cushion-clamp-natural-38-9mm-25u-ancor-marine.webp",
+    "link": "https://nautichandler.com/en/5076-nylon-cushion-clamp-natural-38-9mm-25u-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-124",
+    "title": "Nylon cushion clamp natural 4/1\" (6mm) 25u ancor marine",
+    "price": "€0.19",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5075-nylon-cushion-clamp-natural-41-6mm-25u-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-125",
+    "title": "Stainless steel cushion clamp 1/2\" ancor marine",
+    "price": "€1.39",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2964-stainless-steel-cushion-clamp-12-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-126",
+    "title": "Stainless steel cushion clamp 1-1/2\" ancor marine",
+    "price": "€1.97",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/129-stainless-steel-cushion-clamp-112-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-127",
+    "title": "Stainless steel cushion clamp 1\" ancor marine",
+    "price": "€1.72",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2965-stainless-steel-cushion-clamp-1-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-128",
+    "title": "Stainless steel cushion clamp 3/4\" ancor marine",
+    "price": "€1.53",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/128-stainless-steel-cushion-clamp-34-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-129",
+    "title": "Stainless steel cushion clamp 2\" ancor marine",
+    "price": "€2.24",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2959-stainless-steel-cushion-clamp-2-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-130",
+    "title": "Stainless steel cushion clamp 5/16\" ancor marine",
+    "price": "€1.13",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/127-stainless-steel-cushion-clamp-516-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-131",
+    "title": "Nylon cushion clamp natural 3/16\" (5mm) 25u ancor marine",
+    "price": "€0.14",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5074-nylon-cushion-clamp-natural-316-5mm-25u-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-132",
+    "title": "Stainless steel cushion clamp 3\" ancor marine",
+    "price": "€3.26",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6431-stainless-steel-cushion-clamp-3-ancor-marine.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-133",
+    "title": "Blue-point fluid transfer pump",
+    "price": "€27.10",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/9549-bluepoint-fluid-transfer-pump.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-134",
+    "title": "S.S Supra Clamp W5 2-1/64-2-11/64\"",
+    "price": "€10.01",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4435-ss-supra-clamp-w5-216421164.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-135",
+    "title": "S.S Supra Clamp W5 2-11/64-2-21/64\"",
+    "price": "€9.77",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4436-ss-supra-clamp-w5-2116422164.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-136",
+    "title": "S.S Supra Clamp W5 2-21/64-2-31/64\"",
+    "price": "€10.58",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4437-ss-supra-clamp-w5-2216423164.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-137",
+    "title": "S.S Supra Clamp W5 2-31/64-2-11/16\"",
+    "price": "€10.96",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4438-ss-supra-clamp-w5-2316421116.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-138",
+    "title": "S.S Supra Clamp W5 3-11/32-3-37/64\"",
+    "price": "€14.48",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4419-ss-supra-clamp-w5-3113233764.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-139",
+    "title": "S.S Supra Clamp W5 3-7/64-3-11/32\"",
+    "price": "€14.44",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4442-ss-supra-clamp-w5-376431132.html",
+    "category": "plumbing"
+  },
+  {
+    "id": "prod-140",
+    "title": "Anti-chafe tape 50mmx2mt 250mic",
+    "price": "€46.30",
+    "image": "https://nautichandler.com/8796-home_default/antichafe-tape-50mmx2mt-250mic.webp",
+    "link": "https://nautichandler.com/en/9300-antichafe-tape-50mmx2mt-250mic.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-141",
+    "title": "3M Taped Masking Film 600 Mm x 25 M PN05968",
+    "price": "€4.97",
+    "image": "https://nautichandler.com/4707-home_default/3m-taped-masking-film-600-mm-x-25-m-pn05968.webp",
+    "link": "https://nautichandler.com/en/12408-3m-taped-masking-film-600-mm-x-25-m-pn05968.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-142",
+    "title": "3M Taped Masking Film 1100 Mm x 25 M PN05970",
+    "price": "€8.31",
+    "image": "https://nautichandler.com/6350-home_default/3m-taped-masking-film-1100-mm-x-25-m-pn05970.webp",
+    "link": "https://nautichandler.com/en/12523-3m-taped-masking-film-1100-mm-x-25-m-pn05970.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-143",
+    "title": "3M masking tape 60cmx400m",
+    "price": "€62.80",
+    "image": "https://nautichandler.com/479-home_default/3m-masking-tape-60cmx400m.webp",
+    "link": "https://nautichandler.com/en/5691-3m-masking-tape-60cmx400m.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-144",
+    "title": "3M Taped Masking Film 900 Mm x 25 M PN05969",
+    "price": "€6.93",
+    "image": "https://nautichandler.com/6337-home_default/3m-taped-masking-film-900-mm-x-25-m-pn05969.webp",
+    "link": "https://nautichandler.com/en/12406-3m-taped-masking-film-900-mm-x-25-m-pn05969.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-145",
+    "title": "3M Taped Masking Film 1800 Mm x 25 M PN05971",
+    "price": "€10.88",
+    "image": "https://nautichandler.com/4699-home_default/3m-taped-masking-film-1800-mm-x-25-m-pn05971.webp",
+    "link": "https://nautichandler.com/en/12404-3m-taped-masking-film-1800-mm-x-25-m-pn05971.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-146",
+    "title": "3M Msking Film 06852 MF72 1.8x27.4m",
+    "price": "€15.24",
+    "image": "https://nautichandler.com/7426-home_default/3m-msking-film-06852-mf72-18x274m.webp",
+    "link": "https://nautichandler.com/en/12683-3m-msking-film-06852-mf72-18x274m.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-147",
+    "title": "3M Burlete Masking 13mmx50m x Box",
+    "price": "€41.35",
+    "image": "https://nautichandler.com/401-home_default/3m-burlete-masking-13mmx50m-x-box.webp",
+    "link": "https://nautichandler.com/en/5734-3m-burlete-masking-13mmx50m-x-box.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-148",
+    "title": "3M mixing cup lids 365ml",
+    "price": "€0.23",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/236-3m-mixing-cup-lids-365ml.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-149",
+    "title": "3M mixing cup lids 870ml",
+    "price": "€0.28",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/132-3m-mixing-cup-lids-870ml.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-150",
+    "title": "3M mixing pot 1500ml",
+    "price": "€0.85",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/78-3m-mixing-pot-1500ml.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-151",
+    "title": "3M mixing pot 870ml",
+    "price": "€0.64",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/76-3m-mixing-pot-870ml.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-152",
+    "title": "Mixing cup lids 1550ml",
+    "price": "€0.50",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/133-mixing-cup-lids-1550ml.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-153",
+    "title": "3M mixing pot 365ml",
+    "price": "€0.42",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/123-3m-mixing-pot-365ml.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-154",
+    "title": "3M tape 2090 blue masking 2\" 48mmx50m",
+    "price": "€10.40",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/10350-3m-tape-2090-blue-masking-2-48mmx50m.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-155",
+    "title": "3M tape 2090 blue masking 1\" 24mmx50m",
+    "price": "€5.19",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/10349-3m-tape-2090-blue-masking-1-24mmx50m.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-156",
+    "title": "3M mixing cup lids 2300ml",
+    "price": "€0.72",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/237-3m-mixing-cup-lids-2300ml.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-157",
+    "title": "3M yellow masking paper tape 25mm",
+    "price": "€6.19",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2309-3m-yellow-masking-paper-tape-25mm.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-158",
+    "title": "3M mixing pot 2300ml",
+    "price": "€1.31",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/131-3m-mixing-pot-2300ml.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-159",
+    "title": "3M mixing cup pps 2.0 850ml (4ud)",
+    "price": "€14.01",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12577-3m-mixing-cup-pps-20-850ml-4ud.html",
+    "category": "painting"
+  },
+  {
+    "id": "prod-160",
+    "title": "Blue-Point Screw Extractor Set",
+    "price": "€31.17",
+    "image": "https://nautichandler.com/8304-home_default/bluepoint-screw-extractor-set.webp",
+    "link": "https://nautichandler.com/en/9572-bluepoint-screw-extractor-set.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-161",
+    "title": "Blue-Point Screw Remover Set",
+    "price": "€31.17",
+    "image": "https://nautichandler.com/8303-home_default/bluepoint-screw-remover-set.webp",
+    "link": "https://nautichandler.com/en/9571-bluepoint-screw-remover-set.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-162",
+    "title": "Wurth Time Insert Cap M8x 1.25x11.7mm",
+    "price": "€10.58",
+    "image": "https://nautichandler.com/5224-home_default/wurth-time-insert-cap-m8x-125x117mm.webp",
+    "link": "https://nautichandler.com/en/4100-wurth-time-insert-cap-m8x-125x117mm.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-163",
+    "title": "Wurth Universal Thread File",
+    "price": "€156.40",
+    "image": "https://nautichandler.com/5274-home_default/wurth-universal-thread-file.webp",
+    "link": "https://nautichandler.com/en/4407-wurth-universal-thread-file.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-164",
+    "title": "Clamp stainless steel DIN 3017 8-16/9",
+    "price": "€1.92",
+    "image": "https://nautichandler.com/17959-home_default/clamp-stainless-steel-din-3017-8169.webp",
+    "link": "https://nautichandler.com/en/17073-clamp-stainless-steel-din-3017-8169.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-165",
+    "title": "Clamp stainless steel DIN 3017 30-45/12",
+    "price": "€3.17",
+    "image": "https://nautichandler.com/17962-home_default/clamp-stainless-steel-din-3017-304512.webp",
+    "link": "https://nautichandler.com/en/17076-clamp-stainless-steel-din-3017-304512.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-166",
+    "title": "Clamp stainless steel DIN 3017 40-60/12",
+    "price": "€5.28",
+    "image": "https://nautichandler.com/17964-home_default/clamp-stainless-steel-din-3017-406012.webp",
+    "link": "https://nautichandler.com/en/17078-clamp-stainless-steel-din-3017-406012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-167",
+    "title": "Clamp stainless steel DIN 3017 50-70/12",
+    "price": "€4.14",
+    "image": "https://nautichandler.com/17965-home_default/clamp-stainless-steel-din-3017-507012.webp",
+    "link": "https://nautichandler.com/en/17079-clamp-stainless-steel-din-3017-507012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-168",
+    "title": "Clamp stainless steel DIN 3017 60-80/12",
+    "price": "€4.46",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17080-clamp-stainless-steel-din-3017-608012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-169",
+    "title": "Clamp stainless steel DIN 3017 70-90/12",
+    "price": "€4.88",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17081-clamp-stainless-steel-din-3017-709012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-170",
+    "title": "Clamp stainless steel DIN 3017 80-100/12",
+    "price": "€4.67",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17082-clamp-stainless-steel-din-3017-8010012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-171",
+    "title": "Clamp stainless steel DIN 3017 90-110/12",
+    "price": "€5.31",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17083-clamp-stainless-steel-din-3017-9011012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-172",
+    "title": "Clamp stainless steel DIN 3017 35-50/12",
+    "price": "€3.40",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17077-clamp-stainless-steel-din-3017-355012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-173",
+    "title": "Clamp stainless steel DIN 3017 100-120/12",
+    "price": "€5.73",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17084-clamp-stainless-steel-din-3017-10012012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-174",
+    "title": "Clamp stainless steel DIN 3017 12-22/12",
+    "price": "€3.37",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17075-clamp-stainless-steel-din-3017-122212.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-175",
+    "title": "Clamp stainless steel DIN 3017 130-150/12",
+    "price": "€6.37",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17087-clamp-stainless-steel-din-3017-13015012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-176",
+    "title": "Clamp stainless steel DIN 3017 120-140/12",
+    "price": "€6.16",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17086-clamp-stainless-steel-din-3017-12014012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-177",
+    "title": "Clamp stainless steel DIN 3017 110-130/12",
+    "price": "€6.16",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17085-clamp-stainless-steel-din-3017-11013012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-178",
+    "title": "Clamp stainless steel DIN 3017 25-40/12",
+    "price": "€3.19",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17070-clamp-stainless-steel-din-3017-254012.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-179",
+    "title": "Clamp stainless steel DIN 3017 20-32/12",
+    "price": "€2.97",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17069-clamp-stainless-steel-din-3017-203212.html",
+    "category": "screws"
+  },
+  {
+    "id": "prod-180",
+    "title": "3M Particulate Filters P2R 06925 (2units)",
+    "price": "€8.96",
+    "image": "https://nautichandler.com/2304-home_default/3m-particulate-filters-p2r-06925-2units.webp",
+    "link": "https://nautichandler.com/en/11390-3m-particulate-filters-p2r-06925-2units.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-181",
+    "title": "3M Maintenance Free Half Mask Respirator 6942",
+    "price": "€35.20",
+    "image": "https://nautichandler.com/473-home_default/3m-maintenance-free-half-mask-respirator-6942.webp",
+    "link": "https://nautichandler.com/en/3163-3m-maintenance-free-half-mask-respirator-6942.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-182",
+    "title": "3M 1271 Earplugs",
+    "price": "€1.42",
+    "image": "https://nautichandler.com/14521-home_default/3m-1271-earplugs.webp",
+    "link": "https://nautichandler.com/en/14810-3m-1271-earplugs.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-183",
+    "title": "3M Ear Plugs (Pack 2ud)",
+    "price": "€0.17",
+    "image": "https://nautichandler.com/485-home_default/3m-ear-plugs-pack-2ud.webp",
+    "link": "https://nautichandler.com/en/4187-3m-ear-plugs-pack-2ud.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-184",
+    "title": "3M P2 R Particulate Filters 2128 (2units)",
+    "price": "€11.43",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/9975-3m-p2-r-particulate-filters-2128-2units.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-185",
+    "title": "3M 2890 safety googles anti-fog clear lens",
+    "price": "€18.58",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2987-3m-2890-safety-googles-antifog-clear-lens.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-186",
+    "title": "3M 400 Overspray Guard For 4251 (1 unit)",
+    "price": "€1.94",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/387-3m-400-overspray-guard-for-4251-1-unit.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-187",
+    "title": "3M disposable protective coverall size M",
+    "price": "€11.02",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16528-3m-disposable-protective-coverall-size-m.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-188",
+    "title": "3M 4530 disposable protective coverall size s",
+    "price": "€9.95",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/14811-3m-4530-disposable-protective-coverall-size-s.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-189",
+    "title": "3M Filter Retainer 501 (2units)",
+    "price": "€5.27",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/492-3m-filter-retainer-501-2units.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-190",
+    "title": "3M disposable protective coverall size L",
+    "price": "€10.64",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16128-3m-disposable-protective-coverall-size-l.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-191",
+    "title": "3M liquid protection one piece vest white size M",
+    "price": "€11.65",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12596-3m-liquid-protection-one-piece-vest-white-size-m.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-192",
+    "title": "3M disposable paintshop coverall size L",
+    "price": "€11.13",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12745-3m-disposable-paintshop-coverall-size-l.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-193",
+    "title": "3M disposable paintshop coverall size XXL",
+    "price": "€17.85",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/13807-3m-disposable-paintshop-coverall-size-xxl.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-194",
+    "title": "3M disposable paintshop coverall size M",
+    "price": "€17.05",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/13937-3m-disposable-paintshop-coverall-size-m.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-195",
+    "title": "3M liquid protection one piece vest white size XL",
+    "price": "€11.65",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/10471-3m-liquid-protection-one-piece-vest-white-size-xl.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-196",
+    "title": "3M ABEK1 Gas and Vapour Filters 6059 (2units)",
+    "price": "€18.57",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/8648-3m-abek1-gas-and-vapour-filters-6059-2units.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-197",
+    "title": "3M halfmask set 6223 size m",
+    "price": "€67.71",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6117-3m-halfmask-set-6223-size-m.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-198",
+    "title": "3M Reusable Half Face Mask Medium 6200",
+    "price": "€24.38",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/493-3m-reusable-half-face-mask-medium-6200.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-199",
+    "title": "3M Reusable Half Face Mask Large 6300",
+    "price": "€24.38",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2993-3m-reusable-half-face-mask-large-6300.html",
+    "category": "tools"
+  },
+  {
+    "id": "prod-200",
+    "title": "3m Conector Scotchlok pack 50 units",
+    "price": "€41.76",
+    "image": "https://nautichandler.com/426-home_default/3m-conector-scotchlok-pack-50-units.webp",
+    "link": "https://nautichandler.com/en/4397-3m-conector-scotchlok-pack-50-units.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-201",
+    "title": "Wurth Insulating Tape Pvc Yellow 19mmx25mm",
+    "price": "€2.33",
+    "image": "https://nautichandler.com/2048-home_default/wurth-insulating-tape-pvc-yellow-19mmx25mm.webp",
+    "link": "https://nautichandler.com/en/1740-wurth-insulating-tape-pvc-yellow-19mmx25mm.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-202",
+    "title": "Wurth Insulating Tape Pvc Green 19mmx25mm",
+    "price": "€2.33",
+    "image": "https://nautichandler.com/2049-home_default/wurth-insulating-tape-pvc-green-19mmx25mm.webp",
+    "link": "https://nautichandler.com/en/1739-wurth-insulating-tape-pvc-green-19mmx25mm.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-203",
+    "title": "Wurth Insulating Tape Pvc Red 19mmx25mm",
+    "price": "€2.63",
+    "image": "https://nautichandler.com/2046-home_default/wurth-insulating-tape-pvc-red-19mmx25mm.webp",
+    "link": "https://nautichandler.com/en/1738-wurth-insulating-tape-pvc-red-19mmx25mm.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-204",
+    "title": "Wurth Insulating Tape Pvc White 19mmx25mm",
+    "price": "€2.33",
+    "image": "https://nautichandler.com/1132-home_default/wurth-insulating-tape-pvc-white-19mmx25mm.webp",
+    "link": "https://nautichandler.com/en/1735-wurth-insulating-tape-pvc-white-19mmx25mm.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-205",
+    "title": "Wurth Insulating Tape Pvc Blue 19mmx25mm",
+    "price": "€2.33",
+    "image": "https://nautichandler.com/2047-home_default/wurth-insulating-tape-pvc-blue-19mmx25mm.webp",
+    "link": "https://nautichandler.com/en/1734-wurth-insulating-tape-pvc-blue-19mmx25mm.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-206",
+    "title": "Wurth Insulating Tape Pvc Grey 19xmm25mm",
+    "price": "€3.81",
+    "image": "https://nautichandler.com/5393-home_default/wurth-insulating-tape-pvc-grey-19xmm25mm.webp",
+    "link": "https://nautichandler.com/en/9252-wurth-insulating-tape-pvc-grey-19xmm25mm.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-207",
+    "title": "Wurth Insulating Tape Pvc Black 19mmx25mm",
+    "price": "€2.42",
+    "image": "https://nautichandler.com/1139-home_default/wurth-insulating-tape-pvc-black-19mmx25mm.webp",
+    "link": "https://nautichandler.com/en/3108-wurth-insulating-tape-pvc-black-19mmx25mm.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-208",
+    "title": "Wurth Electrical Tape Pvc Brown 19mmx25mm",
+    "price": "€2.42",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12586-wurth-electrical-tape-pvc-brown-19mmx25mm.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-209",
+    "title": "Heat shrink tubing 1/8\"x3  black 3pc ancor marine",
+    "price": "€2.75",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6429-heat-shrink-tubing-18x3-black-3pc-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-210",
+    "title": "Heat shrink ring terminal 12-10 5/16\" 3pc ancor marine",
+    "price": "€5.25",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6430-heat-shrink-ring-terminal-1210-516-3pc-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-211",
+    "title": "Heavy-duty acg/mdl in-line fuse holder ancor marine",
+    "price": "€10.78",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2664-heavyduty-acgmdl-inline-fuse-holder-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-212",
+    "title": "Duplex cable 16/2awg 2x1mm² flat meter ancor marine",
+    "price": "€3.27",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5072-duplex-cable-162awg-2x1mm-flat-meter-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-213",
+    "title": "Duplex cable 18/2awg 2x0.8mm² flat meter ancor marine",
+    "price": "€2.39",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/3905-duplex-cable-182awg-2x08mm-flat-meter-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-214",
+    "title": "Duplex cable 20/2 awg (2x0,5mm) meter ancor marine",
+    "price": "€2.67",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17375-duplex-cable-202-awg-2x05mm-meter-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-215",
+    "title": "Triplex cable 10/3awg 3x5mm² flat meter ancor marine",
+    "price": "€11.70",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2579-triplex-cable-103awg-3x5mm-flat-meter-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-216",
+    "title": "Triplex cable 14/3awg 3x2mm² flat meter ancor marine",
+    "price": "€6.00",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6426-triplex-cable-143awg-3x2mm-flat-meter-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-217",
+    "title": "Ato/atc in-line fuse holder 30a ancor marine",
+    "price": "€6.07",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/1410-atoatc-inline-fuse-holder-30a-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-218",
+    "title": "Agc waterproof fuse holder rated 30a ancor marine",
+    "price": "€9.71",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/1409-agc-waterproof-fuse-holder-rated-30a-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-219",
+    "title": "Duplex cable 14/2awg 2x2mm² flat meter ancor marine",
+    "price": "€4.11",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5073-duplex-cable-142awg-2x2mm-flat-meter-ancor-marine.html",
+    "category": "electrics"
+  },
+  {
+    "id": "prod-220",
+    "title": "Spinnaker repair tape black 50mmx4,5m",
+    "price": "€15.14",
+    "image": "https://nautichandler.com/8812-home_default/spinnaker-repair-tape-black-50mmx45m.webp",
+    "link": "https://nautichandler.com/en/2107-spinnaker-repair-tape-black-50mmx45m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-221",
+    "title": "Duck tape black 50mmx5m",
+    "price": "€8.19",
+    "image": "https://nautichandler.com/8800-home_default/duck-tape-black-50mmx5m.webp",
+    "link": "https://nautichandler.com/en/2460-duck-tape-black-50mmx5m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-222",
+    "title": "Spinnaker repair tape blue 50mmx4,5m",
+    "price": "€15.14",
+    "image": "https://nautichandler.com/8815-home_default/spinnaker-repair-tape-blue-50mmx45m.webp",
+    "link": "https://nautichandler.com/en/1025-spinnaker-repair-tape-blue-50mmx45m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-223",
+    "title": "Heavy duty sail repair tape 50mmx2m",
+    "price": "€14.64",
+    "image": "https://nautichandler.com/8805-home_default/heavy-duty-sail-repair-tape-50mmx2m.webp",
+    "link": "https://nautichandler.com/en/7420-heavy-duty-sail-repair-tape-50mmx2m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-224",
+    "title": "Spinnaker repair tape red 50mmx4,5m",
+    "price": "€14.38",
+    "image": "https://nautichandler.com/8813-home_default/spinnaker-repair-tape-red-50mmx45m.webp",
+    "link": "https://nautichandler.com/en/1074-spinnaker-repair-tape-red-50mmx45m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-225",
+    "title": "Duck tape white 50mmx5m",
+    "price": "€8.61",
+    "image": "https://nautichandler.com/2460-home_default/duck-tape-white-50mmx5m.webp",
+    "link": "https://nautichandler.com/en/2459-duck-tape-white-50mmx5m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-226",
+    "title": "Self spi adhesive tape pink 150mmx4,5m",
+    "price": "€14.38",
+    "image": "https://nautichandler.com/8814-home_default/self-spi-adhesive-tape-pink-150mmx45m.webp",
+    "link": "https://nautichandler.com/en/10045-self-spi-adhesive-tape-pink-150mmx45m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-227",
+    "title": "Duck tape silver 50mmx5m",
+    "price": "€8.19",
+    "image": "https://nautichandler.com/8801-home_default/duck-tape-silver-50mmx5m.webp",
+    "link": "https://nautichandler.com/en/5888-duck-tape-silver-50mmx5m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-228",
+    "title": "Self amalgamating tape black 19mmx5m",
+    "price": "€15.20",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2949-self-amalgamating-tape-black-19mmx5m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-229",
+    "title": "Self amalgamating tape white 19mmx5m",
+    "price": "€15.99",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/1075-self-amalgamating-tape-white-19mmx5m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-230",
+    "title": "Duck tape green 50mmx5m",
+    "price": "€8.19",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/10051-duck-tape-green-50mmx5m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-231",
+    "title": "Duck tape blue 50mmx5m",
+    "price": "€8.19",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2462-duck-tape-blue-50mmx5m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-232",
+    "title": "Duct tape red 50mmx5m",
+    "price": "€8.36",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2461-duct-tape-red-50mmx5m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-233",
+    "title": "Soft grip tape black 50mmx2m",
+    "price": "€43.26",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2106-soft-grip-tape-black-50mmx2m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-234",
+    "title": "Dacron sail repair patch black 24x37cm",
+    "price": "€35.56",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2464-dacron-sail-repair-patch-black-24x37cm.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-235",
+    "title": "Soft grip tape grey 50mmx2m",
+    "price": "€42.40",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2463-soft-grip-tape-grey-50mmx2m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-236",
+    "title": "Dacron sail repair patch white 24x37cm",
+    "price": "€36.96",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/3169-dacron-sail-repair-patch-white-24x37cm.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-237",
+    "title": "Non-skid tape black 25mmx10m",
+    "price": "€43.56",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12467-nonskid-tape-black-25mmx10m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-238",
+    "title": "Non-skid clear tape 50mm x 10m",
+    "price": "€87.08",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12468-nonskid-clear-tape-50mm-x-10m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-239",
+    "title": "Non-skid tape white 25mmx10m",
+    "price": "€43.56",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/3135-nonskid-tape-white-25mmx10m.html",
+    "category": "maintenance"
+  },
+  {
+    "id": "prod-240",
+    "title": "Windex xl",
+    "price": "€206.02",
+    "image": "https://nautichandler.com/7209-home_default/windex-xl.webp",
+    "link": "https://nautichandler.com/en/12078-windex-xl.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-241",
+    "title": "Plastimo offshore 105 compass black conical card",
+    "price": "€257.70",
+    "image": "https://nautichandler.com/16624-home_default/plastimo-offshore-105-compass-black-conical-card.webp",
+    "link": "https://nautichandler.com/en/16136-plastimo-offshore-105-compass-black-conical-card.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-242",
+    "title": "Plastimo compass offshore 135 LH black flat card",
+    "price": "€360.79",
+    "image": "https://nautichandler.com/14823-home_default/plastimo-compass-offshore-135-lh-black-flat-card.webp",
+    "link": "https://nautichandler.com/en/15070-plastimo-compass-offshore-135-lh-black-flat-card.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-243",
+    "title": "Plastimo olympic 115 compass black conical card",
+    "price": "€251.63",
+    "image": "https://nautichandler.com/16618-home_default/plastimo-olympic-115-compass-black-conical-card.webp",
+    "link": "https://nautichandler.com/en/16133-plastimo-olympic-115-compass-black-conical-card.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-244",
+    "title": "Plastimo binnacle for offshore 115 & olympic 115 balc",
+    "price": "€53.19",
+    "image": "https://nautichandler.com/16620-home_default/plastimo-binnacle-for-offshore-115-olympic-115-balc.webp",
+    "link": "https://nautichandler.com/en/16134-plastimo-binnacle-for-offshore-115-olympic-115-balc.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-245",
+    "title": "Plastimo olympic 115 compass black flat card",
+    "price": "€251.63",
+    "image": "https://nautichandler.com/16617-home_default/plastimo-olympic-115-compass-black-flat-card.webp",
+    "link": "https://nautichandler.com/en/16132-plastimo-olympic-115-compass-black-flat-card.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-246",
+    "title": "RIVIERA Compass Pegasus White/Black Vertical Mount 12V",
+    "price": "€212.40",
+    "image": "https://nautichandler.com/16553-home_default/riviera-compass-pegasus-whiteblack-vertical-mount-12v.webp",
+    "link": "https://nautichandler.com/en/16074-riviera-compass-pegasus-whiteblack-vertical-mount-12v.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-247",
+    "title": "Plastimo compass offshore 135 LH black conical card",
+    "price": "€419.84",
+    "image": "https://nautichandler.com/14824-home_default/plastimo-compass-offshore-135-lh-black-conical-card.webp",
+    "link": "https://nautichandler.com/en/15079-plastimo-compass-offshore-135-lh-black-conical-card.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-248",
+    "title": "Topomarine Binoculars Resc 7x50 Compass",
+    "price": "€236.69",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/15120-topomarine-binoculars-resc-7x50-compass.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-249",
+    "title": "Binoculars waterproof w/ compass sea nav 7x50",
+    "price": "€188.34",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/11966-binoculars-waterproof-w-compass-sea-nav-7x50.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-250",
+    "title": "Plastimo offshore 105 compass black flat card",
+    "price": "€256.23",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16135-plastimo-offshore-105-compass-black-flat-card.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-251",
+    "title": "Plastimo bracket kit offshore 105 compass black",
+    "price": "€45.45",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16137-plastimo-bracket-kit-offshore-105-compass-black.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-252",
+    "title": "Bearing Compass 1 D-58mm",
+    "price": "€224.07",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12189-bearing-compass-1-d58mm.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-253",
+    "title": "Windex light 12 volt",
+    "price": "€25.73",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/6776-windex-light-12-volt.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-254",
+    "title": "Compass Zenith 12v Bz1/3-143 RIVIERA",
+    "price": "€189.38",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12750-compass-zenith-12v-bz13143-riviera.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-255",
+    "title": "Logbook For Cruising Under Sail",
+    "price": "€86.48",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/12602-logbook-for-cruising-under-sail.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-256",
+    "title": "Logbook For Cruising Under Power",
+    "price": "€86.48",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16846-logbook-for-cruising-under-power.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-257",
+    "title": "Log Book Navigation Diary",
+    "price": "€30.09",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4017-log-book-navigation-diary.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-258",
+    "title": "Imray chart m8: north of sardegna",
+    "price": "€44.79",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/7545-imray-chart-m8-north-of-sardegna.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-259",
+    "title": "Imray chart m31: sicily",
+    "price": "€44.79",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/7547-imray-chart-m31-sicily.html",
+    "category": "navigation"
+  },
+  {
+    "id": "prod-260",
+    "title": "Harken gloves full finger sailing glove gray M",
+    "price": "€73.53",
+    "image": "https://nautichandler.com/3642-home_default/harken-gloves-full-finger-sailing-glove-gray-m.webp",
+    "link": "https://nautichandler.com/en/9299-harken-gloves-full-finger-sailing-glove-gray-m.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-261",
+    "title": "Harken gloves full finger sailing glove gray L",
+    "price": "€73.53",
+    "image": "https://nautichandler.com/3641-home_default/harken-gloves-full-finger-sailing-glove-gray-l.webp",
+    "link": "https://nautichandler.com/en/8155-harken-gloves-full-finger-sailing-glove-gray-l.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-262",
+    "title": "Harken gloves full finger sailing glove gray S",
+    "price": "€53.16",
+    "image": "https://nautichandler.com/3643-home_default/harken-gloves-full-finger-sailing-glove-gray-s.webp",
+    "link": "https://nautichandler.com/en/8156-harken-gloves-full-finger-sailing-glove-gray-s.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-263",
+    "title": "Harken gloves full finger sailing glove gray XL",
+    "price": "€111.13",
+    "image": "https://nautichandler.com/864-home_default/harken-gloves-full-finger-sailing-glove-gray-xl.webp",
+    "link": "https://nautichandler.com/en/8157-harken-gloves-full-finger-sailing-glove-gray-xl.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-264",
+    "title": "Overshoe small 8-10 navy fendequip",
+    "price": "€32.55",
+    "image": "https://nautichandler.com/17057-home_default/overshoe-small-810-navy-fendequip.webp",
+    "link": "https://nautichandler.com/en/8952-overshoe-small-810-navy-fendequip.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-265",
+    "title": "Overshoe small 6-8 navy fendequip",
+    "price": "€32.55",
+    "image": "https://nautichandler.com/17056-home_default/overshoe-small-68-navy-fendequip.webp",
+    "link": "https://nautichandler.com/en/8951-overshoe-small-68-navy-fendequip.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-266",
+    "title": "Overshoe small 10-12 navy fendequip",
+    "price": "€32.55",
+    "image": "https://nautichandler.com/17058-home_default/overshoe-small-1012-navy-fendequip.webp",
+    "link": "https://nautichandler.com/en/8953-overshoe-small-1012-navy-fendequip.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-267",
+    "title": "Spinklock Kneepads Impact Protection Small",
+    "price": "€75.34",
+    "image": "https://nautichandler.com/17208-home_default/spinklock-kneepads-impact-protection-small.webp",
+    "link": "https://nautichandler.com/en/4668-spinklock-kneepads-impact-protection-small.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-268",
+    "title": "Belt Pack",
+    "price": "€29.42",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16786-belt-pack.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-269",
+    "title": "Side Pack",
+    "price": "€35.70",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16787-side-pack.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-270",
+    "title": "TOOL-PACK",
+    "price": "€55.53",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16788-toolpack.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-271",
+    "title": "Chest Pack",
+    "price": "€28.51",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/16785-chest-pack.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-272",
+    "title": "Grom grey matt sunglasses",
+    "price": "€38.55",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17915-grom-grey-matt-sunglasses.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-273",
+    "title": "San juan grey bf 2.50 amber sunglasses",
+    "price": "€69.37",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17918-san-juan-grey-bf-250-amber-sunglasses.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-274",
+    "title": "[DESCATALOGADO] Gafas De Sol San Juan Bf 2.5 Mb Gris",
+    "price": "€63.59",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/17916-descatalogado-gafas-de-sol-san-juan-bf-25-mb-gris.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-275",
+    "title": "Waterproof case yellow 170x119x58mm",
+    "price": "€48.13",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2489-waterproof-case-yellow-170x119x58mm.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-276",
+    "title": "Yachting boots s.42 gs marine",
+    "price": "€42.63",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/5937-yachting-boots-s42-gs-marine.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-277",
+    "title": "Yachting boots s.38 gs marine",
+    "price": "€42.24",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/11682-yachting-boots-s38-gs-marine.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-278",
+    "title": "Waterproof bag for documents pvc 140x100mm",
+    "price": "€7.11",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/2485-waterproof-bag-for-documents-pvc-140x100mm.html",
+    "category": "clothing"
+  },
+  {
+    "id": "prod-279",
+    "title": "Watertight bag for phone 180x240mm",
+    "price": "€3.46",
+    "image": "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20280%20280%22%3E%3C/svg%3E",
+    "link": "https://nautichandler.com/en/4918-watertight-bag-for-phone-180x240mm.html",
+    "category": "clothing"
+  }
+]

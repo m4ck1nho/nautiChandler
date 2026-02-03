@@ -4,6 +4,9 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Hero } from '@/components/landing/Hero';
+import { Features } from '@/components/landing/Features';
+import { BrandLogos } from '@/components/landing/BrandLogos';
+import { Footer } from '@/components/layout/Footer';
 import { StickyCartBar } from '@/components/layout/StickyCartBar';
 import { CartDrawer } from '@/components/cart/CartDrawer';
 import { useCartStore } from '@/store/cartStore';
@@ -38,22 +41,14 @@ function HomeContent() {
       {/* Hero Section with central search bar */}
       <Hero onSearch={handleHeroSearch} initialQuery={initialQuery} />
 
+      {/* Features / Slogans */}
+      <Features />
+
+      {/* Brand Logos */}
+      <BrandLogos />
+
       {/* Footer */}
-      <footer className="bg-white border-t border-zinc-200 py-12 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-xl font-bold text-black">Yachtdrop</span>
-              <span className="text-xs text-zinc-400 bg-zinc-100 px-2 py-1 rounded-full">
-                Beta
-              </span>
-            </div>
-            <p className="text-sm text-zinc-500">
-              Live data from nautichandler.com • Built for yacht crews
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Sticky Cart Bar */}
       <StickyCartBar onOpenCart={() => setIsCartOpen(true)} />
@@ -90,7 +85,7 @@ function LoadingFallback() {
           </div>
         </div>
       </div>
-      
+
       {/* Hero Skeleton */}
       <div className="min-h-[85vh] bg-gradient-to-br from-zinc-900 via-zinc-950 to-black flex items-center justify-center">
         <div className="text-center px-4">
