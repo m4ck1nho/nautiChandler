@@ -2,7 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import https from 'https';
-import { Product, ProductsResponse } from '@/lib/types';
+import { Product, ProductWithVariants, ProductFilters } from '@/lib/types';
+import { deduplicateProducts, parsePrice } from '@/lib/productGrouping';
+
+// Extended response interface with pagination
+interface ProductsResponse {
+  products: Product[];
+  grouped?: ProductWithVariants[]; // Deduplicated products with variant info
+  page: number;
+  hasMore: boolean;
+  total?: number;
+  error?: string;
+  source?: string;
+}
 
 // Create an HTTPS agent that doesn't reject unauthorized certificates
 const httpsAgent = new https.Agent({
@@ -25,7 +37,7 @@ const browserHeaders = {
   'Connection': 'keep-alive',
 };
 
-// Sample products data for demo/fallback (based on real nautichandler.com products)
+// Sample products data for demo/fallback
 const sampleProducts: Product[] = [
   {
     id: '1001',
@@ -45,7 +57,7 @@ const sampleProducts: Product[] = [
   },
   {
     id: '1003',
-    title: 'Gamazyme 700FN 12kg',
+    title: 'Gamazyme 700FN Marine Degreaser 12kg',
     price: '€89.99',
     image: 'https://nautichandler.com/2820-home_default/gamazyme-700fn-12kg.jpg',
     link: 'https://nautichandler.com/en/gamazyme-700fn-12kg',
@@ -85,7 +97,7 @@ const sampleProducts: Product[] = [
   },
   {
     id: '1008',
-    title: 'Marine VHF Radio Handheld',
+    title: 'Marine VHF Radio Handheld Waterproof',
     price: '€129.00',
     image: 'https://nautichandler.com/2825-home_default/vhf-radio-handheld.jpg',
     link: 'https://nautichandler.com/en/marine-vhf-radio-handheld',
@@ -93,7 +105,7 @@ const sampleProducts: Product[] = [
   },
   {
     id: '1009',
-    title: 'Bilge Pump 1100 GPH',
+    title: 'Automatic Bilge Pump 1100 GPH',
     price: '€56.00',
     image: 'https://nautichandler.com/2826-home_default/bilge-pump-1100gph.jpg',
     link: 'https://nautichandler.com/en/bilge-pump-1100-gph',
@@ -101,7 +113,7 @@ const sampleProducts: Product[] = [
   },
   {
     id: '1010',
-    title: 'Mooring Line 14mm x 10m',
+    title: 'Mooring Line 14mm x 10m Pre-Spliced',
     price: '€38.50',
     image: 'https://nautichandler.com/2827-home_default/mooring-line-14mm.jpg',
     link: 'https://nautichandler.com/en/mooring-line-14mm-10m',
@@ -117,7 +129,7 @@ const sampleProducts: Product[] = [
   },
   {
     id: '1012',
-    title: 'Life Jacket Automatic 150N',
+    title: 'Automatic Life Jacket 150N Adult',
     price: '€95.00',
     image: 'https://nautichandler.com/2829-home_default/life-jacket-auto-150n.jpg',
     link: 'https://nautichandler.com/en/life-jacket-automatic-150n',
@@ -125,7 +137,7 @@ const sampleProducts: Product[] = [
   },
   {
     id: '1013',
-    title: 'Deck Brush with Handle',
+    title: 'Deck Brush with Telescopic Handle',
     price: '€18.50',
     image: 'https://nautichandler.com/2830-home_default/deck-brush.jpg',
     link: 'https://nautichandler.com/en/deck-brush-with-handle',
@@ -133,7 +145,7 @@ const sampleProducts: Product[] = [
   },
   {
     id: '1014',
-    title: 'Marine Battery 12V 100Ah',
+    title: 'Marine Battery 12V 100Ah Deep Cycle',
     price: '€185.00',
     image: 'https://nautichandler.com/2831-home_default/marine-battery-100ah.jpg',
     link: 'https://nautichandler.com/en/marine-battery-12v-100ah',
@@ -141,11 +153,51 @@ const sampleProducts: Product[] = [
   },
   {
     id: '1015',
-    title: 'Teak Oil 1L',
+    title: 'Premium Teak Oil 1L',
     price: '€28.00',
     image: 'https://nautichandler.com/2832-home_default/teak-oil-1l.jpg',
     link: 'https://nautichandler.com/en/teak-oil-1l',
     description: 'Premium teak wood protection and restoration oil',
+  },
+  {
+    id: '1016',
+    title: 'Marine Compass Flush Mount',
+    price: '€67.50',
+    image: 'https://nautichandler.com/2833-home_default/marine-compass.jpg',
+    link: 'https://nautichandler.com/en/marine-compass-flush-mount',
+    description: 'Precision marine compass with LED illumination',
+  },
+  {
+    id: '1017',
+    title: 'Anchor Swivel Stainless Steel',
+    price: '€35.00',
+    image: 'https://nautichandler.com/2834-home_default/anchor-swivel.jpg',
+    link: 'https://nautichandler.com/en/anchor-swivel-stainless',
+    description: 'Heavy duty anchor chain swivel connector',
+  },
+  {
+    id: '1018',
+    title: 'Marine First Aid Kit Offshore',
+    price: '€75.00',
+    image: 'https://nautichandler.com/2835-home_default/first-aid-kit.jpg',
+    link: 'https://nautichandler.com/en/marine-first-aid-kit',
+    description: 'Complete offshore first aid kit waterproof case',
+  },
+  {
+    id: '1019',
+    title: 'Boat Cover 5m Blue Heavy Duty',
+    price: '€145.00',
+    image: 'https://nautichandler.com/2836-home_default/boat-cover-5m.jpg',
+    link: 'https://nautichandler.com/en/boat-cover-5m-blue',
+    description: 'UV resistant heavy duty boat cover',
+  },
+  {
+    id: '1020',
+    title: 'Signal Horn Air Canister',
+    price: '€22.00',
+    image: 'https://nautichandler.com/2837-home_default/signal-horn.jpg',
+    link: 'https://nautichandler.com/en/signal-horn-air',
+    description: 'Emergency signal air horn with spare canister',
   },
 ];
 
@@ -155,7 +207,7 @@ function generateProductId(link: string, index: number): string {
   if (match) {
     return match[1];
   }
-  return `product-${index}`;
+  return `product-${index}-${Date.now()}`;
 }
 
 // Clean price string
@@ -210,20 +262,53 @@ function parseProducts($: cheerio.CheerioAPI): Product[] {
           }
         }
 
-        // Try multiple image selectors
+        // ROBUST IMAGE EXTRACTION - Handle lazy loading and relative URLs
         let image = '';
-        const imgSelectors = ['.thumbnail-container img', '.product-image img', '.product-thumbnail img', 'img'];
+        const imgSelectors = [
+          '.thumbnail-container img',
+          '.product-image img', 
+          '.product-thumbnail img',
+          '.product-cover img',
+          'a.thumbnail img',
+          'img.product-thumbnail-first',
+          'img'
+        ];
+        
         for (const is of imgSelectors) {
-          const el = $product.find(is).first();
-          if (el.length) {
-            image = el.attr('data-src') || el.attr('data-lazy-src') || el.attr('src') || '';
-            break;
+          const imgElement = $product.find(is).first();
+          if (imgElement.length) {
+            // Try multiple attributes (lazy loading often uses data-src or data-cover)
+            image = imgElement.attr('data-src') 
+              || imgElement.attr('data-full-size-image-url')
+              || imgElement.attr('data-cover')
+              || imgElement.attr('data-lazy-src')
+              || imgElement.attr('data-original')
+              || imgElement.attr('src') 
+              || '';
+            
+            if (image) break;
           }
         }
 
-        // Ensure absolute URL
-        if (image && !image.startsWith('http')) {
-          image = `https://nautichandler.com${image.startsWith('/') ? '' : '/'}${image}`;
+        // CLEANUP: Fix relative URLs and protocol-relative URLs
+        if (image) {
+          image = image.trim();
+          
+          // Handle protocol-relative URLs (//example.com/image.jpg)
+          if (image.startsWith('//')) {
+            image = 'https:' + image;
+          }
+          // Handle root-relative URLs (/path/to/image.jpg)
+          else if (image.startsWith('/')) {
+            image = 'https://nautichandler.com' + image;
+          }
+          // Handle relative URLs (path/to/image.jpg)
+          else if (!image.startsWith('http')) {
+            image = 'https://nautichandler.com/' + image;
+          }
+          
+          // Clean up any double slashes (except after https:)
+          image = image.replace(/([^:])\/\//g, '$1/');
         }
 
         if (title && price && link) {
@@ -246,7 +331,55 @@ function parseProducts($: cheerio.CheerioAPI): Product[] {
   return products;
 }
 
-// Search/filter products by query
+// Check if there's a next page
+function hasNextPage($: cheerio.CheerioAPI, currentPage: number): boolean {
+  // Look for pagination elements
+  const paginationSelectors = [
+    '.pagination .next:not(.disabled)',
+    '.pagination-nav .next',
+    'a[rel="next"]',
+    `.pagination li:contains("${currentPage + 1}")`,
+  ];
+
+  for (const selector of paginationSelectors) {
+    if ($(selector).length > 0) {
+      return true;
+    }
+  }
+
+  // Also check if current page link exists and there's more
+  const pageLinks = $('.pagination a, .pagination li').length;
+  return pageLinks > currentPage;
+}
+
+// Build the URL for a search/category with pagination
+function buildUrl(query: string, categoryId: string, categoryUrl: string, page: number): string {
+  const baseUrl = 'https://nautichandler.com';
+  
+  // If we have a full category URL, use it
+  if (categoryUrl && categoryUrl.includes('/en/')) {
+    const url = categoryUrl.startsWith('http') ? categoryUrl : `${baseUrl}${categoryUrl}`;
+    return page > 1 ? `${url}?page=${page}` : url;
+  }
+  
+  // If we have a category ID, build the category URL
+  if (categoryId && categoryId !== 'featured') {
+    return page > 1 
+      ? `${baseUrl}/en/${categoryId}?page=${page}`
+      : `${baseUrl}/en/${categoryId}`;
+  }
+  
+  // If we have a search query
+  if (query) {
+    const searchUrl = `${baseUrl}/en/search?controller=search&s=${encodeURIComponent(query)}`;
+    return page > 1 ? `${searchUrl}&page=${page}` : searchUrl;
+  }
+  
+  // Default: homepage (featured products)
+  return `${baseUrl}/en/`;
+}
+
+// Filter products by query (for mock data)
 function filterProducts(products: Product[], query: string): Product[] {
   if (!query) return products;
   
@@ -257,38 +390,67 @@ function filterProducts(products: Product[], query: string): Product[] {
     const titleLower = p.title.toLowerCase();
     const descLower = (p.description || '').toLowerCase();
     
-    // Check if any query word matches title or description
     return queryWords.some(word => 
       titleLower.includes(word) || descLower.includes(word)
     );
   });
 }
 
-export async function GET(request: NextRequest): Promise<NextResponse<ProductsResponse>> {
-  const searchParams = request.nextUrl.searchParams;
-  const query = searchParams.get('q') || searchParams.get('category') || '';
-  const featured = searchParams.get('featured') === 'true';
-  const useMock = searchParams.get('mock') !== 'false'; // Default to using mock data
+// Apply filters to products
+function applyFilters(products: Product[], filters: ProductFilters): Product[] {
+  let filtered = [...products];
 
-  // If no query and not requesting featured, return error
-  if (!query && !featured) {
-    return NextResponse.json(
-      { products: [], error: 'Query parameter "q" or "featured=true" is required' },
-      { status: 400 }
-    );
+  // Price filter
+  if (filters.priceMin !== undefined || filters.priceMax !== undefined) {
+    filtered = filtered.filter(p => {
+      const price = parsePrice(p.price);
+      if (filters.priceMin !== undefined && price < filters.priceMin) return false;
+      if (filters.priceMax !== undefined && price > filters.priceMax) return false;
+      return true;
+    });
   }
 
-  // First try to scrape real data
-  try {
-    let targetUrl: string;
-
-    if (featured || !query) {
-      targetUrl = 'https://nautichandler.com/en/';
-    } else {
-      targetUrl = `https://nautichandler.com/en/search?controller=search&s=${encodeURIComponent(query)}`;
+  // Sort
+  if (filters.sortBy) {
+    switch (filters.sortBy) {
+      case 'price-asc':
+        filtered.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+        break;
+      case 'price-desc':
+        filtered.sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+        break;
+      case 'name':
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
     }
+  }
 
-    console.log(`Attempting to fetch: ${targetUrl}`);
+  return filtered;
+}
+
+export async function GET(request: NextRequest): Promise<NextResponse<ProductsResponse>> {
+  const searchParams = request.nextUrl.searchParams;
+  const query = searchParams.get('q') || '';
+  const categoryId = searchParams.get('category') || searchParams.get('categoryId') || '';
+  const categoryUrl = searchParams.get('categoryUrl') || '';
+  const featured = searchParams.get('featured') === 'true';
+  const page = parseInt(searchParams.get('page') || '1', 10);
+  const perPage = 20;
+  
+  // New params for filtering and grouping
+  const deduplicate = searchParams.get('deduplicate') === 'true';
+  const priceMin = searchParams.get('priceMin') ? parseFloat(searchParams.get('priceMin')!) : undefined;
+  const priceMax = searchParams.get('priceMax') ? parseFloat(searchParams.get('priceMax')!) : undefined;
+  const sortBy = searchParams.get('sortBy') as ProductFilters['sortBy'] | undefined;
+
+  const filters: ProductFilters = { priceMin, priceMax, sortBy };
+
+  // If no query and not featured/category, return featured
+  const isFeaturedRequest = featured || (!query && !categoryId);
+
+  try {
+    const targetUrl = buildUrl(query, categoryId, categoryUrl, page);
+    console.log(`Fetching products: ${targetUrl} (page ${page})`);
 
     const response = await axiosInstance.get(targetUrl, {
       headers: browserHeaders,
@@ -298,51 +460,64 @@ export async function GET(request: NextRequest): Promise<NextResponse<ProductsRe
     const $ = cheerio.load(html);
 
     let products = parseProducts($);
+    const hasMore = hasNextPage($, page);
 
-    // Filter by query if searching
-    if (query && products.length > 0) {
-      products = filterProducts(products, query);
-    }
+    console.log(`Scraped ${products.length} products (page ${page}, hasMore: ${hasMore})`);
 
-    console.log(`Scraped ${products.length} products`);
-
-    // If we found real products, return them
     if (products.length > 0) {
-      return NextResponse.json({ products });
+      // Apply filters
+      products = applyFilters(products, filters);
+      
+      // Optionally deduplicate (group variants)
+      const grouped = deduplicate ? deduplicateProducts(products) : undefined;
+      
+      return NextResponse.json({ 
+        products,
+        grouped,
+        page, 
+        hasMore,
+        source: 'live'
+      });
     }
 
-    // Fall through to mock data if scraping returned no results
-    console.log('No products scraped, falling back to sample data');
+    // Fall through to mock data
+    console.log('No products scraped, using sample data');
 
   } catch (error) {
     console.error('Scraping error:', error instanceof Error ? error.message : error);
-    // Continue to mock data fallback
   }
 
-  // Use mock/sample data as fallback
-  if (useMock) {
-    let products = [...sampleProducts];
-
-    // Filter by query if searching
-    if (query) {
-      products = filterProducts(products, query);
-    }
-
-    // Limit to reasonable number
-    products = products.slice(0, 20);
-
-    console.log(`Returning ${products.length} sample products for query: "${query || 'featured'}"`);
-
-    return NextResponse.json({ 
-      products,
-      // Note: remove this in production
-      _source: 'sample_data'
-    });
+  // Mock data fallback with pagination simulation
+  let products = [...sampleProducts];
+  
+  // Filter by query if searching
+  if (query) {
+    products = filterProducts(products, query);
+  } else if (categoryId && categoryId !== 'featured') {
+    // Simulate category filtering
+    products = filterProducts(products, categoryId);
   }
 
-  // If mock is disabled and scraping failed
+  // Apply additional filters
+  products = applyFilters(products, filters);
+
+  // Simulate pagination
+  const startIndex = (page - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  const paginatedProducts = products.slice(startIndex, endIndex);
+  const hasMore = endIndex < products.length;
+
+  // Optionally deduplicate (group variants)
+  const grouped = deduplicate ? deduplicateProducts(paginatedProducts) : undefined;
+
+  console.log(`Returning ${paginatedProducts.length} sample products (page ${page}/${Math.ceil(products.length / perPage)})`);
+
   return NextResponse.json({ 
-    products: [], 
-    error: 'No products found and mock data disabled' 
+    products: paginatedProducts,
+    grouped,
+    page,
+    hasMore,
+    total: products.length,
+    source: 'sample'
   });
 }
