@@ -56,10 +56,12 @@ function processProduct(product: ScrapedProduct) {
   };
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest): Promise<NextResponse<SyncResponse>> {
   try {
     const supabase = getSupabase();
-    
+
     if (!supabase) {
       return NextResponse.json({
         success: false,
@@ -77,17 +79,17 @@ export async function POST(request: NextRequest): Promise<NextResponse<SyncRespo
     if (products.length === 0) {
       const baseUrl = request.nextUrl.origin;
       console.log('Fetching products from scraper...');
-      
+
       // Fetch multiple pages for a fuller sync
       const maxPages = body.maxPages || 3;
       for (let page = 1; page <= maxPages; page++) {
         const response = await fetch(`${baseUrl}/api/products?featured=true&page=${page}`);
         const data = await response.json();
-        
+
         if (data.products && data.products.length > 0) {
           products = [...products, ...data.products];
           console.log(`Fetched page ${page}: ${data.products.length} products`);
-          
+
           if (!data.hasMore) break;
         } else {
           break;
@@ -114,7 +116,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<SyncRespo
 
     for (let i = 0; i < processedProducts.length; i += batchSize) {
       const batch = processedProducts.slice(i, i + batchSize);
-      
+
       const { data, error } = await supabase
         .from('products')
         .upsert(batch, {
@@ -134,18 +136,19 @@ export async function POST(request: NextRequest): Promise<NextResponse<SyncRespo
     // Optionally trigger SQL-based grouping for any products missing group_id
     if (useDbGrouping) {
       console.log('Running SQL-based grouping...');
-      const { error: groupError } = await supabase.rpc('populate_group_ids').catch(() => ({
-        error: null // Function might not exist, that's OK
-      }));
-      
-      if (groupError) {
-        console.log('SQL grouping function not available, using JS grouping');
+      try {
+        const { error: groupError } = await supabase.rpc('populate_group_ids');
+        if (groupError) {
+          console.log('SQL grouping function error (safe to ignore if not created):', groupError);
+        }
+      } catch (err) {
+        console.log('SQL grouping function not available (safe to ignore)', err);
       }
     }
 
     // Calculate stats
     const uniqueGroups = new Set(processedProducts.map(p => p.group_id));
-    
+
     return NextResponse.json({
       success: true,
       message: `Successfully synced ${products.length} products into ${uniqueGroups.size} groups`,
@@ -172,7 +175,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<SyncRespo
 export async function GET(request: NextRequest): Promise<NextResponse<SyncResponse>> {
   try {
     const supabase = getSupabase();
-    
+
     if (!supabase) {
       return NextResponse.json({
         success: false,

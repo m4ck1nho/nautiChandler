@@ -45,38 +45,45 @@ const SORT_OPTIONS = [
   { value: 'name', label: 'Name: A to Z' },
 ] as const;
 
-export function FilterSheet({ 
-  open, 
-  onClose, 
-  onApply, 
+export function FilterSheet({
+  open,
+  onClose,
+  onApply,
   initialFilters = {},
   categories = []
 }: FilterSheetProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   // Local state for filter values
-  const [priceMin, setPriceMin] = useState<number | undefined>(initialFilters.priceMin);
-  const [priceMax, setPriceMax] = useState<number | undefined>(initialFilters.priceMax);
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(initialFilters.category);
-  const [inStock, setInStock] = useState(initialFilters.inStock ?? false);
-  const [sortBy, setSortBy] = useState<FilterValues['sortBy']>(initialFilters.sortBy);
+  // Local state for filter values - initialized from URL params
+  const [priceMin, setPriceMin] = useState<number | undefined>(() => {
+    const p = searchParams.get('priceMin');
+    return p ? parseFloat(p) : initialFilters.priceMin;
+  });
+  const [priceMax, setPriceMax] = useState<number | undefined>(() => {
+    const p = searchParams.get('priceMax');
+    return p ? parseFloat(p) : initialFilters.priceMax;
+  });
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(() => {
+    return searchParams.get('category') || initialFilters.category;
+  });
+  const [inStock, setInStock] = useState(() => {
+    const p = searchParams.get('inStock');
+    return p === 'true' ? true : (initialFilters.inStock ?? false);
+  });
+  const [sortBy, setSortBy] = useState<FilterValues['sortBy']>(() => {
+    return (searchParams.get('sortBy') as FilterValues['sortBy']) || initialFilters.sortBy;
+  });
   const [customPriceMin, setCustomPriceMin] = useState('');
   const [customPriceMax, setCustomPriceMax] = useState('');
 
-  // Sync with URL params on mount
+  // Sync with URL params on updates (optional, if we want to react to external URL changes while open)
+  // For now, removing the problematic effect as initialization handles the open state.
   useEffect(() => {
-    const urlPriceMin = searchParams.get('priceMin');
-    const urlPriceMax = searchParams.get('priceMax');
-    const urlCategory = searchParams.get('category');
-    const urlInStock = searchParams.get('inStock');
-    const urlSortBy = searchParams.get('sortBy') as FilterValues['sortBy'];
-
-    if (urlPriceMin) setPriceMin(parseFloat(urlPriceMin));
-    if (urlPriceMax) setPriceMax(parseFloat(urlPriceMax));
-    if (urlCategory) setSelectedCategory(urlCategory);
-    if (urlInStock) setInStock(urlInStock === 'true');
-    if (urlSortBy) setSortBy(urlSortBy);
+    // If we really need to sync when URL changes while drawer is open
+    // we can do it, but careful with deps.
+    // For now, trusting initializers.
   }, [searchParams]);
 
   // Check if a price range is selected
@@ -109,7 +116,7 @@ export function FilterSheet({
   // Apply filters and update URL
   const handleApply = useCallback(() => {
     const filters: FilterValues = {};
-    
+
     if (priceMin !== undefined) filters.priceMin = priceMin;
     if (priceMax !== undefined) filters.priceMax = priceMax;
     if (selectedCategory) filters.category = selectedCategory;
@@ -118,32 +125,32 @@ export function FilterSheet({
 
     // Update URL params
     const params = new URLSearchParams(searchParams.toString());
-    
+
     // Set or remove each filter param
     if (priceMin !== undefined) {
       params.set('priceMin', priceMin.toString());
     } else {
       params.delete('priceMin');
     }
-    
+
     if (priceMax !== undefined) {
       params.set('priceMax', priceMax.toString());
     } else {
       params.delete('priceMax');
     }
-    
+
     if (selectedCategory) {
       params.set('category', selectedCategory);
     } else {
       params.delete('category');
     }
-    
+
     if (inStock) {
       params.set('inStock', 'true');
     } else {
       params.delete('inStock');
     }
-    
+
     if (sortBy) {
       params.set('sortBy', sortBy);
     } else {
@@ -222,11 +229,10 @@ export function FilterSheet({
                 <button
                   key={option.value}
                   onClick={() => setSortBy(sortBy === option.value ? undefined : option.value)}
-                  className={`px-4 py-3 rounded-lg text-sm font-medium border transition-all text-left ${
-                    sortBy === option.value
+                  className={`px-4 py-3 rounded-lg text-sm font-medium border transition-all text-left ${sortBy === option.value
                       ? 'bg-black text-white border-black'
                       : 'bg-white text-black border-zinc-200 hover:border-zinc-400'
-                  }`}
+                    }`}
                 >
                   {option.label}
                 </button>
@@ -244,11 +250,10 @@ export function FilterSheet({
                   <button
                     key={range.label}
                     onClick={() => handlePriceRangeSelect(range.min, range.max)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all ${
-                      isPriceRangeSelected(range.min, range.max)
+                    className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all ${isPriceRangeSelected(range.min, range.max)
                         ? 'bg-black text-white border-black'
                         : 'bg-white text-black border-zinc-200 hover:border-zinc-400'
-                    }`}
+                      }`}
                   >
                     {range.label}
                   </button>
@@ -295,11 +300,10 @@ export function FilterSheet({
                     onClick={() => setSelectedCategory(
                       selectedCategory === category.id ? undefined : category.id
                     )}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all ${
-                      selectedCategory === category.id
+                    className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all ${selectedCategory === category.id
                         ? 'bg-black text-white border-black'
                         : 'bg-white text-black border-zinc-200 hover:border-zinc-400'
-                    }`}
+                      }`}
                   >
                     {category.name}
                   </button>
@@ -315,9 +319,8 @@ export function FilterSheet({
               className="flex items-center justify-between w-full p-4 rounded-lg border border-zinc-200 hover:border-zinc-400 transition-all"
             >
               <span className="text-sm font-medium text-black">In stock only</span>
-              <div className={`w-10 h-6 rounded-full transition-colors relative ${
-                inStock ? 'bg-black' : 'bg-zinc-200'
-              }`}>
+              <div className={`w-10 h-6 rounded-full transition-colors relative ${inStock ? 'bg-black' : 'bg-zinc-200'
+                }`}>
                 <motion.div
                   animate={{ x: inStock ? 16 : 0 }}
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}

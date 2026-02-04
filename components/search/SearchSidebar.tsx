@@ -1,6 +1,8 @@
 'use client';
 
-import { SlidersHorizontal } from 'lucide-react';
+import { useMemo } from 'react';
+import { SlidersHorizontal, X } from 'lucide-react';
+import { Slider } from '@/components/ui/slider';
 
 interface Facets {
   colors: string[];
@@ -15,13 +17,22 @@ export interface SearchSidebarFilters {
   selectedColors: string[];
   selectedSizes: string[];
   selectedCategory?: string;
+  selectedBrands?: string[];
+  selectedMaterials?: string[];
 }
 
 interface SearchSidebarProps extends SearchSidebarFilters {
   facets: Facets;
   categories: string[];
   onChange: (next: SearchSidebarFilters) => void;
+  onClear?: () => void;
 }
+
+// Sample data for filters that may not come from products
+const COMMON_COLORS = ['Black', 'White', 'Blue', 'Red', 'Silver', 'Orange', 'Yellow', 'Green'];
+const COMMON_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
+const COMMON_BRANDS = ['Lofrans', 'Plastimo', 'Hella Marine', 'Lewmar', 'Muir', 'Quick', 'Harken'];
+const COMMON_MATERIALS = ['Stainless Steel', 'Aluminum', 'Nylon', 'Polyester', 'Rubber', 'PVC'];
 
 export function SearchSidebar({
   facets,
@@ -32,29 +43,51 @@ export function SearchSidebar({
   selectedColors,
   selectedSizes,
   selectedCategory,
+  selectedBrands = [],
+  selectedMaterials = [],
   onChange,
+  onClear,
 }: SearchSidebarProps) {
-  const handlePriceMinChange = (value: string) => {
-    const num = value ? Number(value) : undefined;
-    onChange({
-      priceMin: num,
-      priceMax,
-      inStock,
-      selectedColors,
-      selectedSizes,
-      selectedCategory,
-    });
-  };
+  // Calculate if any filters are active
+  const hasActiveFilters = useMemo(() => {
+    return (
+      priceMin !== undefined ||
+      priceMax !== undefined ||
+      inStock ||
+      selectedColors.length > 0 ||
+      selectedSizes.length > 0 ||
+      selectedBrands.length > 0 ||
+      selectedMaterials.length > 0
+    );
+  }, [priceMin, priceMax, inStock, selectedColors, selectedSizes, selectedBrands, selectedMaterials]);
 
-  const handlePriceMaxChange = (value: string) => {
-    const num = value ? Number(value) : undefined;
+  // Price range for slider
+  const maxPriceValue = facets.maxPrice || 1000;
+  const currentMin = priceMin ?? 0;
+  const currentMax = priceMax ?? maxPriceValue;
+
+  // Combine product facets with common options
+  const availableColors = useMemo(() => {
+    const combined = new Set([...facets.colors, ...COMMON_COLORS]);
+    return Array.from(combined).slice(0, 8);
+  }, [facets.colors]);
+
+  const availableSizes = useMemo(() => {
+    const combined = new Set([...facets.sizes, ...COMMON_SIZES]);
+    return Array.from(combined).slice(0, 8);
+  }, [facets.sizes]);
+
+  const handlePriceRangeChange = (values: number[]) => {
+    const [min, max] = values;
     onChange({
-      priceMin,
-      priceMax: num,
+      priceMin: min > 0 ? min : undefined,
+      priceMax: max < maxPriceValue ? max : undefined,
       inStock,
       selectedColors,
       selectedSizes,
       selectedCategory,
+      selectedBrands,
+      selectedMaterials,
     });
   };
 
@@ -66,25 +99,29 @@ export function SearchSidebar({
       selectedColors,
       selectedSizes,
       selectedCategory,
+      selectedBrands,
+      selectedMaterials,
     });
   };
 
   const toggleColor = (color: string) => {
-    const nextColors = selectedColors.includes(color)
+    const next = selectedColors.includes(color)
       ? selectedColors.filter((c) => c !== color)
       : [...selectedColors, color];
     onChange({
       priceMin,
       priceMax,
       inStock,
-      selectedColors: nextColors,
+      selectedColors: next,
       selectedSizes,
       selectedCategory,
+      selectedBrands,
+      selectedMaterials,
     });
   };
 
   const toggleSize = (size: string) => {
-    const nextSizes = selectedSizes.includes(size)
+    const next = selectedSizes.includes(size)
       ? selectedSizes.filter((s) => s !== size)
       : [...selectedSizes, size];
     onChange({
@@ -92,8 +129,42 @@ export function SearchSidebar({
       priceMax,
       inStock,
       selectedColors,
-      selectedSizes: nextSizes,
+      selectedSizes: next,
       selectedCategory,
+      selectedBrands,
+      selectedMaterials,
+    });
+  };
+
+  const toggleBrand = (brand: string) => {
+    const next = selectedBrands.includes(brand)
+      ? selectedBrands.filter((b) => b !== brand)
+      : [...selectedBrands, brand];
+    onChange({
+      priceMin,
+      priceMax,
+      inStock,
+      selectedColors,
+      selectedSizes,
+      selectedCategory,
+      selectedBrands: next,
+      selectedMaterials,
+    });
+  };
+
+  const toggleMaterial = (material: string) => {
+    const next = selectedMaterials.includes(material)
+      ? selectedMaterials.filter((m) => m !== material)
+      : [...selectedMaterials, material];
+    onChange({
+      priceMin,
+      priceMax,
+      inStock,
+      selectedColors,
+      selectedSizes,
+      selectedCategory,
+      selectedBrands,
+      selectedMaterials: next,
     });
   };
 
@@ -106,127 +177,163 @@ export function SearchSidebar({
       selectedColors,
       selectedSizes,
       selectedCategory: nextCategory,
+      selectedBrands,
+      selectedMaterials,
     });
   };
 
   return (
     <div className="space-y-6 text-sm">
-      <div className="flex items-center gap-2 mb-2">
-        <SlidersHorizontal className="w-4 h-4 text-zinc-500" />
-        <span className="text-sm font-semibold text-black">Filters</span>
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <SlidersHorizontal className="w-4 h-4 text-zinc-500" />
+          <span className="text-sm font-semibold text-black">Filters</span>
+        </div>
+        {hasActiveFilters && onClear && (
+          <button
+            onClick={onClear}
+            className="flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-900 transition-colors"
+          >
+            <X className="w-3 h-3" />
+            Clear all
+          </button>
+        )}
       </div>
 
       {/* Category */}
       {categories.length > 0 && (
         <div>
-          <h3 className="font-semibold text-black mb-2">Category</h3>
-          <div className="space-y-1 max-h-40 overflow-y-auto pr-1">
+          <h3 className="font-semibold text-black mb-3">Category</h3>
+          <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
-              <label
+              <button
                 key={cat}
-                className="flex items-center gap-2 text-xs text-zinc-700 cursor-pointer"
+                onClick={() => toggleCategory(cat)}
+                className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${selectedCategory === cat
+                    ? 'bg-zinc-900 text-white border-zinc-900'
+                    : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                  }`}
               >
-                <input
-                  type="checkbox"
-                  checked={selectedCategory === cat}
-                  onChange={() => toggleCategory(cat)}
-                  className="rounded border-zinc-300 text-black focus:ring-black"
-                />
-                <span>{cat}</span>
-              </label>
+                {cat}
+              </button>
             ))}
           </div>
         </div>
       )}
 
-      {/* Price range */}
+      {/* Price Range Slider */}
       <div>
-        <h3 className="font-semibold text-black mb-2">Price range</h3>
-        <div className="flex items-center gap-2">
-          <input
-            type="number"
+        <h3 className="font-semibold text-black mb-3">Price Range</h3>
+        <div className="px-1">
+          <Slider
+            value={[currentMin, currentMax]}
             min={0}
-            value={priceMin ?? ''}
-            onChange={(e) => handlePriceMinChange(e.target.value)}
-            placeholder="Min"
-            className="w-1/2 h-9 px-2 rounded border border-zinc-200 text-xs"
+            max={maxPriceValue}
+            step={1}
+            onValueChange={handlePriceRangeChange}
           />
-          <input
-            type="number"
-            min={0}
-            value={priceMax ?? ''}
-            onChange={(e) => handlePriceMaxChange(e.target.value)}
-            placeholder="Max"
-            className="w-1/2 h-9 px-2 rounded border border-zinc-200 text-xs"
-          />
+          <div className="flex items-center justify-between mt-3 text-xs text-zinc-600">
+            <span className="px-2 py-1 bg-zinc-100 rounded">€{currentMin.toFixed(0)}</span>
+            <span className="text-zinc-400">—</span>
+            <span className="px-2 py-1 bg-zinc-100 rounded">€{currentMax.toFixed(0)}</span>
+          </div>
         </div>
-        {facets.maxPrice && (
-          <p className="mt-1 text-[11px] text-zinc-500">
-            Max in results: €{facets.maxPrice.toFixed(2)}
-          </p>
-        )}
+      </div>
+
+      {/* Color */}
+      <div>
+        <h3 className="font-semibold text-black mb-3">Color</h3>
+        <div className="flex flex-wrap gap-2">
+          {availableColors.map((color) => (
+            <button
+              key={color}
+              onClick={() => toggleColor(color)}
+              className={`px-3 py-1.5 text-xs rounded-full border capitalize transition-colors ${selectedColors.includes(color)
+                  ? 'bg-zinc-900 text-white border-zinc-900'
+                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                }`}
+            >
+              {color.toLowerCase()}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Size */}
+      <div>
+        <h3 className="font-semibold text-black mb-3">Size</h3>
+        <div className="flex flex-wrap gap-2">
+          {availableSizes.map((size) => (
+            <button
+              key={size}
+              onClick={() => toggleSize(size)}
+              className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${selectedSizes.includes(size)
+                  ? 'bg-zinc-900 text-white border-zinc-900'
+                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                }`}
+            >
+              {size}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Brand */}
+      <div>
+        <h3 className="font-semibold text-black mb-3">Brand</h3>
+        <div className="flex flex-wrap gap-2">
+          {COMMON_BRANDS.map((brand) => (
+            <button
+              key={brand}
+              onClick={() => toggleBrand(brand)}
+              className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${selectedBrands.includes(brand)
+                  ? 'bg-zinc-900 text-white border-zinc-900'
+                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                }`}
+            >
+              {brand}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Material */}
+      <div>
+        <h3 className="font-semibold text-black mb-3">Material</h3>
+        <div className="flex flex-wrap gap-2">
+          {COMMON_MATERIALS.map((material) => (
+            <button
+              key={material}
+              onClick={() => toggleMaterial(material)}
+              className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${selectedMaterials.includes(material)
+                  ? 'bg-zinc-900 text-white border-zinc-900'
+                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                }`}
+            >
+              {material}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Availability */}
       <div>
-        <h3 className="font-semibold text-black mb-2">Availability</h3>
-        <label className="inline-flex items-center gap-2 text-xs text-zinc-700 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={inStock}
-            onChange={(e) => handleInStockChange(e.target.checked)}
-            className="rounded border-zinc-300 text-black focus:ring-black"
-          />
-          In stock only
+        <h3 className="font-semibold text-black mb-3">Availability</h3>
+        <label className="inline-flex items-center gap-3 cursor-pointer group">
+          <div className="relative">
+            <input
+              type="checkbox"
+              checked={inStock}
+              onChange={(e) => handleInStockChange(e.target.checked)}
+              className="sr-only peer"
+            />
+            <div className="w-9 h-5 bg-zinc-200 rounded-full peer peer-checked:bg-zinc-900 transition-colors"></div>
+            <div className="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow-sm peer-checked:translate-x-4 transition-transform"></div>
+          </div>
+          <span className="text-xs text-zinc-700 group-hover:text-zinc-900">In stock only</span>
         </label>
       </div>
-
-      {/* Colors */}
-      {facets.colors.length > 0 && (
-        <div>
-          <h3 className="font-semibold text-black mb-2">Color</h3>
-          <div className="space-y-1 max-h-40 overflow-y-auto pr-1">
-            {facets.colors.map((color) => (
-              <label
-                key={color}
-                className="flex items-center gap-2 text-xs text-zinc-700 cursor-pointer"
-              >
-                <input
-                  type="checkbox"
-                  checked={selectedColors.includes(color)}
-                  onChange={() => toggleColor(color)}
-                  className="rounded border-zinc-300 text-black focus:ring-black"
-                />
-                <span className="capitalize">{color.toLowerCase()}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Sizes */}
-      {facets.sizes.length > 0 && (
-        <div>
-          <h3 className="font-semibold text-black mb-2">Size</h3>
-          <div className="space-y-1 max-h-40 overflow-y-auto pr-1">
-            {facets.sizes.map((size) => (
-              <label
-                key={size}
-                className="flex items-center gap-2 text-xs text-zinc-700 cursor-pointer"
-              >
-                <input
-                  type="checkbox"
-                  checked={selectedSizes.includes(size)}
-                  onChange={() => toggleSize(size)}
-                  className="rounded border-zinc-300 text-black focus:ring-black"
-                />
-                <span>{size}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
-

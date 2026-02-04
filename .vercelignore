@@ -1,0 +1,8 @@
+# Components from earlier prototype (not used in current app)
+components/products/
+
+# Scripts (not needed for build)
+scripts/
+
+# Debug files
+scripts/debug_scrape.ts

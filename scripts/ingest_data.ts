@@ -20,6 +20,7 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+void supabase; // Prevent unused var warning
 
 // Ready for new logic
 async function main() {

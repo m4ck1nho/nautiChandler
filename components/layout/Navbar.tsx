@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-import { Menu, User, Search, X, ShoppingBag } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Menu, User, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 import { CategoryDrawer } from './CategoryDrawer';
-import { Input } from '@/components/ui/input';
+import { CartDrawer } from '@/components/cart/CartDrawer';
 import { getSupabase } from '@/lib/supabase';
 
 interface NavbarProps {
@@ -16,18 +16,21 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   /* Safe pathname check */
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  /* Safe pathname check - keeping variable if needed for future or removing if truly unused. Lint said unused. Removing. */
+  // const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
   /* Fallback for Auth Loading */
   useEffect(() => {
     const timer = setTimeout(() => setIsLoadingAuth(false), 2000);
     return () => clearTimeout(timer);
   }, []);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
   // Track scroll position
   useEffect(() => {
@@ -97,11 +100,6 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
     }
   };
 
-  const handleSearchClear = () => {
-    setSearchQuery('');
-    router.push('/search');
-  };
-
 
 
   return (
@@ -146,7 +144,7 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
 
               {/* Cart Icon (Added) */}
               <button
-                onClick={() => document.dispatchEvent(new CustomEvent('open-cart'))}
+                onClick={() => setIsCartOpen(true)}
                 className="p-2 rounded-full hover:bg-zinc-100 transition-colors relative"
               >
                 <ShoppingBag className="w-5 h-5 text-black" />
@@ -189,6 +187,12 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         onSelectCategory={handleCategorySelect}
+      />
+
+      {/* Cart Drawer */}
+      <CartDrawer
+        open={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
       />
     </>
   );

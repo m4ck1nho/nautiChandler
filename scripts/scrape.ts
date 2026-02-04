@@ -29,7 +29,9 @@ const TARGET_CATEGORIES = [
     { name: 'electrics', url: 'https://nautichandler.com/en/100392-electricslighting' },
     { name: 'maintenance', url: 'https://nautichandler.com/en/100669-maintenance-cleaning-products' },
     { name: 'navigation', url: 'https://nautichandler.com/en/100329-navigation' },
-    { name: 'clothing', url: 'https://nautichandler.com/en/43-personal-equipment' }
+    { name: 'clothing', url: 'https://nautichandler.com/en/43-personal-equipment' },
+    { name: 'life-on-board', url: 'https://nautichandler.com/en/197-life-on-board' },
+    { name: 'inflatables', url: 'https://nautichandler.com/en/100911-inflatablewater-toys' }
 ];
 
 const ITEMS_PER_CATEGORY = 20;
@@ -52,7 +54,7 @@ async function main() {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     });
 
-    let allProducts: Product[] = [];
+    const allProducts: Product[] = [];
 
     for (const cat of TARGET_CATEGORIES) {
         console.log(`  📡 Scrapping Category: "${cat.name}"`);
@@ -62,9 +64,18 @@ async function main() {
             await page.goto(cat.url, { waitUntil: 'domcontentloaded', timeout: 45000 });
             await page.waitForTimeout(2000); // Allow lazy load
 
-            // Scroll down a bit to trigger any lazy loading
-            await page.evaluate(() => window.scrollBy(0, 500));
-            await page.waitForTimeout(1000);
+            // Scroll to bottom properly to trigger all lazy loading
+            let previousHeight = 0;
+            while (true) {
+                const currentHeight = await page.evaluate(() => {
+                    window.scrollTo(0, document.body.scrollHeight);
+                    return document.body.scrollHeight;
+                });
+                if (currentHeight === previousHeight) break;
+                previousHeight = currentHeight;
+                await page.waitForTimeout(1000);
+            }
+            await page.waitForTimeout(3000); // Final wait for images
 
             // Selectors
             let productSelector = '.product-miniature';
@@ -81,6 +92,7 @@ async function main() {
             if (foundCount > 0) {
                 const pageProducts = await page.evaluate((args) => {
                     const { selector, category, limit } = args;
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const items: any[] = [];
                     const elements = document.querySelectorAll(selector);
 
@@ -94,13 +106,25 @@ async function main() {
                         const title = titleEl?.textContent?.trim() || '';
                         const price = priceEl?.textContent?.trim() || '€0.00';
                         const link = linkEl?.getAttribute('href') || '';
-                        let image = imgEl?.getAttribute('src') || imgEl?.getAttribute('data-src') || '';
+
+                        // Smart Image Extraction
+                        let image = '';
+                        if (imgEl) {
+                            image = imgEl.getAttribute('data-src') || imgEl.getAttribute('src') || '';
+                            // If src is data-uri, force look for other attributes
+                            if (image.startsWith('data:')) {
+                                image = imgEl.getAttribute('data-src') ||
+                                    imgEl.getAttribute('data-image-large-src') ||
+                                    imgEl.getAttribute('data-full-size-image-url') || '';
+                            }
+                        }
 
                         // Fix relative image URLs
-                        if (image) {
+                        if (image && !image.startsWith('data:')) {
                             if (image.startsWith('//')) image = 'https:' + image;
                             else if (image.startsWith('/')) image = 'https://nautichandler.com' + image;
                         }
+
 
                         if (title && link) {
                             items.push({

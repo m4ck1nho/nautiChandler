@@ -30,7 +30,7 @@ export function Hero({ onSearch, initialQuery = '' }: HeroProps) {
     <section className="relative h-screen bg-white overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-[65%_35%] h-full">
         {/* Left Column - Content */}
-        <div className="flex flex-col justify-center items-start px-8 lg:px-16 py-12 lg:py-0 z-10">
+        <div className="flex flex-col justify-center items-start px-4 sm:px-8 lg:px-16 py-8 pt-28 sm:pt-32 lg:py-0 z-10">
 
 
           {/* Headline */}
@@ -38,7 +38,7 @@ export function Hero({ onSearch, initialQuery = '' }: HeroProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl font-bold text-black tracking-tight leading-[1.1] mb-6"
+            className="text-3xl sm:text-5xl lg:text-6xl font-bold text-black tracking-tight leading-[1.1] mb-4 sm:mb-6"
           >
             Sail anywhere.
             <br />
@@ -50,7 +50,7 @@ export function Hero({ onSearch, initialQuery = '' }: HeroProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-zinc-500 font-medium mt-6 mb-8"
+            className="text-base sm:text-xl text-zinc-500 font-medium mt-4 sm:mt-6 mb-6 sm:mb-8"
           >
             Find what you need
           </motion.p>
@@ -61,27 +61,28 @@ export function Hero({ onSearch, initialQuery = '' }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             onSubmit={handleSubmit}
-            className="w-full max-w-xl bg-white border-2 border-zinc-100 shadow-xl rounded-lg overflow-hidden"
+            className="w-full max-w-xl bg-white border-2 border-zinc-100 shadow-xl rounded-xl overflow-hidden"
           >
             <div className="flex items-center">
               {/* Search Input */}
-              <div className="flex items-center gap-3 flex-1 px-5 py-4">
-                <Search className="w-5 h-5 text-zinc-400 flex-shrink-0" />
+              <div className="flex items-center gap-2 sm:gap-3 flex-1 px-3 sm:px-5 py-3 sm:py-4">
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-400 flex-shrink-0" />
                 <input
                   type="text"
                   placeholder="What do you need?"
                   value={searchQuery}
                   onChange={handleSearchChange}
-                  className="flex-1 bg-transparent outline-none text-black placeholder:text-zinc-400 text-base"
+                  className="flex-1 bg-transparent outline-none text-black placeholder:text-zinc-400 text-sm sm:text-base min-w-0"
                 />
               </div>
 
-              {/* Search Button */}
+              {/* Search Button - Icon on mobile, text on desktop */}
               <button
                 type="submit"
-                className="bg-black text-white px-8 py-4 font-medium text-base hover:bg-zinc-800 transition-colors flex-shrink-0 h-full"
+                className="bg-black text-white px-4 sm:px-8 py-3 sm:py-4 font-medium text-sm sm:text-base hover:bg-zinc-800 transition-colors flex-shrink-0 h-full flex items-center justify-center"
               >
-                Search
+                <Search className="w-4 h-4 sm:hidden" />
+                <span className="hidden sm:inline">Search</span>
               </button>
             </div>
           </motion.form>

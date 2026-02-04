@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
   try {
     const response = await fetch(imageUrl, {
       headers: imageHeaders,
-      // @ts-ignore - Next.js specific option
+      // @ts-expect-error - Next.js specific option
       agent: httpsAgent,
     });
 
@@ -50,13 +50,13 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Image proxy error:', error);
-    
+
     // Return a placeholder SVG on error
     const placeholderSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
       <rect fill="#f1f5f9" width="100" height="100"/>
       <text x="50" y="55" text-anchor="middle" fill="#14b8a6" font-size="30">⚓</text>
     </svg>`;
-    
+
     return new NextResponse(placeholderSvg, {
       headers: {
         'Content-Type': 'image/svg+xml',

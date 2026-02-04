@@ -3,17 +3,13 @@
 import { useState, useEffect, useMemo } from 'react';
 import { ChevronDown, ChevronUp, Search, X } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Product } from '@/lib/types';
+import { Slider } from '@/components/ui/slider';
+import { Product, FilterState } from '@/lib/types';
 
 interface FilterSidebarProps {
     products: Product[]; // Full unfiltered list to derive options
-    filters: {
-        priceRange: [number, number];
-        selectedBrands: string[];
-        selectedCategories: string[];
-        selectedColors: string[];
-    };
-    setFilters: (filters: any) => void;
+    filters: FilterState;
+    setFilters: (filters: FilterState) => void;
     className?: string;
     isOpen?: boolean;     // For mobile drawer integration
     onClose?: () => void; // For mobile drawer integration
@@ -188,44 +184,55 @@ export function FilterSidebar({ products, filters, setFilters, className = '', i
                         onClick={() => toggleSection('price')}
                         className="flex items-center justify-between w-full py-2 font-medium text-sm text-zinc-900 mb-2"
                     >
-                        <span>Price Range</span>
+                        <span>Price</span>
                         {openSections.price ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
 
                     {openSections.price && (
-                        <div className="space-y-4 mt-2">
-                            <div className="flex items-center gap-2">
-                                <div className="relative flex-1">
-                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs">€</span>
+                        <div className="px-1 py-4 space-y-6">
+                            {/* Slider */}
+                            <Slider
+                                min={priceBounds.min}
+                                max={priceBounds.max}
+                                step={1}
+                                minStepsBetweenThumbs={1}
+                                value={filters.priceRange}
+                                onValueChange={(value) => setFilters({ ...filters, priceRange: value as [number, number] })}
+                                className="my-4"
+                            />
+
+                            {/* Inputs Row */}
+                            <div className="flex items-center justify-between gap-4">
+                                <div className="flex items-center gap-2 border border-zinc-200 rounded px-2 py-1 w-20">
+                                    <span className="text-zinc-400 text-sm">€</span>
                                     <input
                                         type="number"
-                                        placeholder="Min"
-                                        value={filters.priceRange[0] || ''}
-                                        onChange={(e) => setFilters({ ...filters, priceRange: [Number(e.target.value), filters.priceRange[1]] })}
-                                        className="w-full pl-6 pr-2 py-1.5 text-sm border border-zinc-200 rounded-md focus:border-black outline-none"
+                                        min={priceBounds.min}
+                                        max={filters.priceRange[1]}
+                                        value={filters.priceRange[0]}
+                                        onChange={(e) => {
+                                            const val = Math.min(Number(e.target.value), filters.priceRange[1]);
+                                            setFilters({ ...filters, priceRange: [val, filters.priceRange[1]] });
+                                        }}
+                                        className="w-full min-w-0 bg-transparent text-sm focus:outline-none no-spinner"
                                     />
                                 </div>
-                                <span className="text-zinc-400">-</span>
-                                <div className="relative flex-1">
-                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs">€</span>
+                                <span className="text-zinc-300">-</span>
+                                <div className="flex items-center gap-2 border border-zinc-200 rounded px-2 py-1 w-20">
+                                    <span className="text-zinc-400 text-sm">€</span>
                                     <input
                                         type="number"
-                                        placeholder="Max"
-                                        value={filters.priceRange[1] || ''}
-                                        onChange={(e) => setFilters({ ...filters, priceRange: [filters.priceRange[0], Number(e.target.value)] })}
-                                        className="w-full pl-6 pr-2 py-1.5 text-sm border border-zinc-200 rounded-md focus:border-black outline-none"
+                                        min={filters.priceRange[0]}
+                                        max={priceBounds.max}
+                                        value={filters.priceRange[1]}
+                                        onChange={(e) => {
+                                            const val = Math.max(Number(e.target.value), filters.priceRange[0]);
+                                            setFilters({ ...filters, priceRange: [filters.priceRange[0], val] });
+                                        }}
+                                        className="w-full min-w-0 bg-transparent text-sm focus:outline-none no-spinner"
                                     />
                                 </div>
                             </div>
-                            <button
-                                onClick={() => {
-                                    // Apply is automatic in our filteredProducts logic, maybe just reset here?
-                                    // Or visual confirm
-                                }}
-                                className="w-full py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 text-xs font-medium rounded-md transition-colors"
-                            >
-                                Reset Price
-                            </button>
                         </div>
                     )}
                 </div>

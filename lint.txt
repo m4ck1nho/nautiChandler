@@ -1,0 +1,114 @@
+﻿
+> yachtdrop@0.1.0 lint
+> eslint
+
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\app\api\image-proxy\route.ts
+  33:7  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\app\api\products\db\route.ts
+   44:11  warning  'deduplicate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  296:41  error    Unexpected any. Specify a different type          @typescript-eslint/no-explicit-any
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\app\api\products\route.ts
+  449:9  warning  'isFeaturedRequest' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\app\api\products\sync\route.ts
+  175:27  warning  'request' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\app\api\products\unified\route.ts
+  23:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  33:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\app\product\[id]\page.tsx
+  6:24  warning  'ArrowLeft' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\app\search\_internal.tsx
+   14:9   warning  'router' is assigned a value but never used                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  153:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\cart\CartDrawer.tsx
+  110:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\layout\FilterSheet.tsx
+  75:22  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\layout\FilterSheet.tsx:75:22
+  73 |     const urlSortBy = searchParams.get('sortBy') as FilterValues['sortBy'];
+  74 |
+> 75 |     if (urlPriceMin) setPriceMin(parseFloat(urlPriceMin));
+     |                      ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  76 |     if (urlPriceMax) setPriceMax(parseFloat(urlPriceMax));
+  77 |     if (urlCategory) setSelectedCategory(urlCategory);
+  78 |     if (urlInStock) setInStock(urlInStock === 'true');  react-hooks/set-state-in-effect
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\layout\Footer.tsx
+  84:50  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\layout\Navbar.tsx
+    4:38  warning  'usePathname' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+    5:22  warning  'Search' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+    5:30  warning  'X' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+    9:10  warning  'Input' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+   20:9   warning  'pathname' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+   24:36  error    Error: Cannot access variable before it is declared
+
+`setIsLoadingAuth` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\layout\Navbar.tsx:24:36
+  22 |   /* Fallback for Auth Loading */
+  23 |   useEffect(() => {
+> 24 |     const timer = setTimeout(() => setIsLoadingAuth(false), 2000);
+     |                                    ^^^^^^^^^^^^^^^^ `setIsLoadingAuth` accessed before it is declared
+  25 |     return () => clearTimeout(timer);
+  26 |   }, []);
+  27 |   const [isScrolled, setIsScrolled] = useState(false);
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\layout\Navbar.tsx:32:25
+  30 |   const [searchQuery, setSearchQuery] = useState('');
+  31 |   const [isLoggedIn, setIsLoggedIn] = useState(false);
+> 32 |   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+     |                         ^^^^^^^^^^^^^^^^ `setIsLoadingAuth` is declared here
+  33 |
+  34 |   // Track scroll position
+  35 |   useEffect(() => {  react-hooks/immutability
+   32:10  warning  'isLoadingAuth' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+   93:9   warning  'handleSearchSubmit' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  102:9   warning  'handleSearchClear' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\product\AddToCartButton.tsx
+  6:10  warning  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\components\search\FilterSidebar.tsx
+   3:20  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+  28:80  warning  'isOpen' is defined but never used     @typescript-eslint/no-unused-vars
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\hooks\useProductSearch.ts
+  270:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\hooks\useProductSearch.ts:270:5
+  268 |
+  269 |   useEffect(() => {
+> 270 |     setIsInitialized(true);
+      |     ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  271 |   }, []);
+  272 |
+  273 |   return isInitialized;  react-hooks/set-state-in-effect
+
+C:\Users\gkdnz\OneDrive\Belgeler\ProjectsAI\nautiChandler\yachtdrop\scripts\ingest_data.ts
+  22:7  warning  'supabase' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+Γ£û 27 problems (8 errors, 19 warnings)
+

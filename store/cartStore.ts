@@ -7,7 +7,7 @@ export interface CartItem {
   title: string;
   price: string;
   image: string;
-  link?: string;
+  link?: string | null;
   quantity: number;
 }
 
@@ -19,7 +19,7 @@ interface CartState {
   items: CartItem[];
   orderType: OrderType;
   isInitialized: boolean;
-  
+
   // Actions
   initializeCart: () => void;
   addItem: (item: Omit<CartItem, 'quantity' | 'id'>) => void;
@@ -27,7 +27,7 @@ interface CartState {
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   setOrderType: (type: OrderType) => void;
-  
+
   // Computed helpers
   getTotalItems: () => number;
   getTotalPrice: () => number;
@@ -59,7 +59,7 @@ export const useCartStore = create<CartState>()(
       // Add item to cart
       addItem: (item) => {
         const { items } = get();
-        
+
         // Check if item already exists (match by title + price)
         const existingIndex = items.findIndex(
           (i) => i.title === item.title && i.price === item.price
@@ -79,7 +79,7 @@ export const useCartStore = create<CartState>()(
             id: generateId(),
             quantity: 1,
           };
-          
+
           set((state) => ({
             items: [...state.items, newItem],
           }));
@@ -146,7 +146,7 @@ export const useCartStore = create<CartState>()(
 // Hook to initialize cart on mount
 export const useInitializeCart = () => {
   const { initializeCart, isInitialized } = useCartStore();
-  
+
   if (typeof window !== 'undefined' && !isInitialized) {
     initializeCart();
   }

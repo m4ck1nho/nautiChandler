@@ -4,13 +4,20 @@ export interface Product {
   title: string;
   price: string;
   image: string | null;
-  link: string;
+  link: string | null;
   description?: string;
   // Optional variant info - extracted from title or product data
   size?: string;
   color?: string;
   material?: string;
   category?: string;
+}
+
+export interface FilterState {
+  priceRange: [number, number];
+  selectedBrands: string[];
+  selectedCategories: string[];
+  selectedColors: string[];
 }
 
 // Database product (supports both flat and grouped schemas)

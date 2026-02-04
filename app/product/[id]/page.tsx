@@ -3,8 +3,9 @@ import path from 'path';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ChevronRight, ArrowLeft } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 import AddToCartButton from '@/components/product/AddToCartButton';
 import { Product } from '@/lib/types';
 
@@ -25,7 +26,8 @@ async function getProduct(id: string): Promise<Product | undefined> {
   }
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
+export default async function ProductPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const product = await getProduct(params.id);
 
   if (!product) {
@@ -37,7 +39,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
   const isFreeShipping = priceVal > 150;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-zinc-50">
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-16">
@@ -128,6 +130,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
         </div>
       </main>
 
+      <Footer />
     </div>
   );
 }
