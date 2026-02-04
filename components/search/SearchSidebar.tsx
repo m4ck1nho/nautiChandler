@@ -7,6 +7,8 @@ import { Slider } from '@/components/ui/slider';
 interface Facets {
   colors: string[];
   sizes: string[];
+  brands: string[];
+  materials: string[];
   maxPrice: number | null;
 }
 
@@ -66,16 +68,26 @@ export function SearchSidebar({
   const currentMin = priceMin ?? 0;
   const currentMax = priceMax ?? maxPriceValue;
 
-  // Combine product facets with common options
+  // Combine product facets with common options, prioritizing facets from results
   const availableColors = useMemo(() => {
-    const combined = new Set([...facets.colors, ...COMMON_COLORS]);
-    return Array.from(combined).slice(0, 8);
+    const combined = Array.from(new Set([...facets.colors, ...COMMON_COLORS]));
+    return combined.slice(0, 12);
   }, [facets.colors]);
 
   const availableSizes = useMemo(() => {
-    const combined = new Set([...facets.sizes, ...COMMON_SIZES]);
-    return Array.from(combined).slice(0, 8);
+    const combined = Array.from(new Set([...facets.sizes, ...COMMON_SIZES]));
+    return combined.slice(0, 12);
   }, [facets.sizes]);
+
+  const availableBrands = useMemo(() => {
+    const combined = Array.from(new Set([...facets.brands, ...COMMON_BRANDS]));
+    return combined.slice(0, 12);
+  }, [facets.brands]);
+
+  const availableMaterials = useMemo(() => {
+    const combined = Array.from(new Set([...facets.materials, ...COMMON_MATERIALS]));
+    return combined.slice(0, 12);
+  }, [facets.materials]);
 
   const handlePriceRangeChange = (values: number[]) => {
     const [min, max] = values;
@@ -211,8 +223,8 @@ export function SearchSidebar({
                 key={cat}
                 onClick={() => toggleCategory(cat)}
                 className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${selectedCategory === cat
-                    ? 'bg-zinc-900 text-white border-zinc-900'
-                    : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                  ? 'bg-zinc-900 text-white border-zinc-900'
+                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
                   }`}
               >
                 {cat}
@@ -250,8 +262,8 @@ export function SearchSidebar({
               key={color}
               onClick={() => toggleColor(color)}
               className={`px-3 py-1.5 text-xs rounded-full border capitalize transition-colors ${selectedColors.includes(color)
-                  ? 'bg-zinc-900 text-white border-zinc-900'
-                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                ? 'bg-zinc-900 text-white border-zinc-900'
+                : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
                 }`}
             >
               {color.toLowerCase()}
@@ -269,8 +281,8 @@ export function SearchSidebar({
               key={size}
               onClick={() => toggleSize(size)}
               className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${selectedSizes.includes(size)
-                  ? 'bg-zinc-900 text-white border-zinc-900'
-                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                ? 'bg-zinc-900 text-white border-zinc-900'
+                : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
                 }`}
             >
               {size}
@@ -283,13 +295,13 @@ export function SearchSidebar({
       <div>
         <h3 className="font-semibold text-black mb-3">Brand</h3>
         <div className="flex flex-wrap gap-2">
-          {COMMON_BRANDS.map((brand) => (
+          {availableBrands.map((brand) => (
             <button
               key={brand}
               onClick={() => toggleBrand(brand)}
               className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${selectedBrands.includes(brand)
-                  ? 'bg-zinc-900 text-white border-zinc-900'
-                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                ? 'bg-zinc-900 text-white border-zinc-900'
+                : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
                 }`}
             >
               {brand}
@@ -302,13 +314,13 @@ export function SearchSidebar({
       <div>
         <h3 className="font-semibold text-black mb-3">Material</h3>
         <div className="flex flex-wrap gap-2">
-          {COMMON_MATERIALS.map((material) => (
+          {availableMaterials.map((material) => (
             <button
               key={material}
               onClick={() => toggleMaterial(material)}
               className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${selectedMaterials.includes(material)
-                  ? 'bg-zinc-900 text-white border-zinc-900'
-                  : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                ? 'bg-zinc-900 text-white border-zinc-900'
+                : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
                 }`}
             >
               {material}

@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Loader2, Grid2X2, Grid3X3, LayoutGrid, ChevronDown, SlidersHorizontal, X } from 'lucide-react';
+import { Navbar } from '@/components/layout/Navbar';
 import { useProductSearch } from '@/hooks/useProductSearch';
 import { SearchSidebar, SearchSidebarFilters } from '@/components/search/SearchSidebar';
 import AddToCartButton from '@/components/product/AddToCartButton';
@@ -50,26 +51,53 @@ export default function InternalSearchPage() {
   // Effect: When URL query changes, update search
   useEffect(() => {
     search(rawQuery, categoryParam);
+    // Also sync the category filter state with the URL
+    setFilters(prev => ({ ...prev, selectedCategory: categoryParam }));
   }, [rawQuery, categoryParam, search]);
 
   // Derive facets from actual products
   const facets = useMemo(() => {
     const colors = new Set<string>();
     const sizes = new Set<string>();
-    let maxPrice = 0;
+    const brands = new Set<string>();
+    const materials = new Set<string>();
     const cats = new Set<string>();
+    let maxPrice = 0;
+
+    const knownBrands = ['Lofrans', 'Plastimo', 'Hella Marine', 'Lewmar', 'Muir', 'Quick', 'Harken', 'Jabsco', 'Rule', 'Osculati'];
+    const knownMaterials = ['Stainless Steel', 'Aluminum', 'Nylon', 'Polyester', 'Rubber', 'PVC', 'Galvanized'];
 
     products.forEach((p) => {
       if (p.color) colors.add(p.color);
       if (p.size) sizes.add(p.size);
+      if (p.material) materials.add(p.material);
       if (p.category) cats.add(p.category);
+
       const priceVal = parseFloat(p.price?.replace(/[^0-9.]/g, '') || '0');
       if (priceVal > maxPrice) maxPrice = priceVal;
+
+      // Extract brand from title
+      knownBrands.forEach(b => {
+        if (p.title.toLowerCase().includes(b.toLowerCase())) {
+          brands.add(b);
+        }
+      });
+
+      // Extract material from title if not already present
+      if (!p.material) {
+        knownMaterials.forEach(m => {
+          if (p.title.toLowerCase().includes(m.toLowerCase())) {
+            materials.add(m);
+          }
+        });
+      }
     });
 
     return {
       colors: Array.from(colors),
       sizes: Array.from(sizes),
+      brands: Array.from(brands),
+      materials: Array.from(materials),
       maxPrice: maxPrice || null,
       categories: Array.from(cats),
     };
@@ -79,7 +107,9 @@ export default function InternalSearchPage() {
   const filteredProducts = useMemo(() => {
     let result = products.filter((p) => {
       // Category filter
-      if (filters.selectedCategory && p.category) {
+      if (filters.selectedCategory) {
+        if (!p.category) return false;
+
         const pCat = p.category.toLowerCase();
         const selectedCat = filters.selectedCategory.toLowerCase();
 
@@ -102,6 +132,29 @@ export default function InternalSearchPage() {
 
       // Sizes
       if (filters.selectedSizes.length > 0 && p.size && !filters.selectedSizes.includes(p.size)) {
+        return false;
+      }
+
+      // Brands (Check title)
+      if (filters.selectedBrands && filters.selectedBrands.length > 0) {
+        const hasBrand = filters.selectedBrands.some(brand =>
+          p.title.toLowerCase().includes(brand.toLowerCase())
+        );
+        if (!hasBrand) return false;
+      }
+
+      // Materials
+      if (filters.selectedMaterials && filters.selectedMaterials.length > 0) {
+        const pMat = p.material?.toLowerCase() || '';
+        const hasMaterial = filters.selectedMaterials.some(mat => {
+          const mLower = mat.toLowerCase();
+          return pMat.includes(mLower) || p.title.toLowerCase().includes(mLower);
+        });
+        if (!hasMaterial) return false;
+      }
+
+      // In Stock (if field exist)
+      if (filters.inStock && p.in_stock === false) {
         return false;
       }
 
@@ -148,8 +201,8 @@ export default function InternalSearchPage() {
   // Grid class based on columns
   const gridClass = {
     2: 'grid-cols-2',
-    3: 'grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+    3: 'grid-cols-3',
+    4: 'grid-cols-4',
   }[gridColumns];
 
   // Sidebar component (shared between mobile and desktop)
@@ -158,6 +211,8 @@ export default function InternalSearchPage() {
       facets={{
         colors: facets.colors,
         sizes: facets.sizes,
+        brands: facets.brands,
+        materials: facets.materials,
         maxPrice: facets.maxPrice
       }}
       categories={facets.categories}
@@ -169,8 +224,13 @@ export default function InternalSearchPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Navbar />
+
+      {/* Spacer for fixed Navbar */}
+      <div className="h-14 sm:h-24" />
+
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-100">
+      <div className="sticky top-14 sm:top-24 z-30 bg-white/95 backdrop-blur-md border-b border-zinc-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="p-2 -ml-2 hover:bg-zinc-100 rounded-full transition-colors">
@@ -241,27 +301,27 @@ export default function InternalSearchPage() {
         {/* Toolbar */}
         <div className="flex items-center justify-between mb-4 lg:mb-6 pb-4 border-b border-zinc-100">
           {/* Grid Toggle */}
-          <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-lg">
+          <div className="flex items-center gap-2 lg:gap-3 bg-zinc-100 p-1.5 rounded-xl">
             <button
               onClick={() => setGridColumns(2)}
-              className={`p-1.5 lg:p-2 rounded-md transition-colors ${gridColumns === 2 ? 'bg-white shadow-sm text-zinc-900' : 'text-zinc-500 hover:text-zinc-700'}`}
+              className={`p-2 lg:p-2.5 rounded-lg border transition-all active:scale-95 ${gridColumns === 2 ? 'bg-white border-zinc-200 shadow-sm text-zinc-900' : 'bg-transparent border-transparent text-zinc-500 hover:text-zinc-700'}`}
               title="2 columns"
             >
-              <Grid2X2 className="w-4 h-4" />
+              <Grid2X2 className="w-5 h-5 sm:w-5 sm:h-5" />
             </button>
             <button
               onClick={() => setGridColumns(3)}
-              className={`p-1.5 lg:p-2 rounded-md transition-colors ${gridColumns === 3 ? 'bg-white shadow-sm text-zinc-900' : 'text-zinc-500 hover:text-zinc-700'}`}
+              className={`p-2 lg:p-2.5 rounded-lg border transition-all active:scale-95 ${gridColumns === 3 ? 'bg-white border-zinc-200 shadow-sm text-zinc-900' : 'bg-transparent border-transparent text-zinc-500 hover:text-zinc-700'}`}
               title="3 columns"
             >
-              <Grid3X3 className="w-4 h-4" />
+              <Grid3X3 className="w-5 h-5 sm:w-5 sm:h-5" />
             </button>
             <button
               onClick={() => setGridColumns(4)}
-              className={`p-1.5 lg:p-2 rounded-md transition-colors ${gridColumns === 4 ? 'bg-white shadow-sm text-zinc-900' : 'text-zinc-500 hover:text-zinc-700'}`}
+              className={`p-2 lg:p-2.5 rounded-lg border transition-all active:scale-95 ${gridColumns === 4 ? 'bg-white border-zinc-200 shadow-sm text-zinc-900' : 'bg-transparent border-transparent text-zinc-500 hover:text-zinc-700'}`}
               title="4 columns"
             >
-              <LayoutGrid className="w-4 h-4" />
+              <LayoutGrid className="w-5 h-5 sm:w-5 sm:h-5" />
             </button>
           </div>
 

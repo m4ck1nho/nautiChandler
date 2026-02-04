@@ -11,6 +11,7 @@ export interface Product {
   color?: string;
   material?: string;
   category?: string;
+  in_stock?: boolean;
 }
 
 export interface FilterState {

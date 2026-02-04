@@ -1,8 +1,11 @@
 'use client';
 
+import { User as SupabaseUser } from '@supabase/supabase-js';
+
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Menu, User, ShoppingBag } from 'lucide-react';
+import { Menu, User, ShoppingBag, LogOut, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { CategoryDrawer } from './CategoryDrawer';
 import { CartDrawer } from '@/components/cart/CartDrawer';
@@ -24,6 +27,8 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
   /* Fallback for Auth Loading */
@@ -50,12 +55,15 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
         try {
           const { data: { user } } = await supabase.auth.getUser();
           setIsLoggedIn(!!user);
+          setUser(user);
         } catch (error) {
           console.error('Auth check error:', error);
           setIsLoggedIn(false);
+          setUser(null);
         }
       } else {
         setIsLoggedIn(false);
+        setUser(null);
       }
       setIsLoadingAuth(false);
     };
@@ -67,6 +75,7 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
     if (supabase) {
       const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
         setIsLoggedIn(!!session?.user);
+        setUser(session?.user || null);
       });
 
       return () => subscription.unsubscribe();
@@ -153,28 +162,97 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
 
               {/* Auth Buttons */}
               {isLoggedIn ? (
-                <button
-                  className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors bg-zinc-100 text-black hover:bg-zinc-200 whitespace-nowrap"
-                  aria-label="Profile"
-                >
-                  <User className="w-4 h-4" />
-                  <span className="hidden sm:inline">Profile</span>
-                </button>
+                <div className="relative z-[51]">
+                  <button
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                    className="flex items-center gap-2 pl-2 pr-3 py-2 rounded-full text-sm font-medium transition-all bg-zinc-100 text-black hover:bg-zinc-200 whitespace-nowrap border border-zinc-200 shadow-sm active:scale-95"
+                    aria-label="User menu"
+                  >
+                    <div className="w-7 h-7 rounded-full bg-zinc-900 text-white flex items-center justify-center overflow-hidden">
+                      {user?.user_metadata?.avatar_url ? (
+                        <img src={user.user_metadata.avatar_url} alt="Profile" className="w-full h-full object-cover" />
+                      ) : (
+                        <User className="w-4 h-4" />
+                      )}
+                    </div>
+                    <span className="hidden sm:inline-block max-w-[100px] truncate">
+                      {/* @ts-ignore - metadata is dynamic */}
+                      {user?.user_metadata?.full_name?.split(' ')[0] || 'Member'}
+                    </span>
+                    <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {isUserMenuOpen && (
+                      <>
+                        {/* Backdrop to close menu */}
+                        <div
+                          className="fixed inset-0 z-40"
+                          onClick={() => setIsUserMenuOpen(false)}
+                        />
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.15, ease: 'easeOut' }}
+                          className="absolute right-0 mt-2 w-56 bg-white border border-zinc-200 rounded-2xl shadow-xl z-50 overflow-hidden"
+                        >
+                          <div className="p-3 border-b border-zinc-100 bg-zinc-50/50">
+                            <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1 px-2">Account</p>
+                            <div className="flex items-center gap-3 px-2 py-1">
+                              <div className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center overflow-hidden">
+                                {user?.user_metadata?.avatar_url ? (
+                                  <img src={user.user_metadata.avatar_url} alt="Profile" className="w-full h-full object-cover" />
+                                ) : (
+                                  <User className="w-4 h-4" />
+                                )}
+                              </div>
+                              <div className="flex flex-col overflow-hidden">
+                                <p className="text-sm font-semibold text-zinc-900 truncate">
+                                  {/* @ts-ignore - metadata is dynamic */}
+                                  {user?.user_metadata?.full_name || 'Yachtdrop Member'}
+                                </p>
+                                <p className="text-xs text-zinc-500 truncate">{user?.email}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="p-1.5">
+                            <button
+                              onClick={async () => {
+                                setIsUserMenuOpen(false);
+                                const { signOut } = await import('@/lib/auth-helpers');
+                                await signOut();
+                                router.refresh();
+                              }}
+                              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-600 font-medium hover:bg-red-50 rounded-xl transition-colors text-left"
+                            >
+                              <LogOut className="w-4 h-4" />
+                              Sign out
+                            </button>
+                          </div>
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
+                </div>
               ) : (
                 <>
-                  <button
+                  <Link
+                    href="/login"
                     className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors bg-zinc-100 text-black hover:bg-zinc-200 whitespace-nowrap"
                     aria-label="Log in"
                   >
                     <User className="w-4 h-4" />
                     <span className="hidden sm:inline">Log in</span>
-                  </button>
-                  <button
-                    className="hidden sm:inline-flex items-center px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors bg-black text-white hover:bg-zinc-800 whitespace-nowrap"
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full text-[13px] sm:text-sm font-medium transition-colors bg-black text-white hover:bg-zinc-800 whitespace-nowrap"
                     aria-label="Sign up"
                   >
                     Sign up
-                  </button>
+                  </Link>
                 </>
               )}
             </div>
