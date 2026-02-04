@@ -113,8 +113,8 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
           }
         `}
       >
-        <div className="w-full px-4 sm:px-8">
-          <div className="flex items-center gap-4 h-24">
+        <div className="w-full px-3 sm:px-8">
+          <div className="flex items-center gap-2 sm:gap-4 h-14 sm:h-24">
 
             {/* Left: Hamburger Menu (First) */}
             <button
@@ -132,7 +132,7 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
                 <img
                   src="/yachtDropLogo.png"
                   alt="Yachtdrop"
-                  className="h-20 w-auto object-contain"
+                  className="h-10 sm:h-20 w-auto object-contain"
                 />
               </Link>
             </div>

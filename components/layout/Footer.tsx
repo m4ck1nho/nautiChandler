@@ -5,10 +5,10 @@ import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Phone } from 'luc
 
 export function Footer() {
     return (
-        <footer className="bg-white border-t border-zinc-200 pt-16 pb-8">
+        <footer className="bg-white border-t border-zinc-200 pt-10 sm:pt-16 pb-6 sm:pb-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-16">
 
                     {/* Column 1: Company */}
                     <div>

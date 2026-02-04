@@ -30,7 +30,7 @@ export function Hero({ onSearch, initialQuery = '' }: HeroProps) {
     <section className="relative h-screen bg-white overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-[65%_35%] h-full">
         {/* Left Column - Content */}
-        <div className="flex flex-col justify-center items-start px-4 sm:px-8 lg:px-16 py-8 pt-28 sm:pt-32 lg:py-0 z-10">
+        <div className="flex flex-col justify-center items-start px-4 sm:px-8 lg:px-16 py-8 pt-20 sm:pt-32 lg:py-0 z-10">
 
 
           {/* Headline */}

@@ -27,18 +27,18 @@ export function Features() {
     ];
 
     return (
-        <section className="bg-zinc-50 py-16 border-b border-zinc-200">
+        <section className="bg-zinc-50 py-10 sm:py-16 border-b border-zinc-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
                     {features.map((feature, index) => (
                         <div key={index} className="flex flex-col items-center text-center">
-                            <div className="mb-4 p-3 bg-white rounded-2xl shadow-sm">
-                                <feature.icon className="w-8 h-8 text-black" strokeWidth={1.5} />
+                            <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-white rounded-xl sm:rounded-2xl shadow-sm">
+                                <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-black" strokeWidth={1.5} />
                             </div>
-                            <h3 className="text-sm font-bold text-black uppercase tracking-wide mb-1">
+                            <h3 className="text-xs sm:text-sm font-bold text-black uppercase tracking-wide mb-0.5 sm:mb-1">
                                 {feature.title}
                             </h3>
-                            <p className="text-sm text-zinc-500">
+                            <p className="text-xs sm:text-sm text-zinc-500">
                                 {feature.description}
                             </p>
                         </div>

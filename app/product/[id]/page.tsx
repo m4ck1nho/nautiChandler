@@ -42,10 +42,10 @@ export default async function ProductPage(props: { params: Promise<{ id: string 
     <div className="min-h-screen bg-zinc-50">
       <Navbar />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-16">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 pb-8 sm:pb-16">
 
-        {/* Breadcrumb */}
-        <nav className="flex items-center text-sm text-zinc-500 mb-8">
+        {/* Breadcrumb - hidden on mobile */}
+        <nav className="hidden sm:flex items-center text-sm text-zinc-500 mb-8">
           <Link href="/" className="hover:text-black transition-colors">Home</Link>
           <ChevronRight className="w-4 h-4 mx-2" />
           <Link href="/search" className="hover:text-black transition-colors">Catalog</Link>
@@ -61,7 +61,13 @@ export default async function ProductPage(props: { params: Promise<{ id: string 
           <span className="text-black truncate max-w-[200px] font-medium">{product.title}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        {/* Mobile back button */}
+        <Link href="/search" className="sm:hidden inline-flex items-center gap-2 text-sm text-zinc-500 mb-4 hover:text-black">
+          <ChevronRight className="w-4 h-4 rotate-180" />
+          Back to products
+        </Link>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-20">
 
           {/* Left: Images */}
           <div className="space-y-4">
