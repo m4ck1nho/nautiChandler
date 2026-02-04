@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yachtdrop Online Chandlery
 
-## Getting Started
+Yachtdrop is a premium e-commerce platform tailored for yacht crews, providing a seamless way to browse and purchase marine supplies. Built with a mobile-first approach, it offers a high-performance, app-like experience for finding everything from anchoring gear to safety equipment.
 
-First, run the development server:
+![Yachtdrop Preview](/yachtdrop-preview.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ⚓ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Advanced Search & Discovery**:
+  - Real-time filtering by Category, Price Range, Color, Size, Brand, and Material.
+  - Smart category mapping for intuitive navigation.
+  - Sorting by Price (Low/High), Name, and Featured items.
+- **Dynamic Product Experience**:
+  - Interactive product cards with hover-activated "Add to Basket" buttons (Desktop).
+  - Tap-optimized interaction with persistent cart buttons on Mobile.
+  - Visual feedback with animations when adding items to the cart.
+- **Seamless Cart Management**:
+  - Side-drawer cart for quick access.
+  - Support for both Delivery and Pickup order types.
+  - Real-time subtotal and total calculations.
+- **Premium Design Shell**:
+  - Minimalist, zinc-based design language.
+  - Smooth transitions and micro-animations using Framer Motion.
+  - Fully responsive layout optimized for all device sizes.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand) (Cart & UI state)
+- **Backend Data**: Static JSON database for high performance and reliability.
+- **Deployment**: [Vercel](https://vercel.com/)
 
-## Learn More
+## 🚀 Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 18.x or later
+- npm or yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/m4ck1nho/nautiChandler.git
+   cd nautiChandler/yachtdrop
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📦 Project Structure
+
+- `app/`: Next.js App Router pages and API routes.
+- `components/`: Reusable UI components (Cart, Layout, Product, Search, etc.).
+- `hooks/`: Custom React hooks for search and data fetching.
+- `lib/`: Utility functions and type definitions.
+- `public/`: Static assets and the product database (`products.json`).
+- `store/`: Zustand state stores for cart and application state.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+*Designed for Yacht Crews by Yachtdrop.*
