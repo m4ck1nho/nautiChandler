@@ -41,8 +41,17 @@ RUN npm ci
 # Copy application code
 COPY . .
 
+# Build arguments for Next.js public env vars (must be available at build time)
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+# Set as environment variables for the build
+ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
+
 # Build the Next.js application
 RUN npm run build
+
 
 # Remove devDependencies after build to reduce image size
 RUN npm prune --production
