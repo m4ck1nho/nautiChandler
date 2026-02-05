@@ -1,5 +1,4 @@
-import { createBrowserClient, type CookieOptions } from '@supabase/ssr';
-import Cookies from 'js-cookie';
+import { createBrowserClient } from '@supabase/ssr';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 // Create client only if credentials are available
@@ -26,29 +25,8 @@ export const getSupabase = () => {
 
   if (!supabaseInstance) {
     console.log('Initializing Supabase client with URL:', supabaseUrl.substring(0, 30) + '...');
-
-    supabaseInstance = createBrowserClient(supabaseUrl, supabaseKey, {
-      cookies: {
-        get(name: string) {
-          return Cookies.get(name);
-        },
-        set(name: string, value: string, options?: CookieOptions) {
-          // Ensure reasonable defaults for auth cookies
-          Cookies.set(name, value, {
-            sameSite: 'lax',
-            secure: true,
-            ...options,
-          } as any);
-        },
-        remove(name: string, options?: CookieOptions) {
-          Cookies.remove(name, {
-            sameSite: 'lax',
-            secure: true,
-            ...options,
-          } as any);
-        },
-      },
-    });
+    // We use the default cookie handling for the browser client, which is safer and less error-prone
+    supabaseInstance = createBrowserClient(supabaseUrl, supabaseKey);
   }
   return supabaseInstance;
 };
