@@ -7,7 +7,17 @@ export async function GET(request: Request) {
     // if "next" is in search params, use it as the redirection URL
     const next = searchParams.get('next') ?? '/';
 
-    console.log(`[Auth Callback] Initialized. Origin: ${origin}, Next: ${next}`);
+    // Check for errors returned directly from the provider
+    const error = searchParams.get('error');
+    const errorDescription = searchParams.get('error_description');
+    const errorCode = searchParams.get('error_code');
+
+    console.log(`[Auth Callback] Initialized. URL: ${request.url}`);
+
+    if (error) {
+        console.error(`[Auth Callback] Provider returned error: ${error}, Description: ${errorDescription}, Code: ${errorCode}`);
+        return NextResponse.redirect(`${origin}/auth/auth-code-error?error=${encodeURIComponent(errorDescription || error)}&error_code=${errorCode || ''}`);
+    }
 
     if (code) {
         console.log('[Auth Callback] Code received. Exchanging for session...');
