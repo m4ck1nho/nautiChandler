@@ -150,7 +150,7 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
             <div className="flex-1" /> {/* Spacer to push Cart to right */}
 
             {/* Right: Cart & Auth */}
-            <div className="flex items-center gap-4 flex-shrink-0 ml-auto pr-4">
+            <div className="hidden md:flex items-center gap-4 flex-shrink-0 ml-auto pr-4">
 
               {/* Cart Icon (Added) */}
               <button
@@ -297,14 +297,21 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
             <span className="text-[10px] font-medium">Favorites</span>
           </Link>
 
-          {/* 3. Home */}
+          {/* 3. Home (Logo) */}
           <Link
             href="/"
-            className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${pathname === '/' ? 'text-black' : 'text-zinc-500 hover:text-black'
-              }`}
+            className="flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors"
           >
-            <Home className="w-6 h-6" strokeWidth={pathname === '/' ? 2.5 : 2} />
-            <span className="text-[10px] font-medium">Home</span>
+            <div className="h-8 w-8 overflow-hidden relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/yachtDropLogo.png"
+                alt="Home"
+                className="h-full w-auto max-w-none object-cover object-left absolute left-0"
+                style={{ width: '250%' /* Force zoom to crop text if needed, or rely on object-cover with square container */ }}
+              />
+            </div>
+            {/* <span className="text-[10px] font-medium">Home</span> */}
           </Link>
 
           {/* 4. Profile / Login */}
