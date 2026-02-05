@@ -108,6 +108,9 @@ function buildSearchUrl(query: string, page: string = '1'): string {
   return `${baseCategory}${searchSuffix}${pageParamAlt}`;
 }
 
+// Vercel Serverless Configuration: Increase timeout to 60 seconds
+export const maxDuration = 60;
+
 export async function GET(
   request: NextRequest,
 ): Promise<NextResponse<ProductsResponse & { grouped?: ProductWithVariants[] }>> {

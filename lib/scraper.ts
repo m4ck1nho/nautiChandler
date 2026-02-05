@@ -30,11 +30,16 @@ export async function scrapeLiveProducts(url: string, pageNum: number = 1): Prom
 
         if (isProduction) {
             // PRODUCTION: Use puppeteer-core + @sparticuz/chromium
+            log('[SCRAPER] Loading @sparticuz/chromium...');
             const chromium = (await import('@sparticuz/chromium')).default as any;
+            log('[SCRAPER] Loading puppeteer-core...');
             const puppeteerCore = (await import('puppeteer-core')).default as any;
 
+            log('[SCRAPER] Getting chromium executable path...');
             const execPath = await chromium.executablePath();
+            log(`[SCRAPER] Chromium path: ${execPath}`);
 
+            log('[SCRAPER] Launching browser...');
             browser = await puppeteerCore.launch({
                 args: chromium.args,
                 defaultViewport: chromium.defaultViewport,
@@ -42,6 +47,7 @@ export async function scrapeLiveProducts(url: string, pageNum: number = 1): Prom
                 headless: chromium.headless,
                 ignoreHTTPSErrors: true,
             });
+            log('[SCRAPER] Browser launched successfully!');
         } else {
             // LOCAL: Use standard puppeteer directly (bypass extra to avoid crashes)
             if (!localBrowserInstance) {
