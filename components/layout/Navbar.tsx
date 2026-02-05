@@ -3,8 +3,8 @@
 import { User as SupabaseUser } from '@supabase/supabase-js';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Menu, User, ShoppingBag, LogOut, ChevronDown } from 'lucide-react';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { Menu, User, ShoppingBag, LogOut, ChevronDown, Search, Heart, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { CategoryDrawer } from './CategoryDrawer';
@@ -18,6 +18,7 @@ interface NavbarProps {
 export function Navbar({ onCategorySelect }: NavbarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   /* Safe pathname check */
   /* Safe pathname check - keeping variable if needed for future or removing if truly unused. Lint said unused. Removing. */
   // const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
@@ -272,6 +273,61 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
         open={isCartOpen}
         onClose={() => setIsCartOpen(false)}
       />
+
+      {/* Mobile Bottom Navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 z-[60] bg-white border-t border-zinc-200 pb-safe md:hidden">
+        <div className="flex items-center justify-around h-16 px-2">
+
+          {/* 1. Categories (Search Icon) */}
+          <button
+            onClick={() => setIsDrawerOpen(true)}
+            className="flex flex-col items-center justify-center w-full h-full space-y-1 text-zinc-500 hover:text-black active:text-black transition-colors"
+          >
+            <Search className="w-6 h-6" strokeWidth={isDrawerOpen ? 2.5 : 2} />
+            <span className="text-[10px] font-medium">Categories</span>
+          </button>
+
+          {/* 2. Favorites */}
+          <Link
+            href="/favorites"
+            className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${pathname === '/favorites' ? 'text-black' : 'text-zinc-500 hover:text-black'
+              }`}
+          >
+            <Heart className="w-6 h-6" strokeWidth={pathname === '/favorites' ? 2.5 : 2} />
+            <span className="text-[10px] font-medium">Favorites</span>
+          </Link>
+
+          {/* 3. Home */}
+          <Link
+            href="/"
+            className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${pathname === '/' ? 'text-black' : 'text-zinc-500 hover:text-black'
+              }`}
+          >
+            <Home className="w-6 h-6" strokeWidth={pathname === '/' ? 2.5 : 2} />
+            <span className="text-[10px] font-medium">Home</span>
+          </Link>
+
+          {/* 4. Profile / Login */}
+          <Link
+            href={isLoggedIn ? "/account" : "/login"}
+            className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${pathname?.startsWith('/account') || pathname === '/login' ? 'text-black' : 'text-zinc-500 hover:text-black'
+              }`}
+          >
+            <User className="w-6 h-6" strokeWidth={(pathname?.startsWith('/account') || pathname === '/login') ? 2.5 : 2} />
+            <span className="text-[10px] font-medium">Profile</span>
+          </Link>
+
+          {/* 5. Cart */}
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="flex flex-col items-center justify-center w-full h-full space-y-1 text-zinc-500 hover:text-black active:text-black transition-colors relative"
+          >
+            <ShoppingBag className="w-6 h-6" strokeWidth={isCartOpen ? 2.5 : 2} />
+            <span className="text-[10px] font-medium">Cart</span>
+          </button>
+
+        </div>
+      </nav>
     </>
   );
 }

@@ -14,9 +14,9 @@ export function AuthLayout({ children, title, subtitle }: AuthLayoutProps) {
     return (
         <div className="min-h-[100dvh] grid lg:grid-cols-2 bg-white selection:bg-black selection:text-white">
             {/* Left side: Form */}
-            <div className="flex flex-col justify-start lg:justify-center px-6 pt-10 pb-20 sm:px-12 lg:px-24 min-h-[100dvh]">
+            <div className="flex flex-col justify-start lg:justify-center px-4 pt-6 pb-12 sm:px-12 lg:px-24 min-h-[100dvh]">
                 <div className="w-full max-w-md mx-auto">
-                    <Link href="/" className="inline-block mb-6 lg:mb-12">
+                    <Link href="/" className="inline-block mb-4 lg:mb-12">
                         <img
                             src="/yachtDropLogo.png"
                             alt="Yachtdrop"
