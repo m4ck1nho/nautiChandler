@@ -24,32 +24,43 @@ export async function scrapeLiveProducts(url: string, pageNum: number = 1): Prom
 
     try {
         // DETERMINE ENVIRONMENT
-        const isProduction = process.env.NODE_ENV === 'production' || !!process.env.VERCEL;
+        const isVercel = !!process.env.VERCEL;
+        const isRailway = !!process.env.RAILWAY_ENVIRONMENT || !!process.env.RAILWAY_PROJECT_ID;
+        const isProduction = process.env.NODE_ENV === 'production';
+        const isLocal = !isVercel && !isRailway && !isProduction;
 
-        log(`[SCRAPER] Launching in ${isProduction ? 'PRODUCTION' : 'LOCAL'} mode for Page ${pageNum}`);
+        log(`[SCRAPER] Environment: Vercel=${isVercel}, Railway=${isRailway}, Local=${isLocal}`);
 
-        if (isProduction) {
-            // PRODUCTION: Use puppeteer-core + @sparticuz/chromium
-            log('[SCRAPER] Loading @sparticuz/chromium...');
-            const chromium = (await import('@sparticuz/chromium')).default as any;
-            log('[SCRAPER] Loading puppeteer-core...');
-            const puppeteerCore = (await import('puppeteer-core')).default as any;
+        // Vercel serverless doesn't work well with Puppeteer - skip
+        if (isVercel) {
+            log('[SCRAPER] Vercel detected - skipping live scraping (serverless limitations)');
+            return { products: [], logs };
+        }
 
-            log('[SCRAPER] Getting chromium executable path...');
-            const execPath = await chromium.executablePath();
-            log(`[SCRAPER] Chromium path: ${execPath}`);
+        // RAILWAY (Container) - Use system Chromium from Docker
+        if (isRailway || isProduction) {
+            log(`[SCRAPER] Launching in PRODUCTION/RAILWAY mode for Page ${pageNum}`);
+            const puppeteerCore = (await import('puppeteer-core')).default;
 
-            log('[SCRAPER] Launching browser...');
+            // Use system Chromium installed via Dockerfile
+            const execPath = process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium';
+            log(`[SCRAPER] Using system Chromium at: ${execPath}`);
+
             browser = await puppeteerCore.launch({
-                args: chromium.args,
-                defaultViewport: chromium.defaultViewport,
+                args: [
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-gpu',
+                    '--single-process'
+                ],
                 executablePath: execPath,
-                headless: chromium.headless,
-                ignoreHTTPSErrors: true,
+                headless: true,
             });
             log('[SCRAPER] Browser launched successfully!');
         } else {
-            // LOCAL: Use standard puppeteer directly (bypass extra to avoid crashes)
+            // LOCAL: Use standard puppeteer with bundled Chromium
+            log(`[SCRAPER] Launching in LOCAL mode for Page ${pageNum}`);
             if (!localBrowserInstance) {
                 const { default: puppeteer } = await import('puppeteer');
                 localBrowserInstance = puppeteer;
@@ -58,9 +69,10 @@ export async function scrapeLiveProducts(url: string, pageNum: number = 1): Prom
             browser = await localBrowserInstance.launch({
                 args: ['--no-sandbox', '--disable-setuid-sandbox'],
                 headless: false, // VISUAL DEBUGGING
-                defaultViewport: null, // Allow full size
+                defaultViewport: null,
             });
         }
+
 
         const page = await (browser as any).newPage();
 
