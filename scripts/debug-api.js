@@ -1,7 +1,8 @@
 
 const http = require('http');
 
-const url = 'http://localhost:3000/api/products/live?q=anchor&page=2';
+// Search URL (Testing 'fitting' category pagination)
+const url = 'http://localhost:3000/api/products/live?q=fitting&page=2';
 
 http.get(url, (res) => {
     let data = '';

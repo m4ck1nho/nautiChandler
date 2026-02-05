@@ -108,16 +108,19 @@ export default function InternalSearchPage() {
     let result = products.filter((p) => {
       // Category filter
       if (filters.selectedCategory) {
-        if (!p.category) return false;
+        // Allow scraped/live products through (they have category: 'search' or undefined)
+        // Only filter products that have a specific category that doesn't match
+        if (p.category && p.category !== 'search') {
+          const pCat = p.category.toLowerCase();
+          const selectedCat = filters.selectedCategory.toLowerCase();
 
-        const pCat = p.category.toLowerCase();
-        const selectedCat = filters.selectedCategory.toLowerCase();
-
-        if (!pCat.includes(selectedCat) && !selectedCat.includes(pCat)) {
-          const matchWords = ['anchor', 'fitting', 'inflatable', 'life', 'cloth', 'maintenance', 'clean', 'tool', 'machine', 'electric', 'light'];
-          const hasMatch = matchWords.some(word => selectedCat.includes(word) && pCat.includes(word));
-          if (!hasMatch) return false;
+          if (!pCat.includes(selectedCat) && !selectedCat.includes(pCat)) {
+            const matchWords = ['anchor', 'fitting', 'inflatable', 'life', 'cloth', 'maintenance', 'clean', 'tool', 'machine', 'electric', 'light'];
+            const hasMatch = matchWords.some(word => selectedCat.includes(word) && pCat.includes(word));
+            if (!hasMatch) return false;
+          }
         }
+        // Products with no category or category='search' pass through (scraped products)
       }
 
       // Price filter

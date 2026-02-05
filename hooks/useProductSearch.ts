@@ -184,14 +184,18 @@ export function useProductSearch(
       }
 
       const newProducts = result.products;
+      console.log('[HOOK] Received products:', newProducts.length, 'append:', append);
+
       setSource(dataSource);
       setSearchTerm(result.searchTerm || searchQuery);
 
       if (append) {
         // Append products, avoiding duplicates by ID
         setProducts(prev => {
+          console.log('[HOOK] Prev products:', prev.length);
           const existingIds = new Set(prev.map(p => p.id));
           const uniqueNew = newProducts.filter(p => !existingIds.has(p.id));
+          console.log('[HOOK] Unique new after dedup:', uniqueNew.length);
           return [...prev, ...uniqueNew];
         });
       } else {
