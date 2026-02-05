@@ -7,34 +7,36 @@ export async function GET(request: Request) {
     // if "next" is in search params, use it as the redirection URL
     const next = searchParams.get('next') ?? '/';
 
+    console.log(`[Auth Callback] Initialized. Origin: ${origin}, Next: ${next}`);
+
     if (code) {
-        console.log('OAuth redirect: Received code, exchanging for session...');
+        console.log('[Auth Callback] Code received. Exchanging for session...');
         const supabase = await createClient();
         const { error } = await supabase.auth.exchangeCodeForSession(code);
 
         if (!error) {
-            console.log('OAuth redirect: Success! Session established.');
+            console.log('[Auth Callback] Session established successfully.');
             const forwardedHost = request.headers.get('x-forwarded-host'); // Hello, Vercel
             const isLocalEnv = process.env.NODE_ENV === 'development';
 
             if (isLocalEnv) {
-                console.log(`OAuth redirect: Local env, redirecting to ${origin}${next}`);
+                console.log(`[Auth Callback] Local environment. Redirecting to: ${origin}${next}`);
                 return NextResponse.redirect(`${origin}${next}`);
             } else if (forwardedHost) {
-                console.log(`OAuth redirect: Vercel env, redirecting to https://${forwardedHost}${next}`);
+                console.log(`[Auth Callback] Vercel environment (forwarded). Redirecting to: https://${forwardedHost}${next}`);
                 return NextResponse.redirect(`https://${forwardedHost}${next}`);
             } else {
-                console.log(`OAuth redirect: Production/Other env, redirecting to ${origin}${next}`);
+                console.log(`[Auth Callback] Production/Other environment. Redirecting to: ${origin}${next}`);
                 return NextResponse.redirect(`${origin}${next}`);
             }
         } else {
-            console.error('OAuth redirect: Exchange error:', error.message);
+            console.error('[Auth Callback] Session exchange failed:', error.message, error.status);
         }
     } else {
-        console.warn('OAuth redirect: No code found in search params.');
+        console.warn('[Auth Callback] No code found in search parameters.');
     }
 
     // return the user to an error page with instructions
-    console.log(`OAuth redirect: Final fallback, redirecting to ${origin}/auth/auth-code-error`);
+    console.log(`[Auth Callback] Redirecting to error page: ${origin}/auth/auth-code-error`);
     return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 }
