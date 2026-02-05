@@ -10,11 +10,6 @@ export async function GET(request: NextRequest) {
 
     console.log(`[Auth Confirm] Initialized. Type: ${type}, Origin: ${origin}, Next: ${next}`);
 
-    const redirectTo = request.nextUrl.clone();
-    redirectTo.pathname = next;
-    redirectTo.searchParams.delete('token_hash');
-    redirectTo.searchParams.delete('type');
-
     if (token_hash && type) {
         const supabase = await createClient();
 
@@ -26,20 +21,30 @@ export async function GET(request: NextRequest) {
 
         if (!error) {
             console.log('[Auth Confirm] OTP verified successfully.');
+            // Redirect to the "next" path
+            const redirectTo = new URL(request.url);
+            redirectTo.pathname = next;
+            redirectTo.searchParams.delete('token_hash');
+            redirectTo.searchParams.delete('type');
             redirectTo.searchParams.delete('next');
             return NextResponse.redirect(redirectTo);
         } else {
             console.error('[Auth Confirm] OTP verification error:', error.message, error.status);
 
-            // Resilience: If the error is about a stale/used token, but the user can still be fetched, 
-            // it likely means the scanner already consumed it.
+            // Resilience: Check if we are already authenticated.
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
-                console.log('[Auth Confirm] User already authenticated or confirmed by scanner. Redirecting home.');
-                redirectTo.pathname = '/';
+                console.log('[Auth Confirm] User already authenticated or confirmed. Redirecting to target.');
+                const redirectTo = new URL(request.url);
+                redirectTo.pathname = next;
+                redirectTo.searchParams.delete('token_hash');
+                redirectTo.searchParams.delete('type');
+                redirectTo.searchParams.delete('next');
                 return NextResponse.redirect(redirectTo);
             }
 
+            // Error Page
+            const redirectTo = new URL(request.url);
             redirectTo.pathname = '/auth/auth-code-error';
             redirectTo.searchParams.set('error', error.message);
             if (error.status) redirectTo.searchParams.set('error_code', error.status.toString());
@@ -49,8 +54,7 @@ export async function GET(request: NextRequest) {
         console.warn('[Auth Confirm] Missing token_hash or type in request.');
     }
 
-    // return the user to an error page with some instructions
-    console.warn(`[Auth Confirm] Redirecting to error page: ${origin}/auth/auth-code-error`);
+    const redirectTo = new URL(request.url);
     redirectTo.pathname = '/auth/auth-code-error';
     redirectTo.searchParams.set('error', 'Missing token or type');
     return NextResponse.redirect(redirectTo);

@@ -4,7 +4,6 @@ import { createClient } from '@/lib/supabase-server';
 export async function GET(request: Request) {
     const { searchParams, origin } = new URL(request.url);
     const code = searchParams.get('code');
-    // if "next" is in search params, use it as the redirection URL
     const next = searchParams.get('next') ?? '/';
 
     // Check for errors returned directly from the provider
@@ -22,46 +21,48 @@ export async function GET(request: Request) {
     if (code) {
         console.log('[Auth Callback] Code received. Exchanging for session...');
         const supabase = await createClient();
-        const { error } = await supabase.auth.exchangeCodeForSession(code);
 
-        if (!error) {
-            console.log('[Auth Callback] Session established successfully.');
-            return handleSuccessRedirect(request, origin, next);
-        } else {
-            console.error('[Auth Callback] Session exchange failed:', error.message, error.status);
-            const errorMessage = encodeURIComponent(error.message);
-            const errorCode = error.status ? `&error_code=${error.status}` : '';
+        try {
+            const { error } = await supabase.auth.exchangeCodeForSession(code);
 
-            // Resilience: Check if we already have a session (e.g. code already consumed)
+            if (!error) {
+                console.log('[Auth Callback] Session established successfully.');
+                return handleSuccessRedirect(request, origin, next);
+            } else {
+                console.error('[Auth Callback] Session exchange failed:', error.message, error.status);
+
+                // Resilience: Check if we already have a session (Double Consumption Fix)
+                // This happens often with strict mode or some email scanners
+                const { data: { user } } = await supabase.auth.getUser();
+                if (user) {
+                    console.log('[Auth Callback] Recovered: User already authenticated. Proceeding as success.');
+                    return handleSuccessRedirect(request, origin, next);
+                }
+
+                const errorMessage = encodeURIComponent(error.message);
+                const errorCode = error.status ? `&error_code=${error.status}` : '';
+                return NextResponse.redirect(`${origin}/auth/auth-code-error?error=${errorMessage}${errorCode}`);
+            }
+        } catch (err) {
+            console.error('[Auth Callback] Unexpected error during exchange:', err);
+            // Last resort recovery check
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
-                console.log('[Auth Callback] Recovered: User already authenticated. Proceeding as success.');
+                console.log('[Auth Callback] Recovered from unexpected error: User already authenticated.');
                 return handleSuccessRedirect(request, origin, next);
             }
-
-            return NextResponse.redirect(`${origin}/auth/auth-code-error?error=${errorMessage}${errorCode}`);
+            return NextResponse.redirect(`${origin}/auth/auth-code-error?error=Unexpected+error`);
         }
     } else {
         console.warn('[Auth Callback] No code found in search parameters.');
+        return NextResponse.redirect(`${origin}/auth/auth-code-error?error=No+code+provided`);
     }
-
-    // return the user to an error page with instructions
-    console.log(`[Auth Callback] Redirecting to error page: ${origin}/auth/auth-code-error`);
-    return NextResponse.redirect(`${origin}/auth/auth-code-error?error=No+code+provided`);
 }
 
 function handleSuccessRedirect(request: Request, origin: string, next: string) {
-    const forwardedHost = request.headers.get('x-forwarded-host'); // Hello, Vercel
-    const isLocalEnv = process.env.NODE_ENV === 'development';
-
-    if (isLocalEnv) {
-        console.log(`[Auth Callback] Local environment. Redirecting to: ${origin}${next}`);
-        return NextResponse.redirect(`${origin}${next}`);
-    } else if (forwardedHost) {
-        console.log(`[Auth Callback] Vercel environment (forwarded). Redirecting to: https://${forwardedHost}${next}`);
-        return NextResponse.redirect(`https://${forwardedHost}${next}`);
-    } else {
-        console.log(`[Auth Callback] Production/Other environment. Redirecting to: ${origin}${next}`);
-        return NextResponse.redirect(`${origin}${next}`);
-    }
+    // Simplified redirect logic to rely on the origin calculated from request.url
+    // This is safer than relying on x-forwarded-host which can vary between environments indiscriminately
+    // unless strictly configured.
+    console.log(`[Auth Callback] Redirecting to: ${origin}${next}`);
+    return NextResponse.redirect(`${origin}${next}`);
 }
