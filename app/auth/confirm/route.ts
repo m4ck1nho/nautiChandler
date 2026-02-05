@@ -39,6 +39,11 @@ export async function GET(request: NextRequest) {
                 redirectTo.pathname = '/';
                 return NextResponse.redirect(redirectTo);
             }
+
+            redirectTo.pathname = '/auth/auth-code-error';
+            redirectTo.searchParams.set('error', error.message);
+            if (error.status) redirectTo.searchParams.set('error_code', error.status.toString());
+            return NextResponse.redirect(redirectTo);
         }
     } else {
         console.warn('[Auth Confirm] Missing token_hash or type in request.');
@@ -47,5 +52,6 @@ export async function GET(request: NextRequest) {
     // return the user to an error page with some instructions
     console.warn(`[Auth Confirm] Redirecting to error page: ${origin}/auth/auth-code-error`);
     redirectTo.pathname = '/auth/auth-code-error';
+    redirectTo.searchParams.set('error', 'Missing token or type');
     return NextResponse.redirect(redirectTo);
 }

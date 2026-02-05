@@ -1,11 +1,26 @@
 'use client';
 
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function AuthCodeError() {
+    return (
+        <Suspense fallback={<ErrorContent />}>
+            <ErrorContent />
+        </Suspense>
+    );
+}
+
+function ErrorContent() {
+    const searchParams = useSearchParams();
+    const error = searchParams.get('error');
+    const errorCode = searchParams.get('error_code');
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-white px-6">
             <motion.div
@@ -20,8 +35,13 @@ export default function AuthCodeError() {
                 <div className="space-y-2">
                     <h1 className="text-2xl font-bold text-zinc-900">Authentication Error</h1>
                     <p className="text-zinc-600">
-                        We couldn't verify your login code. This usually happens if the link has expired or has already been used.
+                        {error || "We couldn't verify your login code. This usually happens if the link has expired or has already been used."}
                     </p>
+                    {errorCode && (
+                        <p className="text-xs text-zinc-400 font-mono">
+                            Error Code: {errorCode}
+                        </p>
+                    )}
                 </div>
 
                 <div className="pt-4 space-y-3">
