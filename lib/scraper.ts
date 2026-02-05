@@ -1,7 +1,6 @@
 
-import puppeteerExtra from 'puppeteer-extra';
 // Singleton cache for local development
-let localPuppeteerInstance: any = null;
+let localBrowserInstance: any = null;
 
 // Define Product Interface
 export interface ScrapedProduct {
@@ -30,11 +29,10 @@ export async function scrapeLiveProducts(url: string, pageNum: number = 1): Prom
         log(`[SCRAPER] Launching in ${isProduction ? 'PRODUCTION' : 'LOCAL'} mode for Page ${pageNum}`);
 
         if (isProduction) {
-            // PRODUCTION: Dynamic import to avoid local issues with missing binaries
+            // PRODUCTION: Use puppeteer-core + @sparticuz/chromium
             const chromium = (await import('@sparticuz/chromium')).default as any;
             const puppeteerCore = (await import('puppeteer-core')).default as any;
 
-            // Use as any to bypass incomplete type definitions for chromium
             const execPath = await chromium.executablePath();
 
             browser = await puppeteerCore.launch({
@@ -45,21 +43,44 @@ export async function scrapeLiveProducts(url: string, pageNum: number = 1): Prom
                 ignoreHTTPSErrors: true,
             });
         } else {
-            // LOCAL: Use puppeteer-extra
-            if (!localPuppeteerInstance) {
-                const { default: puppeteerExtra } = await import('puppeteer-extra');
-                // Stealth Plugin disabled locally to avoid crash
-                localPuppeteerInstance = puppeteerExtra;
+            // LOCAL: Use standard puppeteer directly (bypass extra to avoid crashes)
+            if (!localBrowserInstance) {
+                const { default: puppeteer } = await import('puppeteer');
+                localBrowserInstance = puppeteer;
             }
 
-            browser = await localPuppeteerInstance.launch({
+            browser = await localBrowserInstance.launch({
                 args: ['--no-sandbox', '--disable-setuid-sandbox'],
                 headless: true
             });
         }
 
-        // Cast browser to any to allow newPage() without strict typing issues from mixed libs
         const page = await (browser as any).newPage();
+
+        // --- MANUAL STEALTH EVASION ---
+        await page.evaluateOnNewDocument(() => {
+            // Pass the Webdriver Test
+            Object.defineProperty(navigator, 'webdriver', { get: () => false });
+
+            // Pass the Chrome Test
+            // @ts-ignore
+            window.chrome = { runtime: {} };
+
+            // Pass the Permissions Test
+            const originalQuery = window.navigator.permissions.query;
+            // @ts-ignore
+            window.navigator.permissions.query = (parameters) => (
+                parameters.name === 'notifications' ?
+                    Promise.resolve({ state: 'denied' }) :
+                    originalQuery(parameters)
+            );
+
+            // Pass the Plugins Length Test
+            Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+
+            // Pass the Languages Test
+            Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
+        });
 
         // Optimize navigation
         await page.setViewport({ width: 1366, height: 768 });
@@ -75,25 +96,23 @@ export async function scrapeLiveProducts(url: string, pageNum: number = 1): Prom
         const title = await page.title();
         log(`[SCRAPER] Title: ${title}`);
 
-        // Check if blocked or empty
-        const content = await page.content();
-        log(`[SCRAPER] HTML Length: ${content.length}`);
-
-        // INFINITE SCROLL LOGIC
+        // SIMPLE SCROLL LOGIC
         const SCROLLS_NEEDED = (pageNum - 1) * 2;
+
         if (SCROLLS_NEEDED > 0) {
-            log(`[SCRAPER] Scrolling ${SCROLLS_NEEDED} times...`);
+            log(`[SCRAPER] Scrolling ${SCROLLS_NEEDED} times (Jump)...`);
+
             for (let i = 0; i < SCROLLS_NEEDED; i++) {
                 try {
                     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-                    await new Promise((r) => setTimeout(r, 1500));
+                    await new Promise((r) => setTimeout(r, 4000)); // Increase wait time to 4s
                 } catch (e) {
                     console.error('[SCRAPER] Scroll error:', e);
                 }
             }
         } else {
-            await page.evaluate(() => window.scrollBy(0, 500));
-            await new Promise((r) => setTimeout(r, 1000));
+            await page.evaluate(() => window.scrollBy(0, 1000));
+            await new Promise((r) => setTimeout(r, 2000));
         }
 
         // EXTRACT PRODUCTS
