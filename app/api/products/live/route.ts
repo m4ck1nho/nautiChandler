@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import https from 'https';
+import path from 'path';
 import { Product, ProductWithVariants, ProductsResponse } from '@/lib/types';
 import { deduplicateProducts } from '@/lib/productGrouping';
 
@@ -192,13 +193,55 @@ function parseProducts($: cheerio.CheerioAPI): Product[] {
   return products;
 }
 
-function buildSearchUrl(query: string): string {
+// Smart Category Mapping
+const DIRECT_CATEGORY_URLS: Record<string, string> = {
+  'electronics': 'https://nautichandler.com/en/190-electronics',
+  'motor': 'https://nautichandler.com/en/100393-motor',
+  'ropes': 'https://nautichandler.com/en/100395-ropes',
+  'safety': 'https://nautichandler.com/en/100389-safety',
+  'anchors': 'https://nautichandler.com/en/100810-anchors',
+  'fitting': 'https://nautichandler.com/en/100396-fitting',
+  'plumbing': 'https://nautichandler.com/en/100713-plumbing',
+  'painting': 'https://nautichandler.com/en/100390-painting',
+  'screws': 'https://nautichandler.com/en/100394-screws',
+  'tools': 'https://nautichandler.com/en/100391-tools-machines',
+  'electrics': 'https://nautichandler.com/en/100392-electricslighting',
+  'maintenance': 'https://nautichandler.com/en/100669-maintenance-cleaning-products',
+  'navigation': 'https://nautichandler.com/en/100329-navigation',
+  'clothing': 'https://nautichandler.com/en/43-personal-equipment',
+  'life-on-board': 'https://nautichandler.com/en/197-life-on-board',
+  'inflatables': 'https://nautichandler.com/en/100911-inflatablewater-toys'
+};
+
+function buildSearchUrl(query: string, page: string = '1'): string {
+  const normalizedQuery = query.toLowerCase().trim();
+  const pageParam = parseInt(page) > 1 ? `?page=${page}` : '';
+
+  // 1. Check for exact category match or simple plural/singular mapping
+  // (e.g. "anchor" -> "anchors")
+  let targetUrl = '';
+
+  if (DIRECT_CATEGORY_URLS[normalizedQuery]) {
+    targetUrl = DIRECT_CATEGORY_URLS[normalizedQuery];
+  } else if (DIRECT_CATEGORY_URLS[normalizedQuery + 's']) {
+    targetUrl = DIRECT_CATEGORY_URLS[normalizedQuery + 's'];
+  } else if (normalizedQuery.endsWith('s') && DIRECT_CATEGORY_URLS[normalizedQuery.slice(0, -1)]) {
+    targetUrl = DIRECT_CATEGORY_URLS[normalizedQuery.slice(0, -1)];
+  }
+
+  // If found a direct category, use it (it's much more reliable)
+  if (targetUrl) {
+    return `${targetUrl}${pageParam}`; // Category pages use ?page=X
+  }
+
+  // 2. Fallback to generic search
+  // Note: Search controller often 500s on page 2+
+  const searchPageParam = parseInt(page) > 1 ? `&p=${page}` : ''; // Search uses &p=X in some versions, or &page=
   const baseUrl = 'https://nautichandler.com';
   if (!query) {
-    // Fallback to homepage if no query – but we never crash
-    return `${baseUrl}/en/`;
+    return `${baseUrl}/en/search?controller=search&s=${encodeURIComponent('')}${searchPageParam}`;
   }
-  return `${baseUrl}/en/search?controller=search&s=${encodeURIComponent(query)}`;
+  return `${baseUrl}/en/search?controller=search&s=${encodeURIComponent(query)}${searchPageParam}`;
 }
 
 export async function GET(
@@ -207,119 +250,63 @@ export async function GET(
   // Wrap EVERYTHING in try/catch to prevent any 500 errors
   try {
     const searchParams = request.nextUrl.searchParams;
-
-    // Accept both ?q= and ?search= without strict validation
     const query = searchParams.get('q') || searchParams.get('search') || '';
+    const page = searchParams.get('page') || '1';
+    const targetUrl = buildSearchUrl(query, page);
 
-    const targetUrl = buildSearchUrl(query);
-    console.log('[LIVE SEARCH] Fetching:', targetUrl);
+    console.log('[LIVE SEARCH] Spawning Playwright for:', targetUrl);
 
-    let response;
-    let html: string;
-    let $: cheerio.CheerioAPI;
+    // Execute the script
+    const { exec } = require('child_process');
+    const scriptPath = path.join(process.cwd(), 'scripts', 'live-single-page.ts');
 
-    try {
-      response = await axiosInstance.get(targetUrl, {
-        headers: browserHeaders,
-        timeout: 30000, // 30 second timeout
+    // Use npx ts-node to run it
+    const command = `npx ts-node "${scriptPath}" "${targetUrl}"`;
+
+    const products: Product[] = await new Promise((resolve) => {
+      exec(command, { maxBuffer: 1024 * 1024 * 5 }, (error: any, stdout: string, stderr: string) => {
+        if (error) {
+          console.error('[LIVE SEARCH] Script error:', stderr);
+          resolve([]);
+          return;
+        }
+        try {
+          const data = JSON.parse(stdout.trim());
+          // Clean pseudo-ids
+          const clean = data.map((p: any, i: number) => ({
+            ...p,
+            id: `live-${page}-${i}-${Date.now()}` // Unique ID
+          }));
+          resolve(clean);
+        } catch (e) {
+          console.error('JSON parse error from script output:', stdout);
+          resolve([]);
+        }
       });
+    });
 
-      html = typeof response.data === 'string' ? response.data : String(response.data);
-      $ = cheerio.load(html);
+    console.log(`[LIVE SEARCH] Found ${products.length} products via script`);
 
-      // Log HTML structure for debugging
-      const bodyLength = $('body').html()?.length || 0;
-      console.log(`[LIVE SEARCH] HTML received: ${bodyLength} chars, status: ${response.status}`);
-
-      if (bodyLength < 1000) {
-        console.warn('[LIVE SEARCH] HTML seems too short - might be blocked or error page');
-      }
-    } catch (fetchError) {
-      console.error('[LIVE SEARCH] SCRAPE ERROR (fetch):', fetchError instanceof Error ? fetchError.message : fetchError);
-      
-      // Return graceful error - never 500
-      return NextResponse.json(
-        {
-          products: [],
-          grouped: [],
-          error: 'Failed to load products from external site. Please try again later.',
-        },
-        { status: 200 },
-      );
-    }
-
-    let products: Product[] = [];
-    try {
-      products = parseProducts($);
-      console.log('[LIVE SEARCH] Scraped products:', products.length);
-
-      if (products.length === 0) {
-        // Log selector check for debugging
-        const testSelectors = ['.product-miniature', '.product-container', '.product-item'];
-        const selectorMatches = testSelectors.map(s => ({
-          selector: s,
-          count: $(s).length,
-        }));
-        console.warn('[LIVE SEARCH] No products found. Selector check:', selectorMatches);
-      }
-    } catch (parseError) {
-      console.error('[LIVE SEARCH] SCRAPE ERROR (parse):', parseError instanceof Error ? parseError.message : parseError);
-      
-      // Return graceful error - never 500
-      return NextResponse.json(
-        {
-          products: [],
-          grouped: [],
-          error: 'Failed to parse product data. Site structure may have changed.',
-        },
-        { status: 200 },
-      );
-    }
-
-    if (products.length === 0) {
-      // Graceful empty result – no 500s
-      return NextResponse.json(
-        {
-          products: [],
-          grouped: [],
-          error: undefined,
-        },
-        { status: 200 },
-      );
-    }
-
-    // In‑memory grouping – Samsung/MacBook style variants
+    // Grouping logic (re-used)
     let grouped: ProductWithVariants[] = [];
     try {
       grouped = deduplicateProducts(products);
-      console.log('[LIVE SEARCH] Grouped into', grouped.length, 'product groups');
     } catch (groupError) {
-      console.error('[LIVE SEARCH] SCRAPE ERROR (group):', groupError instanceof Error ? groupError.message : groupError);
-      // If grouping fails, return products as-is
       grouped = products.map(p => ({ ...p, variantCount: 1 }));
     }
 
     return NextResponse.json(
       {
-        products: grouped, // we return the grouped representatives as the main list
+        products: grouped,
         grouped,
+        hasMore: products.length > 0,
         error: undefined,
       },
       { status: 200 },
     );
-  } catch (error) {
-    // Final catch-all - should never reach here, but just in case
-    console.error('[LIVE SEARCH] SCRAPE ERROR (unexpected):', error instanceof Error ? error.message : error);
 
-    // Never crash the client – always return 200 with an error field
-    return NextResponse.json(
-      {
-        products: [],
-        grouped: [],
-        error: 'Live search failed. Please try again.',
-      },
-      { status: 200 },
-    );
+  } catch (error) {
+    console.error('[LIVE SEARCH] Unexpected error:', error);
+    return NextResponse.json({ products: [], grouped: [], hasMore: false, error: 'Failed' }, { status: 200 });
   }
 }
-

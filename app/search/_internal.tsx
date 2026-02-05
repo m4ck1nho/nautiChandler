@@ -26,7 +26,7 @@ export default function InternalSearchPage() {
   const categoryParam = searchParams.get('category') || undefined;
 
   // Use the search hook
-  const { products, isLoading, error, search } = useProductSearch(rawQuery);
+  const { products, isLoading, isLoadingMore, hasMore, loadMore, error, search } = useProductSearch(rawQuery);
 
   // Grid and sorting state
   const [gridColumns, setGridColumns] = useState<GridColumns>(3);
@@ -381,38 +381,54 @@ export default function InternalSearchPage() {
                 <button onClick={clearFilters} className="mt-4 text-sm text-zinc-900 underline">Clear filters</button>
               </div>
             ) : (
-              <div className={`grid ${gridClass} gap-3 lg:gap-6`}>
-                {filteredProducts.map((product) => (
-                  <Link
-                    key={product.id}
-                    href={`/product/${encodeURIComponent(product.id)}`}
-                    className="group relative flex flex-col gap-2 lg:gap-3"
-                  >
-                    {/* Image with hover button */}
-                    <div className="aspect-square bg-zinc-100 rounded-lg lg:rounded-xl overflow-hidden relative">
-                      {product.image ? (
-                        <img
-                          src={product.image}
-                          alt={product.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-zinc-300">No Image</div>
-                      )}
+              <>
+                <div className={`grid ${gridClass} gap-3 lg:gap-6`}>
+                  {filteredProducts.map((product) => (
+                    <Link
+                      key={product.id}
+                      href={`/product/${encodeURIComponent(product.id)}`}
+                      className="group relative flex flex-col gap-2 lg:gap-3"
+                    >
+                      {/* Image with hover button */}
+                      <div className="aspect-square bg-zinc-100 rounded-lg lg:rounded-xl overflow-hidden relative">
+                        {product.image ? (
+                          <img
+                            src={product.image}
+                            alt={product.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-zinc-300">No Image</div>
+                        )}
 
-                      {/* Add Button - Removed per user request */}
-                    </div>
+                        {/* Add Button - Removed per user request */}
+                      </div>
 
-                    {/* Product Info */}
-                    <div>
-                      <h3 className="text-xs lg:text-sm font-medium text-zinc-900 line-clamp-2 leading-tight group-hover:underline">
-                        {product.title}
-                      </h3>
-                      <p className="text-xs lg:text-sm font-semibold text-zinc-900 mt-0.5 lg:mt-1">{product.price}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                      {/* Product Info */}
+                      <div>
+                        <h3 className="text-xs lg:text-sm font-medium text-zinc-900 line-clamp-2 leading-tight group-hover:underline">
+                          {product.title}
+                        </h3>
+                        <p className="text-xs lg:text-sm font-semibold text-zinc-900 mt-0.5 lg:mt-1">{product.price}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Load More Button */}
+                {hasMore && (
+                  <div className="mt-8 flex justify-center pb-8">
+                    <button
+                      onClick={loadMore}
+                      disabled={isLoadingMore}
+                      className="px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    >
+                      {isLoadingMore && <Loader2 className="w-4 h-4 animate-spin" />}
+                      {isLoadingMore ? 'Loading...' : 'Load More'}
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </main>
         </div>

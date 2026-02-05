@@ -115,7 +115,7 @@ export function useProductSearch(
       params.set('page', pageNum.toString());
       params.set('deduplicate', deduplicate ? 'true' : 'false');
 
-      const response = await fetch(`/api/products?${params.toString()}`, { signal });
+      const response = await fetch(`/api/products/live?${params.toString()}`, { signal });
 
       if (!response.ok) {
         throw new Error(`Failed to fetch products: ${response.status}`);
@@ -198,16 +198,16 @@ export function useProductSearch(
         setProducts(newProducts);
       }
 
-      setHasMore(result.hasMore);
-      setPage(pageNum);
-
-    } catch (err) {
-      if (err instanceof Error && err.name === 'AbortError') {
-        return;
+      // Hybrid Pagination Logic:
+      // If we are serving from 'database' (static cache), ALWAYS assume there might be more on the live site.
+      // This ensures the "Load More" button remains visible even if the DB returns a partial page (e.g. 3 items).
+      // When the user clicks it, the next fetch will fail DB and fallback to Scraper.
+      let finalHasMore = result.hasMore;
+      if (dataSource === 'database') {
+        finalHasMore = true;
       }
-      console.error('Search error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to fetch products');
-      if (!append) setProducts([]);
+      setHasMore(finalHasMore);
+      setPage(pageNum);
     } finally {
       setIsLoading(false);
       setIsLoadingMore(false);

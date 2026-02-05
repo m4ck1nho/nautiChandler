@@ -34,7 +34,7 @@ const TARGET_CATEGORIES = [
     { name: 'inflatables', url: 'https://nautichandler.com/en/100911-inflatablewater-toys' }
 ];
 
-const ITEMS_PER_CATEGORY = 20;
+const ITEMS_PER_CATEGORY = 60;
 
 async function main() {
     console.log('\n═════════════════════════════════════════════════════════');
