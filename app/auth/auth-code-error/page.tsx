@@ -10,9 +10,25 @@ import { Button } from '@/components/ui/button';
 
 export default function AuthCodeError() {
     return (
-        <Suspense fallback={<ErrorContent />}>
+        <Suspense fallback={<LoadingError />}>
             <ErrorContent />
         </Suspense>
+    );
+}
+
+function LoadingError() {
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-white px-6">
+            <div className="max-w-md w-full text-center space-y-6">
+                <div className="mx-auto w-16 h-16 bg-gray-100 text-gray-400 rounded-full flex items-center justify-center animate-pulse">
+                    <div className="w-8 h-8" />
+                </div>
+                <div className="space-y-2">
+                    <div className="h-8 bg-gray-100 rounded w-1/2 mx-auto animate-pulse" />
+                    <div className="h-4 bg-gray-100 rounded w-3/4 mx-auto animate-pulse" />
+                </div>
+            </div>
+        </div>
     );
 }
 
