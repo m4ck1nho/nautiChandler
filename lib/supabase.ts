@@ -7,7 +7,7 @@ export const getSupabase = () => {
   // Check env vars dynamically on each call to ensure they're available
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-  
+
   if (!supabaseUrl || !supabaseKey) {
     // Only log once to avoid spam
     if (!supabaseInstance) {
@@ -21,10 +21,14 @@ export const getSupabase = () => {
     }
     return null;
   }
-  
+
   if (!supabaseInstance) {
     console.log('Initializing Supabase client with URL:', supabaseUrl.substring(0, 30) + '...');
-    supabaseInstance = createClient(supabaseUrl, supabaseKey);
+    supabaseInstance = createClient(supabaseUrl, supabaseKey, {
+      auth: {
+        flowType: 'pkce',
+      },
+    });
   }
   return supabaseInstance;
 };
