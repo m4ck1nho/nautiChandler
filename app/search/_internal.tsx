@@ -400,10 +400,7 @@ export default function InternalSearchPage() {
                         <div className="w-full h-full flex items-center justify-center text-zinc-300">No Image</div>
                       )}
 
-                      {/* Add Button - Always visible on mobile, hover-only on desktop */}
-                      <div className="absolute bottom-2 right-2 lg:bottom-3 lg:right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200">
-                        <AddToCartButton product={product as Product} variant="circle" />
-                      </div>
+                      {/* Add Button - Removed per user request */}
                     </div>
 
                     {/* Product Info */}
