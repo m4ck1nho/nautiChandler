@@ -316,11 +316,11 @@ export function Navbar({ onCategorySelect }: NavbarProps) {
 
           {/* 4. Profile / Login */}
           <Link
-            href={isLoggedIn ? "/account" : "/login"}
-            className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${pathname?.startsWith('/account') || pathname === '/login' ? 'text-black' : 'text-zinc-500 hover:text-black'
+            href="/login"
+            className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${pathname === '/login' ? 'text-black' : 'text-zinc-500 hover:text-black'
               }`}
           >
-            <User className="w-6 h-6" strokeWidth={(pathname?.startsWith('/account') || pathname === '/login') ? 2.5 : 2} />
+            <User className="w-6 h-6" strokeWidth={pathname === '/login' ? 2.5 : 2} />
             <span className="text-[10px] font-medium">Profile</span>
           </Link>
 
