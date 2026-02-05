@@ -3,7 +3,14 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase-server';
 
 export async function GET(request: NextRequest) {
-    const { searchParams, origin } = new URL(request.url);
+    const url = new URL(request.url);
+    const { searchParams } = url;
+
+    // Determine the public origin. Railway/proxies set x-forwarded headers.
+    const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || url.host;
+    const proto = request.headers.get('x-forwarded-proto') || (url.protocol.replace(':', '')) || 'https';
+    const origin = `${proto}://${host}`;
+
     const token_hash = searchParams.get('token_hash');
     const type = searchParams.get('type') as EmailOtpType | null;
     const next = searchParams.get('next') ?? '/';
