@@ -1,51 +1,45 @@
-# Yachtdrop Online Chandlery
+# Yachtdrop - Marine Nano Tech Hackathon Project
 
-Yachtdrop is a premium, high-performance e-commerce platform specifically engineered for yacht crews. It provides a seamless, app-like experience for browsing and purchasing marine supplies, bridging the gap between traditional chandleries and modern on-demand delivery services.
+Yachtdrop is a technical prototype developed for the **Marine Nano Tech Hackathon**. It is a specialized e-commerce interface designed to aggregate and present marine supply data from external sources like nautichandler.com into a modern, mobile-responsive dashboard.
 
-**🌐 Live Demo**: [nautichandler-production.up.railway.app](https://nautichandler-production.up.railway.app/)
+**🌐 Live Prototype**: [nautichandler-production.up.railway.app](https://nautichandler-production.up.railway.app/)
 
 ---
 
-## 📸 Preview
+## 📸 Project Overview
 
 ![Yachtdrop Interface](file:///c:/Users/gkdnz/OneDrive/Belgeler/ProjectsAI/nautiChandler/yachtdrop/public/yachtDropLogo.png)
 
-> [!NOTE]
-> The platform is built with a **Mobile-First** philosophy, ensuring that yacht crews can quickly find and order supplies directly from their mobile devices while on the move or working on deck.
+This project explores the technical feasibility of real-time data scraping and presentation in the marine logistics space. The goal was to build a functional, responsive shopping interface that leverages a robust data pipeline to serve live product information.
 
 ---
 
-## ⚓ Key Features
+## ⚓ Technical Features
 
-### Smart Search & Discovery
-- **Real-time Filtering**: Narrow down thousands of products by category, price range, color, size, brand, and material.
-- **Intelligent Category Mapping**: Structured navigation that mimics the organizational flow of a physical chandlery.
-- **Advanced Sorting**: Sort by price, name, or featured status to find exactly what you need.
+### Data & Search
+- **Dynamic Scraped Data**: Utilizes a Puppeteer-based pipeline to ingest product data from existing providers.
+- **Filtering System**: Implements category-based filtering, price range adjustments, and brand sorting.
+- **Search Architecture**: Optimized search hooks for querying both product titles and categories.
 
-### Optimized Shopping Experience
-- **Interactive UI**: Desktop users enjoy hover-activated "Add to Basket" functionality, while mobile users benefit from a tap-optimized, persistent interaction model.
-- **Smooth Transitions**: Powered by Framer Motion, every interaction—from opening the side-drawer cart to adding items—is fluid and responsive.
-- **Order Flexibility**: Supports both "Delivery" and "Pickup" order types with real-time subtotal and total calculations.
+### Interface & Experience
+- **Mobile-First Prototype**: Designed specifically for touch interactions and small-screen utility.
+- **State Management**: Uses Zustand for minimal, reactive cart and UI state handling.
+- **Animation Layer**: Subtle feedback provided via Framer Motion for better user interaction cues.
 
 ---
 
 ## 🛠 Technical Stack
 
-### Core Framework & UI
-- **Framework**: [Next.js](https://nextjs.org/) (App Router) - Leveraging server components for performance and SEO.
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) - Utilizing the latest utility-first CSS features for a custom zinc-based design system.
-- **Animations**: [Framer Motion](https://www.framer.com/motion/) - Ensuring a premium, "app-like" feel through micro-animations.
-- **Icons**: [Lucide React](https://lucide.dev/) - A consistent and clean iconography set.
+### Core Technologies
+- **Frontend**: [Next.js](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Database/Auth**: [Supabase](https://supabase.com/)
 
-### State & Data Management
-- **State Management**: [Zustand](https://github.com/pmndrs/zustand) - Minimalist state management for the shopping cart and UI transitions.
-- **Backend/Auth**: [Supabase](https://supabase.com/) - Handling user authentication and persistent data storage.
-- **Networking**: [Axios](https://axios-http.com/) - Robust HTTP client for API interactions.
-
-### Scraping & Data Pipeline
-- **Automation**: [Puppeteer](https://pptr.dev/) & [Puppeteer-Extra](https://github.com/berstend/puppeteer-extra) - Advanced scraping engine used to aggregate real-time product data from nautichandler.com.
-- **Stealth Integration**: Uses the `puppeteer-extra-plugin-stealth` to ensure reliable data extraction from complex web environments.
-- **Parsing**: [Cheerio](https://cheerio.js.org/) and [Playwright](https://playwright.dev/) are also integrated into the pipeline for specialized scraping tasks and document parsing.
+### Data Pipeline (Scraping)
+- **Scraper Engine**: [Puppeteer](https://pptr.dev/) with `puppeteer-extra-plugin-stealth` for reliable data extraction.
+- **Parsing Utilities**: [Cheerio](https://cheerio.js.org/) for DOM parsing and [Axios](https://axios-http.com/) for network requests.
+- **Automation**: Custom scripts to trigger full-catalog or single-page scrapes to maintain data freshness.
 
 ---
 
@@ -53,7 +47,7 @@ Yachtdrop is a premium, high-performance e-commerce platform specifically engine
 
 ### Prerequisites
 - Node.js 18.x or later
-- npm, yarn, or pnpm
+- npm or pnpm
 
 ### Installation
 
@@ -81,7 +75,7 @@ Yachtdrop is a premium, high-performance e-commerce platform specifically engine
    ```
 
 ### Scraping Data
-To refresh the product database using the Puppeteer-based scraper:
+To refresh the data from the source:
 ```bash
 npm run scrape
 ```
@@ -93,4 +87,4 @@ npm run scrape
 This project is licensed under the MIT License.
 
 ---
-*Developed for the high seas by the Yachtdrop Team.*
+*Built for the Marine Nano Tech Hackathon.*
