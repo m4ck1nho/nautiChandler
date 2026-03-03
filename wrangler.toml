@@ -1,0 +1,12 @@
+name = "nautichandler-scraper"
+main = "src/index.ts"
+compatibility_date = "2024-04-03"
+
+[browser]
+binding = "MYBROWSER"
+
+# Supabase Environment Variables
+# For local development, use .dev.vars
+# For production, use `wrangler secret put`
+# SUPABASE_URL = "..."
+# SUPABASE_ANON_KEY = "..."

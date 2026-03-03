@@ -1,90 +1,73 @@
-# Yachtdrop - Marine Nano Tech Hackathon Project
+# Yachtdrop ⚓
+### Advanced Marine Supply Aggregator (Serverless Edition)
 
-Yachtdrop is a technical prototype developed for the **Marine Nano Tech Hackathon**. It is a specialized e-commerce interface designed to aggregate and present marine supply data from external sources like nautichandler.com into a modern, mobile-responsive dashboard.
+![Yachtdrop Demo Placeholder](https://via.placeholder.com/1600x900.png?text=Yachtdrop+Architecture+&+Interface+Demo)
 
-**🌐 Live Prototype**: [nautichandler-production.up.railway.app](https://nautichandler-production.up.railway.app/)
+Yachtdrop is a technical prototype developed for the **Marine Nano Tech Hackathon**. It is a specialized e-commerce interface and automated data pipeline designed to aggregate marine supply data into a modern, mobile-responsive dashboard.
 
----
-
-## 📸 Project Overview
-
-![Yachtdrop Interface](file:///c:/Users/gkdnz/OneDrive/Belgeler/ProjectsAI/nautiChandler/yachtdrop/public/yachtDropLogo.png)
-
-This project explores the technical feasibility of real-time data scraping and presentation in the marine logistics space. The goal was to build a functional, responsive shopping interface that leverages a robust data pipeline to serve live product information.
+Originally built as a Dockerized Node.js application, this version has been migrated to a **Serverless Architecture** using Cloudflare Workers and the Browser Rendering API for maximum scalability and performance.
 
 ---
 
-## ⚓ Technical Features
+## ⚓ Technical Architecture
 
-### Data & Search
-- **Dynamic Scraped Data**: Utilizes a Puppeteer-based pipeline to ingest product data from existing providers.
-- **Filtering System**: Implements category-based filtering, price range adjustments, and brand sorting.
-- **Search Architecture**: Optimized search hooks for querying both product titles and categories.
-
-### Interface & Experience
-- **Mobile-First Prototype**: Designed specifically for touch interactions and small-screen utility.
-- **State Management**: Uses Zustand for minimal, reactive cart and UI state handling.
-- **Animation Layer**: Subtle feedback provided via Framer Motion for better user interaction cues.
-
----
-
-## 🛠 Technical Stack
-
-### Core Technologies
+- **Serverless Compute**: [Cloudflare Workers](https://workers.cloudflare.com/) (ES Modules)
+- **Dynamic Scraping**: [Cloudflare Browser Rendering API](https://developers.cloudflare.com/browser-rendering/) (Puppeteer-based)
+- **Backend & Auth**: [Supabase](https://supabase.com/) (PostgreSQL & Row Level Security)
 - **Frontend**: [Next.js](https://nextjs.org/) (App Router)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **State Management**: [Zustand](https://github.com/pmndrs/zustand)
-- **Database/Auth**: [Supabase](https://supabase.com/)
-
-### Data Pipeline (Scraping)
-- **Scraper Engine**: [Puppeteer](https://pptr.dev/) with `puppeteer-extra-plugin-stealth` for reliable data extraction.
-- **Parsing Utilities**: [Cheerio](https://cheerio.js.org/) for DOM parsing and [Axios](https://axios-http.com/) for network requests.
-- **Automation**: Custom scripts to trigger full-catalog or single-page scrapes to maintain data freshness.
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Key Features
+
+- **Automated Data Pipeline**: Real-time product ingestion from marine suppliers via headless browser automation.
+- **Serverless Scaling**: Scraper runs on the edge, triggered via HTTP or CRON jobs.
+- **Mobile-First UX**: Optimized for touch interactions and on-the-go utility for yacht crews.
+- **Real-time Sync**: Direct integration with Supabase for instant data availability across the dashboard.
+
+---
+
+## 🛠 Local Setup & Deployment
 
 ### Prerequisites
-- Node.js 18.x or later
-- npm or pnpm
+- [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/)
+- Supabase Account & Project
 
 ### Installation
-
-1. **Clone the repository**:
+1. Clone the repository:
    ```bash
    git clone https://github.com/m4ck1nho/nautiChandler.git
-   cd nautiChandler/yachtdrop
+   cd nautiChandler
    ```
-
-2. **Install dependencies**:
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-3. **Environment Setup**:
-   Create a `.env.local` file with your Supabase credentials:
+3. Configure environment variables:
+   Create a `.dev.vars` file for local development:
    ```env
-   NEXT_PUBLIC_SUPABASE_URL=your_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key
+   SUPABASE_URL=your_project_url
+   SUPABASE_ANON_KEY=your_anon_key
    ```
-
-4. **Run development server**:
+4. Run locally:
    ```bash
-   npm run dev
+   npx wrangler dev
    ```
 
-### Scraping Data
-To refresh the data from the source:
+### Deployment
+Deploy to Cloudflare Workers with a single command:
 ```bash
-npm run scrape
+npx wrangler deploy
 ```
 
 ---
 
-## 📄 License
+## 🤖 Development & Tools
 
-This project is licensed under the MIT License.
+This project utilizes advanced AI tools for development, including refactoring legacy Node.js code into modern ES modules, implementing serverless migration patterns, and optimizing frontend components for mobile-first utility.
 
 ---
 *Built for the Marine Nano Tech Hackathon.*
